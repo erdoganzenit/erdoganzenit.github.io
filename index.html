@@ -2,8 +2,8 @@
 <html lang="tr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erdoğan Zenit | Edge-AI & Embedded Systems Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Erdoğan Zenit | Edge-AI & Embedded Systems Engineer</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,39 +12,40 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        /* === MODERN RENK PALETİ & DEĞİŞKENLER === */
+        /* === 1. RENK PALETİ & TASARIM TOKENLARI === */
         :root {
-            --bg-base: #060913;
-            --bg-surface: rgba(15, 23, 42, 0.65);
-            --bg-surface-solid: #0f172a;
-            --bg-surface-hover: rgba(30, 41, 59, 0.8);
-            --bg-glass: rgba(10, 15, 29, 0.78);
+            --bg-base: #050811;
+            --bg-surface: rgba(15, 23, 42, 0.55);
+            --bg-surface-solid: #0b1120;
+            --bg-glass: rgba(8, 13, 26, 0.78);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
-            --accent-primary: #10b981; /* Emerald - Donanım & Gömülü Sistem */
+            --text-muted: #64748b;
+            --accent-primary: #10b981; /* Emerald - Donanım & PCB */
             --accent-secondary: #6366f1; /* Indigo - AI & Algoritma */
             --accent-cyan: #06b6d4;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(16, 185, 129, 0.45);
-            --shadow-glow: 0 20px 50px -15px rgba(16, 185, 129, 0.18);
-            --grid-color: rgba(255, 255, 255, 0.025);
-            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --border-subtle: rgba(255, 255, 255, 0.07);
+            --border-highlight: rgba(16, 185, 129, 0.4);
+            --shadow-glow: 0 24px 48px -12px rgba(16, 185, 129, 0.14);
+            --grid-color: rgba(255, 255, 255, 0.022);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         [data-theme="light"] {
             --bg-base: #f8fafc;
             --bg-surface: rgba(255, 255, 255, 0.85);
             --bg-surface-solid: #ffffff;
-            --bg-surface-hover: rgba(241, 245, 249, 0.95);
             --bg-glass: rgba(255, 255, 255, 0.88);
             --text-primary: #0f172a;
             --text-secondary: #475569;
+            --text-muted: #64748b;
             --accent-primary: #059669;
             --accent-secondary: #4f46e5;
             --accent-cyan: #0284c7;
-            --border-subtle: rgba(15, 23, 42, 0.09);
-            --border-highlight: rgba(5, 150, 105, 0.45);
-            --shadow-glow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+            --border-subtle: rgba(15, 23, 42, 0.08);
+            --border-highlight: rgba(5, 150, 105, 0.4);
+            --shadow-glow: 0 20px 40px -15px rgba(15, 23, 42, 0.07);
             --grid-color: rgba(15, 23, 42, 0.035);
         }
 
@@ -52,20 +53,35 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 100px;
         }
 
         body {
             background-color: var(--bg-base);
             color: var(--text-primary);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
+            line-height: 1.65;
             overflow-x: hidden;
             transition: background-color 0.4s ease, color 0.4s ease;
             position: relative;
+        }
+
+        /* Üst Kaydırma İlerleme Çubuğu (Scroll Progress) */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-cyan), var(--accent-secondary));
+            width: 0%;
+            z-index: 9999;
+            box-shadow: 0 0 12px var(--accent-primary);
+            transition: width 0.1s linear;
         }
 
         /* Mühendislik Izgarası Arka Planı */
@@ -76,9 +92,9 @@
             background-image: 
                 linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
-            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(circle at 50% 25%, black 25%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at 50% 25%, black 25%, transparent 80%);
             z-index: -2;
             pointer-events: none;
         }
@@ -87,27 +103,18 @@
         .ambient-light {
             position: fixed;
             border-radius: 50%;
-            filter: blur(130px);
-            opacity: 0.22;
+            filter: blur(140px);
+            opacity: 0.18;
             z-index: -1;
             pointer-events: none;
-            animation: floatOrb 18s infinite alternate ease-in-out;
+            animation: floatOrb 20s infinite alternate ease-in-out;
         }
-        .orb-1 {
-            width: 500px; height: 500px;
-            background: var(--accent-secondary);
-            top: -150px; left: -100px;
-        }
-        .orb-2 {
-            width: 450px; height: 450px;
-            background: var(--accent-primary);
-            bottom: -100px; right: -100px;
-            animation-delay: -7s;
-        }
+        .orb-1 { width: 520px; height: 520px; background: var(--accent-secondary); top: -180px; left: -120px; }
+        .orb-2 { width: 480px; height: 480px; background: var(--accent-primary); bottom: -140px; right: -120px; animation-delay: -8s; }
 
         @keyframes floatOrb {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(60px, 40px) scale(1.15); }
+            100% { transform: translate(50px, 40px) scale(1.12); }
         }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -115,10 +122,10 @@
         ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
 
-        /* === FLOATING PILL NAVBAR === */
+        /* === 2. FLOATING PILL NAVBAR === */
         .nav-wrapper {
             position: fixed;
-            top: 24px;
+            top: 20px;
             left: 0;
             width: 100%;
             display: flex;
@@ -129,87 +136,94 @@
 
         nav {
             width: 100%;
-            max-width: 1100px;
-            padding: 14px 28px;
+            max-width: 1140px;
+            padding: 12px 24px;
             background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-subtle);
             border-radius: 100px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.35);
             transition: var(--transition-smooth);
         }
 
         .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: -0.3px;
         }
-        .logo-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 12px var(--accent-primary);
+
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 20px;
         }
 
         .nav-links {
             display: flex;
-            gap: 24px;
+            gap: 6px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             transition: var(--transition-smooth);
             cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 7px 14px;
+            border-radius: 100px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--text-primary);
-            background: var(--border-subtle);
+            background: rgba(16, 185, 129, 0.12);
         }
 
         .controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             border-left: 1px solid var(--border-subtle);
-            padding-left: 20px;
+            padding-left: 16px;
         }
 
         .control-btn {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             color: var(--text-primary);
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition-smooth);
@@ -223,14 +237,19 @@
 
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
             color: var(--text-primary);
-            font-size: 1.4rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            font-size: 1.1rem;
             cursor: pointer;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* === ORTAK CONTAINER & BAŞLIKLAR === */
+        /* === 3. ORTAK CONTAINER & BÖLÜM BAŞLIKLARI === */
         .container {
             max-width: 1140px;
             margin: 0 auto;
@@ -238,44 +257,60 @@
         }
 
         section {
-            padding: 110px 0;
+            padding: 100px 0;
         }
 
         .section-header {
-            margin-bottom: 50px;
+            margin-bottom: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
         .section-tag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--accent-primary);
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .section-tag::before {
+            content: "";
+            width: 18px;
+            height: 2px;
+            background: var(--accent-primary);
             display: inline-block;
-            margin-bottom: 10px;
         }
 
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.3rem;
+            font-size: clamp(1.85rem, 3.5vw, 2.4rem);
             font-weight: 700;
             color: var(--text-primary);
             letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
-        /* === HERO SECTION === */
+        /* === 4. HERO SECTION (YENİ NESİL STATİK SHIMMER & TELEMETRİ) === */
         #hero {
-            min-height: 100vh;
+            min-height: 92vh;
             display: flex;
             align-items: center;
-            padding-top: 120px;
-            padding-bottom: 60px;
+            padding-top: 130px;
+            padding-bottom: 50px;
         }
 
         .hero-grid {
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
-            gap: 50px;
+            gap: 48px;
             align-items: center;
         }
 
@@ -283,14 +318,14 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 16px;
-            background: rgba(16, 185, 129, 0.1);
+            padding: 7px 16px;
+            background: rgba(16, 185, 129, 0.08);
             border: 1px solid rgba(16, 185, 129, 0.25);
             border-radius: 100px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--accent-primary);
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
 
         .pulse-dot {
@@ -299,6 +334,7 @@
             background: var(--accent-primary);
             border-radius: 50%;
             animation: pulseGlow 2s infinite;
+            flex-shrink: 0;
         }
 
         @keyframes pulseGlow {
@@ -309,59 +345,87 @@
 
         .hero-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 4rem;
+            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
             font-weight: 700;
-            line-height: 1.08;
+            line-height: 1.06;
             letter-spacing: -1.5px;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-primary) 100%);
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        /* Daktilo Efekti Yerine Gelen Modern Shimmer Unvan */
+        .hero-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+            font-weight: 600;
+            line-height: 1.35;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-cyan), var(--accent-secondary), var(--accent-primary));
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
         }
 
-        .hero-role {
-            font-size: 1.45rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            min-height: 2.2rem;
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Mimari Odak Rozetleri (Domain Pills) */
+        .domain-pills {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 8px;
+            margin-bottom: 24px;
         }
 
-        .typewriter-text {
-            color: var(--accent-secondary);
+        .domain-pill {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
-            border-right: 2px solid var(--accent-primary);
-            padding-right: 5px;
-            animation: blinkCursor 0.8s infinite;
+            font-size: 0.76rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: var(--transition-smooth);
         }
 
-        @keyframes blinkCursor {
-            50% { border-color: transparent; }
+        .domain-pill i {
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+        }
+
+        .domain-pill:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
         }
 
         .hero-desc {
-            font-size: 1.08rem;
+            font-size: 1.02rem;
             color: var(--text-secondary);
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             max-width: 560px;
         }
 
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 14px;
+            margin-bottom: 36px;
         }
 
         .btn-primary {
-            padding: 14px 30px;
+            padding: 14px 28px;
             background: linear-gradient(135deg, var(--accent-primary), #059669);
             color: #ffffff;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             border-radius: 12px;
             text-decoration: none;
             display: inline-flex;
@@ -379,11 +443,11 @@
         }
 
         .btn-secondary {
-            padding: 14px 28px;
+            padding: 14px 26px;
             background: var(--bg-surface);
             color: var(--text-primary);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             border-radius: 12px;
             text-decoration: none;
             display: inline-flex;
@@ -399,14 +463,42 @@
             transform: translateY(-3px);
         }
 
-        /* Sağ Sütun: Mühendislik Terminali */
+        /* Hızlı İstatistik Barı */
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+            max-width: 520px;
+        }
+
+        .metric-item h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .metric-item h4 span {
+            color: var(--accent-primary);
+        }
+
+        .metric-item p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Sağ Sütun: İnteraktif Sekmeli Mühendislik Terminali */
         .terminal-window {
-            background: rgba(10, 14, 24, 0.9);
+            background: rgba(9, 13, 24, 0.92);
             border: 1px solid var(--border-subtle);
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
             box-shadow: var(--shadow-glow);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
             transition: var(--transition-smooth);
         }
 
@@ -417,39 +509,68 @@
 
         .terminal-window:hover {
             border-color: var(--border-highlight);
-            transform: translateY(-5px);
         }
 
         .terminal-header {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            gap: 10px;
         }
 
         .terminal-dots {
             display: flex;
-            gap: 8px;
+            gap: 7px;
+            flex-shrink: 0;
         }
         .dot { width: 11px; height: 11px; border-radius: 50%; }
         .dot.red { background: #ef4444; }
         .dot.yellow { background: #f59e0b; }
         .dot.green { background: #10b981; }
 
-        .terminal-title {
+        .terminal-tabs {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+        }
+
+        .term-tab {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #64748b;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: #94a3b8;
+            font-size: 0.73rem;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.25s;
+            white-space: nowrap;
+        }
+
+        .term-tab.active {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #10b981;
         }
 
         .terminal-body {
-            padding: 24px;
+            padding: 22px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.7;
+            font-size: 0.82rem;
+            line-height: 1.75;
             color: #e2e8f0;
+            min-height: 290px;
+        }
+
+        .term-pane { display: none; animation: fadeIn 0.3s ease; }
+        .term-pane.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .cmd-prompt { color: #10b981; margin-right: 8px; }
@@ -458,7 +579,90 @@
         .code-num { color: #fca5a5; }
         .code-comment { color: #64748b; font-style: italic; }
 
-        /* === SPOTLIGHT EFEKTLİ BENTO KARTLAR === */
+        .telemetry-row {
+            margin-bottom: 14px;
+        }
+        .telemetry-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.76rem;
+            margin-bottom: 5px;
+            color: #cbd5e1;
+        }
+        .telemetry-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .telemetry-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        /* === 5. SONSUZ KAYAN TEKNOLOJİ BANDI (MARQUEE) === */
+        .marquee-section {
+            padding: 26px 0;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(15, 23, 42, 0.25);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-section::before,
+        .marquee-section::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .marquee-section::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-base), transparent);
+        }
+        .marquee-section::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-base), transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 40px;
+            animation: scrollMarquee 32s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .marquee-item i {
+            color: var(--accent-primary);
+            font-size: 1rem;
+        }
+
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* === 6. SPOTLIGHT & 3D TILT KARTLAR === */
         .bento-skills {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -469,11 +673,12 @@
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             border-radius: 20px;
-            padding: 36px;
+            padding: 34px;
             position: relative;
             overflow: hidden;
-            transition: var(--transition-smooth);
-            backdrop-filter: blur(10px);
+            transition: transform 0.35s var(--ease-out-expo), border-color 0.35s ease, box-shadow 0.35s ease;
+            backdrop-filter: blur(12px);
+            will-change: transform;
         }
 
         .spotlight-card::before {
@@ -481,7 +686,7 @@
             position: absolute;
             inset: 0;
             background: radial-gradient(
-                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
                 rgba(16, 185, 129, 0.13),
                 transparent 40%
             );
@@ -496,7 +701,6 @@
 
         .spotlight-card:hover {
             border-color: var(--border-highlight);
-            transform: translateY(-4px);
             box-shadow: var(--shadow-glow);
         }
 
@@ -512,36 +716,38 @@
             height: 46px;
             border-radius: 12px;
             background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
             color: var(--accent-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
+            flex-shrink: 0;
         }
 
         .skill-group-header h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             color: var(--text-primary);
         }
 
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .skill-chip {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-subtle);
             color: var(--text-primary);
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 0.9rem;
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-size: 0.88rem;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             transition: var(--transition-smooth);
         }
 
@@ -551,7 +757,7 @@
 
         .skill-chip i {
             color: var(--accent-primary);
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
         .skill-chip:hover {
@@ -560,10 +766,10 @@
             transform: translateY(-2px);
         }
 
-        /* === TIMELINE === */
+        /* === 7. TIMELINE (SEKTÖREL DENEYİM) === */
         .timeline-wrapper {
             position: relative;
-            max-width: 860px;
+            max-width: 880px;
             margin: 0 auto;
             padding-left: 36px;
         }
@@ -580,12 +786,10 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 40px;
+            margin-bottom: 36px;
         }
 
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
+        .timeline-item:last-child { margin-bottom: 0; }
 
         .timeline-dot {
             position: absolute;
@@ -611,23 +815,24 @@
 
         .timeline-role {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.28rem;
             color: var(--text-primary);
         }
 
         .timeline-company {
             color: var(--accent-secondary);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             display: flex;
             align-items: center;
             gap: 6px;
+            margin-top: 2px;
         }
 
         .timeline-date {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            padding: 6px 14px;
+            font-size: 0.78rem;
+            padding: 5px 13px;
             border-radius: 100px;
             background: rgba(99, 102, 241, 0.12);
             color: var(--accent-secondary);
@@ -636,13 +841,13 @@
 
         .timeline-desc {
             color: var(--text-secondary);
-            font-size: 0.96rem;
+            font-size: 0.95rem;
         }
 
-        /* === SEÇKİN PROJELER GRID === */
+        /* === 8. SEÇKİN PROJELER GRID === */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
             gap: 28px;
         }
 
@@ -658,26 +863,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
 
         .project-folder-icon {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 14px;
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(99, 102, 241, 0.15));
             border: 1px solid var(--border-subtle);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             color: var(--accent-primary);
-        }
-
-        .project-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .project-links a {
@@ -694,14 +893,13 @@
         .project-links a:hover {
             color: var(--accent-primary);
             background: var(--border-subtle);
-            transform: translateY(-2px);
         }
 
         .project-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.32rem;
             color: var(--text-primary);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             transition: color 0.3s;
         }
 
@@ -711,14 +909,14 @@
 
         .project-desc {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.94rem;
             margin-bottom: 24px;
             flex-grow: 1;
         }
 
         .project-footer {
             border-top: 1px solid var(--border-subtle);
-            padding-top: 18px;
+            padding-top: 16px;
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -727,13 +925,13 @@
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 7px;
         }
 
         .tech-pill {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 4px 12px;
+            font-size: 0.73rem;
+            padding: 4px 10px;
             border-radius: 6px;
             background: rgba(16, 185, 129, 0.08);
             color: var(--accent-primary);
@@ -745,26 +943,70 @@
             align-items: center;
             justify-content: space-between;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--accent-secondary);
             font-weight: 600;
-            padding-top: 4px;
             transition: var(--transition-smooth);
         }
 
-        .project-card:hover .inspect-trigger {
+        .project-card:hover .inspect-trigger { color: var(--accent-primary); }
+        .inspect-trigger i { transition: transform 0.3s ease; }
+        .project-card:hover .inspect-trigger i { transform: translateX(5px); }
+
+        /* === 9. YENİ BÖLÜM: BAŞARILAR, AKADEMİ & LİDERLİK (BENTO) === */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .ach-card {
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .ach-card.span-2 {
+            grid-column: span 2;
+        }
+
+        .ach-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .ach-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: rgba(16, 185, 129, 0.1);
             color: var(--accent-primary);
+            border: 1px solid rgba(16, 185, 129, 0.25);
         }
 
-        .inspect-trigger i {
-            transition: transform 0.3s ease;
+        .ach-icon {
+            font-size: 1.4rem;
+            color: var(--accent-secondary);
         }
 
-        .project-card:hover .inspect-trigger i {
-            transform: translateX(5px);
+        .ach-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.18rem;
+            color: var(--text-primary);
+            margin-bottom: 6px;
         }
 
-        /* === PROJE DETAY MODALI (TEKNİK MİMARİ & SİMÜLASYON) === */
+        .ach-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* === 10. PROJE DETAY MODALI === */
         .project-modal-overlay {
             position: fixed;
             inset: 0;
@@ -829,7 +1071,7 @@
 
         .pm-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.85rem;
+            font-size: clamp(1.35rem, 3vw, 1.85rem);
             color: var(--text-primary);
             line-height: 1.2;
         }
@@ -856,16 +1098,15 @@
             transform: rotate(90deg);
         }
 
-        /* Canlı Görsel / Simülasyon Sahnesi */
         .pm-visual-stage {
             background: #050811;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 28px;
+            padding: 20px;
+            margin-bottom: 26px;
             position: relative;
             overflow: hidden;
-            min-height: 190px;
+            min-height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -886,8 +1127,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #94a3b8;
             z-index: 2;
             margin-bottom: 14px;
@@ -900,14 +1143,7 @@
             gap: 6px;
         }
 
-        /* EKG Animasyonu */
-        .ecg-svg {
-            width: 100%;
-            height: 95px;
-            overflow: visible;
-            z-index: 2;
-        }
-
+        .ecg-svg { width: 100%; height: 90px; overflow: visible; z-index: 2; }
         .ecg-line {
             fill: none;
             stroke: #10b981;
@@ -926,22 +1162,14 @@
             100% { stroke-dashoffset: -700; }
         }
 
-        /* Uydu Metan Isı Haritası Simülasyonu */
         .sat-heatmap {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 6px;
+            gap: 5px;
             z-index: 2;
             margin: 10px 0;
         }
-
-        .heat-cell {
-            height: 28px;
-            border-radius: 4px;
-            background: rgba(16, 185, 129, 0.15);
-            animation: pulseHeat 3s infinite alternate ease-in-out;
-        }
-
+        .heat-cell { height: 26px; border-radius: 4px; background: rgba(16, 185, 129, 0.15); animation: pulseHeat 3s infinite alternate ease-in-out; }
         .heat-cell.mid { background: rgba(245, 158, 11, 0.45); }
         .heat-cell.high { background: rgba(239, 68, 68, 0.75); box-shadow: 0 0 12px rgba(239, 68, 68, 0.5); }
 
@@ -950,43 +1178,33 @@
             100% { opacity: 1; transform: scale(1); }
         }
 
-        /* FastAPI Swagger Görseli */
         .swagger-mock {
             display: flex;
             flex-direction: column;
             gap: 8px;
             z-index: 2;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
         }
-
         .ep-row {
             display: flex;
             align-items: center;
-            gap: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.04);
             padding: 8px 12px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             color: #e2e8f0;
         }
-
-        .http-badge {
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 0.7rem;
-            min-width: 58px;
-            text-align: center;
-        }
+        .http-badge { padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.68rem; min-width: 54px; text-align: center; }
         .http-post { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
         .http-get { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
         .http-delete { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
 
-        /* Mimari Akış Şeması (Pipeline) */
         .pm-section-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--accent-primary);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -999,7 +1217,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 26px;
             flex-wrap: wrap;
         }
 
@@ -1009,40 +1227,18 @@
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
-            padding: 14px 12px;
+            padding: 14px 10px;
             text-align: center;
         }
+        .arch-step i { color: var(--accent-primary); font-size: 1.15rem; margin-bottom: 6px; display: block; }
+        .arch-step span { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); display: block; }
+        .arch-step small { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--text-secondary); }
+        .arch-arrow { color: var(--text-secondary); font-size: 0.85rem; }
 
-        .arch-step i {
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-            margin-bottom: 6px;
-            display: block;
-        }
-
-        .arch-step span {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            display: block;
-        }
-
-        .arch-step small {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-
-        .arch-arrow {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Donanım / Yazılım Spesifikasyon İkili Grid */
         .pm-specs-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 18px;
             margin-bottom: 24px;
         }
 
@@ -1052,41 +1248,19 @@
             border-radius: 16px;
             padding: 20px;
         }
-
         .pm-spec-card h4 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--text-primary);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
-        .pm-spec-card h4 i {
-            color: var(--accent-secondary);
-        }
-
-        .pm-spec-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .pm-spec-list li {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .pm-spec-list li::before {
-            content: "▹";
-            color: var(--accent-primary);
-            font-weight: bold;
-        }
+        .pm-spec-card h4 i { color: var(--accent-secondary); }
+        .pm-spec-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .pm-spec-list li { font-size: 0.86rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 8px; }
+        .pm-spec-list li::before { content: "▹"; color: var(--accent-primary); font-weight: bold; }
 
         .pm-footer {
             display: flex;
@@ -1094,15 +1268,15 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 14px;
-            padding-top: 20px;
+            padding-top: 18px;
             border-top: 1px solid var(--border-subtle);
         }
 
-        /* === İLETİŞİM MODAL === */
+        /* === 11. İLETİŞİM MODALI === */
         .contact-modal {
             position: fixed;
             inset: 0;
-            background: rgba(3, 6, 14, 0.8);
+            background: rgba(3, 6, 14, 0.82);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             display: flex;
@@ -1114,61 +1288,33 @@
             transition: opacity 0.35s ease;
             padding: 20px;
         }
-
-        .contact-modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .contact-modal.active { opacity: 1; pointer-events: auto; }
 
         .contact-card {
             background: var(--bg-surface-solid);
             border: 1px solid var(--border-highlight);
-            padding: 44px 36px;
+            padding: 40px 32px;
             border-radius: 24px;
             text-align: center;
-            max-width: 430px;
+            max-width: 420px;
             width: 100%;
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65);
             transform: scale(0.92) translateY(20px);
             transition: var(--transition-smooth);
-            position: relative;
         }
-
-        .contact-modal.active .contact-card {
-            transform: scale(1) translateY(0);
-        }
+        .contact-modal.active .contact-card { transform: scale(1) translateY(0); }
 
         .avatar-wrapper {
-            width: 115px;
-            height: 115px;
-            margin: 0 auto 20px;
-            position: relative;
+            width: 108px;
+            height: 108px;
+            margin: 0 auto 18px;
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
         }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: var(--bg-base);
-            display: block;
-        }
-
-        .contact-card h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.7rem;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .contact-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 28px;
-        }
+        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: var(--bg-base); display: block; }
+        .contact-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.65rem; color: var(--text-primary); margin-bottom: 4px; }
+        .contact-card p { color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 26px; }
 
         .social-btn {
             display: flex;
@@ -1179,112 +1325,172 @@
             border: 1px solid var(--border-subtle);
             color: var(--text-primary);
             text-decoration: none;
-            padding: 14px 20px;
+            padding: 13px 18px;
             border-radius: 14px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             transition: var(--transition-smooth);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
-
-        .social-btn:hover {
-            border-color: var(--accent-primary);
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--accent-primary);
-            transform: translateY(-2px);
-        }
-
-        .social-btn.linkedin:hover {
-            border-color: #0a66c2;
-            background: rgba(10, 102, 194, 0.15);
-            color: #38bdf8;
-        }
+        .social-btn:hover { border-color: var(--accent-primary); background: rgba(16, 185, 129, 0.1); color: var(--accent-primary); transform: translateY(-2px); }
+        .social-btn.linkedin:hover { border-color: #0a66c2; background: rgba(10, 102, 194, 0.15); color: #38bdf8; }
 
         .back-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 16px;
+            margin-top: 14px;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             cursor: pointer;
             transition: 0.3s;
             background: none;
             border: none;
             font-family: inherit;
         }
+        .back-link:hover { color: var(--text-primary); transform: translateX(-4px); }
 
-        .back-link:hover {
-            color: var(--text-primary);
-            transform: translateX(-4px);
-        }
-
-        /* === FOOTER === */
+        /* === 12. FOOTER === */
         footer {
             border-top: 1px solid var(--border-subtle);
-            padding: 36px 0;
+            padding: 40px 0;
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
-        /* === SCROLL REVEAL === */
+        /* === 13. SCROLL REVEAL === */
         .reveal {
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(24px);
+            transition: opacity 0.65s var(--ease-out-expo), transform 0.65s var(--ease-out-expo);
         }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 960px) {
+        /* === 14. KUSURSUZ MOBİL UYUMLULUK (RESPONSIVE DESIGN) === */
+        @media (max-width: 980px) {
             .hero-grid, .bento-skills, .pm-specs-grid {
                 grid-template-columns: 1fr;
             }
-            .hero-name {
-                font-size: 3.1rem;
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .ach-card.span-2 {
+                grid-column: span 2;
+            }
+            #hero {
+                padding-top: 115px;
             }
         }
 
         @media (max-width: 768px) {
+            section { padding: 72px 0; }
+            .container { padding: 0 18px; }
             .nav-wrapper { top: 12px; padding: 0 12px; }
-            nav { padding: 12px 20px; border-radius: 20px; }
-            .mobile-menu-btn { display: block; }
+            nav { padding: 10px 16px; border-radius: 18px; }
+            .mobile-menu-btn { display: flex; }
+
             .nav-right {
                 position: fixed;
-                top: 76px; left: 12px; right: 12px;
-                background: var(--bg-glass);
-                backdrop-filter: blur(20px);
-                border: 1px solid var(--border-subtle);
+                top: 70px;
+                left: 12px;
+                right: 12px;
+                background: var(--bg-surface-solid);
+                border: 1px solid var(--border-highlight);
                 border-radius: 20px;
-                padding: 24px;
+                padding: 22px;
                 flex-direction: column;
-                gap: 20px;
+                gap: 18px;
                 opacity: 0;
                 pointer-events: none;
-                transform: translateY(-10px);
+                transform: translateY(-12px) scale(0.98);
                 transition: var(--transition-smooth);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
             }
             .nav-right.active {
                 opacity: 1;
                 pointer-events: auto;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
-            .nav-links { flex-direction: column; align-items: center; width: 100%; gap: 12px; }
-            .controls { border-left: none; border-top: 1px solid var(--border-subtle); padding-left: 0; padding-top: 16px; width: 100%; justify-content: center; }
-            .hero-name { font-size: 2.5rem; }
-            .section-title { font-size: 1.85rem; }
-            .spotlight-card, .project-modal-box { padding: 24px; }
+            .nav-links {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                gap: 6px;
+            }
+            .nav-links a {
+                display: block;
+                text-align: center;
+                padding: 12px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.02);
+            }
+            .controls {
+                border-left: none;
+                border-top: 1px solid var(--border-subtle);
+                padding-left: 0;
+                padding-top: 16px;
+                width: 100%;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-metrics {
+                max-width: 100%;
+                gap: 10px;
+            }
+            .metric-item h4 { font-size: 1.3rem; }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+            .ach-card.span-2 {
+                grid-column: span 1;
+            }
+
+            .timeline-wrapper { padding-left: 26px; }
+            .timeline-dot { left: -26px; width: 14px; height: 14px; }
+            .timeline-wrapper::before { left: 6px; }
+
+            .spotlight-card { padding: 24px 20px; }
+
+            /* Mobilde Bottom-Sheet Modal Deneyimi */
+            .project-modal-overlay, .contact-modal {
+                padding: 10px;
+                align-items: flex-end;
+            }
+            .project-modal-box {
+                padding: 24px 18px;
+                border-radius: 22px 22px 14px 14px;
+                max-height: 88vh;
+            }
+            .contact-card {
+                padding: 30px 22px;
+                border-radius: 22px 22px 14px 14px;
+            }
+            .arch-pipeline {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
             .arch-arrow { display: none; }
+            .arch-step { min-width: unset; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Üst Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Arka Plan Ambient Işıklar -->
     <div class="ambient-light orb-1"></div>
@@ -1294,7 +1500,8 @@
     <div class="nav-wrapper">
         <nav>
             <a href="#" class="logo">
-                <span class="logo-dot"></span> Erdoğan Zenit
+                <span class="logo-mark">EZ</span>
+                <span>Erdoğan Zenit</span>
             </a>
             <button class="mobile-menu-btn" id="menu-btn" aria-label="Menü">
                 <i class="fas fa-bars"></i>
@@ -1304,6 +1511,7 @@
                     <li><a href="#hakkimda" class="nav-item lang-el" data-tr="Yetkinlikler" data-en="Skills">Yetkinlikler</a></li>
                     <li><a href="#deneyim" class="nav-item lang-el" data-tr="Deneyim" data-en="Experience">Deneyim</a></li>
                     <li><a href="#projeler" class="nav-item lang-el" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+                    <li><a href="#basarilar" class="nav-item lang-el" data-tr="Başarılar" data-en="Recognition">Başarılar</a></li>
                     <li><a id="contact-trigger" class="nav-item lang-el" data-tr="İletişim" data-en="Contact">İletişim</a></li>
                 </ul>
                 <div class="controls">
@@ -1320,14 +1528,14 @@
     <div class="contact-modal" id="contact-modal">
         <div class="contact-card">
             <div class="avatar-wrapper">
-                <img src="profil.png" alt="Erdoğan Zenit" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Erdogan+Zenit&background=060913&color=10b981&size=200&bold=true'">
+                <img src="profil.png" alt="Erdoğan Zenit" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Erdogan+Zenit&background=050811&color=10b981&size=200&bold=true'">
             </div>
             <h2>Erdoğan Zenit</h2>
             <p class="lang-el" data-tr="Elektrik-Elektronik Mühendisliği & Edge-AI" data-en="Electrical-Electronics Eng. & Edge-AI">Elektrik-Elektronik Mühendisliği & Edge-AI</p>
             
             <a href="https://linkedin.com/in/erdoganzenit" target="_blank" rel="noopener" class="social-btn linkedin">
                 <i class="fab fa-linkedin" style="font-size: 1.25rem;"></i>
-                <span class="lang-el" data-tr="LinkedIn Profilime Git" data-en="Visit LinkedIn Profile">LinkedIn Profilime Git</span>
+                <span class="lang-el" data-tr="LinkedIn Profilime Git" data-en="Connect on LinkedIn">LinkedIn Profilime Git</span>
             </a>
 
             <a href="https://github.com/erdoganzenit" target="_blank" rel="noopener" class="social-btn">
@@ -1336,18 +1544,18 @@
             </a>
 
             <a href="mailto:ornek@email.com" class="social-btn">
-                <i class="fas fa-envelope" style="font-size: 1.2rem;"></i>
+                <i class="fas fa-envelope" style="font-size: 1.15rem;"></i>
                 <span class="lang-el" data-tr="E-posta Gönder" data-en="Send an Email">E-posta Gönder</span>
             </a>
 
             <button id="close-modal" class="back-link">
                 <i class="fas fa-arrow-left"></i>
-                <span class="lang-el" data-tr="Ana Sayfaya Dön" data-en="Back to Portfolio">Ana Sayfaya Dön</span>
+                <span class="lang-el" data-tr="Portfolyoya Dön" data-en="Back to Portfolio">Portfolyoya Dön</span>
             </button>
         </div>
     </div>
 
-    <!-- PROJE DETAY MODALI (TEKNİK MİMARİ & SİMÜLASYON) -->
+    <!-- PROJE DETAY MODALI -->
     <div class="project-modal-overlay" id="project-modal">
         <div class="project-modal-box">
             <div class="pm-header">
@@ -1360,14 +1568,11 @@
                 </button>
             </div>
 
-            <!-- Canlı Teknik Simülasyon / Görsel Alanı -->
             <div class="pm-visual-stage" id="pm-visual"></div>
 
-            <!-- Sistem Mimarisi Akış Şeması -->
             <span class="pm-section-label lang-el" data-tr="// SİSTEM MİMARİSİ VE VERİ AKIŞ HATTI" data-en="// SYSTEM ARCHITECTURE & DATA PIPELINE">// SİSTEM MİMARİSİ VE VERİ AKIŞ HATTI</span>
             <div class="arch-pipeline" id="pm-pipeline"></div>
 
-            <!-- Donanım / Yazılım Detayları -->
             <div class="pm-specs-grid">
                 <div class="pm-spec-card">
                     <h4 id="pm-col1-title"><i class="fas fa-microchip"></i> Donanım & Sinyal Mimarisi</h4>
@@ -1394,28 +1599,59 @@
                     <span class="pulse-dot"></span>
                     <span class="lang-el" data-tr="Flyrank AI • Backend AI Engineer" data-en="Flyrank AI • Backend AI Engineer">Flyrank AI • Backend AI Engineer</span>
                 </div>
+
                 <h1 class="hero-name">Erdoğan Zenit</h1>
-                <div class="hero-role">
-                    <span class="typewriter-text" id="typewriter">Edge-AI & TinyML</span>
+
+                <!-- Statik, Prestijli Shimmer Başlık -->
+                <h2 class="hero-headline lang-el" 
+                    data-tr="Edge-AI, Gömülü Sistemler & Backend AI Mimarı" 
+                    data-en="Edge-AI, Embedded Systems & Backend AI Architect">
+                    Edge-AI, Gömülü Sistemler & Backend AI Mimarı
+                </h2>
+
+                <!-- Mimari Odak Etiketleri -->
+                <div class="domain-pills">
+                    <span class="domain-pill"><i class="fas fa-microchip"></i> TinyML & Biomedical DSP</span>
+                    <span class="domain-pill"><i class="fas fa-eye"></i> Computer Vision</span>
+                    <span class="domain-pill"><i class="fas fa-server"></i> FastAPI Microservices</span>
+                    <span class="domain-pill"><i class="fas fa-atom"></i> Quantum (Qiskit)</span>
                 </div>
+
                 <p class="hero-desc lang-el" 
-                   data-tr="Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği bölümünde öğrenim görüyor; uçta yapay zeka (Edge-AI), bilgisayarlı görü, gömülü sistemler ve yüksek performanslı API mimarileri üzerine donanım-yazılım entegrasyonu odaklı mühendislik çözümleri geliştiriyorum." 
-                   data-en="Studying Electrical & Electronics Engineering at Gaziantep University; developing hardware-software co-design solutions in Edge-AI, computer vision, embedded systems, and high-performance API architectures.">
-                    Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği bölümünde öğrenim görüyor; uçta yapay zeka (Edge-AI), bilgisayarlı görü, gömülü sistemler ve yüksek performanslı API mimarileri üzerine donanım-yazılım entegrasyonu odaklı mühendislik çözümleri geliştiriyorum.
+                   data-tr="Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği bölümünde öğrenim görüyor; analog sinyal koşullandırmadan mikrodenetleyici üzerinde çalışan yapay zeka modellerine (TinyML) ve yüksek performanslı asenkron API servislerine kadar uçtan uca mühendislik sistemleri tasarlıyorum." 
+                   data-en="Studying Electrical & Electronics Engineering at Gaziantep University; engineering end-to-end systems spanning analog signal conditioning, on-device TinyML inference, and high-concurrency asynchronous backend APIs.">
+                    Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği bölümünde öğrenim görüyor; analog sinyal koşullandırmadan mikrodenetleyici üzerinde çalışan yapay zeka modellerine (TinyML) ve yüksek performanslı asenkron API servislerine kadar uçtan uca mühendislik sistemleri tasarlıyorum.
                 </p>
+
                 <div class="hero-actions">
                     <button id="hero-contact-btn" class="btn-primary">
                         <i class="fas fa-paper-plane"></i>
                         <span class="lang-el" data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</span>
                     </button>
                     <a href="#projeler" class="btn-secondary">
-                        <i class="fas fa-code-branch"></i>
-                        <span class="lang-el" data-tr="Projeleri İncele" data-en="Explore Projects">Projeleri İncele</span>
+                        <i class="fas fa-layer-group"></i>
+                        <span class="lang-el" data-tr="Mimari Projeleri İncele" data-en="Explore Architectures">Mimari Projeleri İncele</span>
                     </a>
+                </div>
+
+                <!-- Hızlı Mühendislik Metrikleri -->
+                <div class="hero-metrics">
+                    <div class="metric-item">
+                        <h4>3<span>+</span></h4>
+                        <p class="lang-el" data-tr="Sektörel Ar-Ge & Staj" data-en="Industry R&D & Internships">Sektörel Ar-Ge & Staj</p>
+                    </div>
+                    <div class="metric-item">
+                        <h4>Edge<span>-AI</span></h4>
+                        <p class="lang-el" data-tr="Giyilebilir EKG/EMG" data-en="Wearable ECG/EMG">Giyilebilir EKG/EMG</p>
+                    </div>
+                    <div class="metric-item">
+                        <h4>Vexira<span>.</span></h4>
+                        <p class="lang-el" data-tr="Teknoloji İçerik Lideri" data-en="Tech Content Founder">Teknoloji İçerik Lideri</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Sağ Taraf: İnteraktif Mühendislik Terminali -->
+            <!-- Sağ Taraf: İnteraktif Sekmeli Mühendislik Terminali -->
             <div class="terminal-window reveal active">
                 <div class="terminal-header">
                     <div class="terminal-dots">
@@ -1423,63 +1659,125 @@
                         <span class="dot yellow"></span>
                         <span class="dot green"></span>
                     </div>
-                    <span class="terminal-title">zenit@edge-node: ~/system-profile</span>
-                    <i class="fas fa-microchip" style="color: #64748b; font-size: 0.85rem;"></i>
-                </div>
-                <div class="terminal-body">
-                    <div><span class="cmd-prompt">$</span>cat engineer_spec.json</div>
-                    <div style="margin-top: 8px;">{</div>
-                    <div style="padding-left: 20px;">
-                        <span class="code-key">"engineer"</span>: <span class="code-str">"Erdoğan Zenit"</span>,<br>
-                        <span class="code-key">"department"</span>: <span class="code-str">"Electrical & Electronics Eng."</span>,<br>
-                        <span class="code-key">"focus_areas"</span>: [<br>
-                        &nbsp;&nbsp;<span class="code-str">"Edge-AI & Biometric Signal Processing"</span>,<br>
-                        &nbsp;&nbsp;<span class="code-str">"Computer Vision (OpenCV)"</span>,<br>
-                        &nbsp;&nbsp;<span class="code-str">"FastAPI & Backend Architecture"</span><br>
-                        ],<br>
-                        <span class="code-key">"hardware"</span>: [<span class="code-str">"ESP32"</span>, <span class="code-str">"ROS"</span>, <span class="code-str">"PLC / TIA Portal"</span>],<br>
-                        <span class="code-key">"quantum_interest"</span>: <span class="code-str">"Qiskit & Cirq"</span>,<br>
-                        <span class="code-key">"status"</span>: <span class="code-num">200</span> <span class="code-comment">// Ready for innovation</span>
+                    <div class="terminal-tabs">
+                        <button class="term-tab active" data-tab="spec">profile.json</button>
+                        <button class="term-tab" data-tab="telemetry">live_telemetry.sh</button>
                     </div>
-                    <div>}</div>
-                    <div style="margin-top: 10px;"><span class="cmd-prompt">$</span><span class="lang-el" data-tr="sistem_durumu: aktif ve optimize" data-en="system_status: active & optimized">sistem_durumu: aktif ve optimize</span></div>
+                </div>
+
+                <div class="terminal-body">
+                    <!-- Tab 1: JSON Spesifikasyonu -->
+                    <div class="term-pane active" id="tab-spec">
+                        <div><span class="cmd-prompt">$</span>cat engineer_spec.json</div>
+                        <div style="margin-top: 6px;">{</div>
+                        <div style="padding-left: 18px;">
+                            <span class="code-key">"engineer"</span>: <span class="code-str">"Erdoğan Zenit"</span>,<br>
+                            <span class="code-key">"degree"</span>: <span class="code-str">"B.Sc. Electrical & Electronics Eng."</span>,<br>
+                            <span class="code-key">"current_role"</span>: <span class="code-str">"Backend AI Engineer @ Flyrank AI"</span>,<br>
+                            <span class="code-key">"core_stack"</span>: [<br>
+                            &nbsp;&nbsp;<span class="code-str">"ESP32 / TinyML / Biopotential AFE"</span>,<br>
+                            &nbsp;&nbsp;<span class="code-str">"Python / FastAPI / OpenCV / ROS"</span><br>
+                            ],<br>
+                            <span class="code-key">"community"</span>: <span class="code-str">"Founder @ Vexira (AI & Robotics)"</span>,<br>
+                            <span class="code-key">"status"</span>: <span class="code-num">200</span> <span class="code-comment">// Ready for high-impact R&D</span>
+                        </div>
+                        <div>}</div>
+                    </div>
+
+                    <!-- Tab 2: Canlı Sistem Telemetrisi -->
+                    <div class="term-pane" id="tab-telemetry">
+                        <div style="margin-bottom: 12px;"><span class="cmd-prompt">$</span>./monitor_edge_nodes.sh --realtime</div>
+                        <div class="telemetry-row">
+                            <div class="telemetry-label">
+                                <span>ESP32_TINYML_INFERENCE (ECG/EMG)</span>
+                                <span style="color:#10b981;">98.4% ACC</span>
+                            </div>
+                            <div class="telemetry-bar"><div class="telemetry-fill" style="width: 98%;"></div></div>
+                        </div>
+                        <div class="telemetry-row">
+                            <div class="telemetry-label">
+                                <span>FASTAPI_ASYNC_WORKER (UVICORN)</span>
+                                <span style="color:#38bdf8;">1.4ms LATENCY</span>
+                            </div>
+                            <div class="telemetry-bar"><div class="telemetry-fill" style="width: 94%;"></div></div>
+                        </div>
+                        <div class="telemetry-row">
+                            <div class="telemetry-label">
+                                <span>SENTINEL2_SWIR_PIPELINE (CH4)</span>
+                                <span style="color:#a7f3d0;">ACTIVE</span>
+                            </div>
+                            <div class="telemetry-bar"><div class="telemetry-fill" style="width: 88%;"></div></div>
+                        </div>
+                        <div style="margin-top: 14px; font-size: 0.75rem; color: #94a3b8;">
+                            [OK] All hardware & cloud microservices nominal.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- SONSUZ KAYAN TEKNOLOJİ BANDI (MARQUEE) -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item"><i class="fab fa-python"></i> Python 3</div>
+            <div class="marquee-item"><i class="fas fa-bolt"></i> FastAPI & ASGI</div>
+            <div class="marquee-item"><i class="fas fa-microchip"></i> ESP32 & Embedded C/C++</div>
+            <div class="marquee-item"><i class="fas fa-brain"></i> Edge-AI & TinyML</div>
+            <div class="marquee-item"><i class="fas fa-wave-square"></i> Biopotential ECG/EMG</div>
+            <div class="marquee-item"><i class="fas fa-eye"></i> OpenCV Computer Vision</div>
+            <div class="marquee-item"><i class="fas fa-robot"></i> ROS (Robot Operating System)</div>
+            <div class="marquee-item"><i class="fas fa-atom"></i> Qiskit & Cirq Quantum</div>
+            <div class="marquee-item"><i class="fas fa-industry"></i> Siemens TIA Portal (PLC)</div>
+            <div class="marquee-item"><i class="fas fa-satellite"></i> Sentinel-2 & QGIS</div>
+            <!-- Sonsuz döngü için tekrar -->
+            <div class="marquee-item"><i class="fab fa-python"></i> Python 3</div>
+            <div class="marquee-item"><i class="fas fa-bolt"></i> FastAPI & ASGI</div>
+            <div class="marquee-item"><i class="fas fa-microchip"></i> ESP32 & Embedded C/C++</div>
+            <div class="marquee-item"><i class="fas fa-brain"></i> Edge-AI & TinyML</div>
+            <div class="marquee-item"><i class="fas fa-wave-square"></i> Biopotential ECG/EMG</div>
+            <div class="marquee-item"><i class="fas fa-eye"></i> OpenCV Computer Vision</div>
+            <div class="marquee-item"><i class="fas fa-robot"></i> ROS (Robot Operating System)</div>
+            <div class="marquee-item"><i class="fas fa-atom"></i> Qiskit & Cirq Quantum</div>
+            <div class="marquee-item"><i class="fas fa-industry"></i> Siemens TIA Portal (PLC)</div>
+            <div class="marquee-item"><i class="fas fa-satellite"></i> Sentinel-2 & QGIS</div>
+        </div>
+    </div>
+
     <!-- 01. TEKNİK YETKİNLİKLER -->
     <section id="hakkimda" class="container reveal">
         <div class="section-header">
-            <span class="section-tag lang-el" data-tr="// 01. DONANIM & YAZILIM CEPHANELİĞİ" data-en="// 01. TECH STACK & ARSENAL">// 01. DONANIM & YAZILIM CEPHANELİĞİ</span>
-            <h2 class="section-title lang-el" data-tr="Teknik Yetkinlikler" data-en="Technical Skills">Teknik Yetkinlikler</h2>
+            <div>
+                <span class="section-tag lang-el" data-tr="01. DONANIM & YAZILIM CEPHANELİĞİ" data-en="01. TECH STACK & ARSENAL">01. DONANIM & YAZILIM CEPHANELİĞİ</span>
+                <h2 class="section-title lang-el" data-tr="Teknik Yetkinlikler" data-en="Technical Competencies">Teknik Yetkinlikler</h2>
+            </div>
         </div>
 
         <div class="bento-skills">
-            <div class="spotlight-card">
+            <div class="spotlight-card tilt-card">
                 <div class="skill-group-header">
                     <div class="skill-icon-box"><i class="fas fa-brain"></i></div>
-                    <h3 class="lang-el" data-tr="Yazılım & Yapay Zeka" data-en="Software & Artificial Intelligence">Yazılım & Yapay Zeka</h3>
+                    <h3 class="lang-el" data-tr="Yazılım, AI & Veri Mimarisi" data-en="Software, AI & Data Architecture">Yazılım, AI & Veri Mimarisi</h3>
                 </div>
                 <div class="skills-grid">
                     <div class="skill-chip"><i class="fab fa-python"></i> Python</div>
                     <div class="skill-chip"><i class="fas fa-bolt"></i> FastAPI & RESTful API</div>
                     <div class="skill-chip"><i class="fas fa-eye"></i> OpenCV (Computer Vision)</div>
                     <div class="skill-chip"><i class="fas fa-network-wired"></i> Edge-AI & TinyML</div>
-                    <div class="skill-chip"><i class="fas fa-atom"></i> Qiskit (Quantum)</div>
-                    <div class="skill-chip"><i class="fas fa-map-marked-alt"></i> QGIS & Spatial Analysis</div>
+                    <div class="skill-chip"><i class="fas fa-atom"></i> Qiskit & Cirq (Quantum)</div>
+                    <div class="skill-chip"><i class="fas fa-map-marked-alt"></i> QGIS & Streamlit</div>
                 </div>
             </div>
 
-            <div class="spotlight-card">
+            <div class="spotlight-card tilt-card">
                 <div class="skill-group-header">
                     <div class="skill-icon-box"><i class="fas fa-microchip"></i></div>
-                    <h3 class="lang-el" data-tr="Donanım & Gömülü Sistemler" data-en="Hardware & Embedded Systems">Donanım & Gömülü Sistemler</h3>
+                    <h3 class="lang-el" data-tr="Donanım, Gömülü & Kontrol" data-en="Hardware, Embedded & Control">Donanım, Gömülü & Kontrol</h3>
                 </div>
                 <div class="skills-grid">
                     <div class="skill-chip"><i class="fas fa-microchip"></i> ESP32 & Microcontrollers</div>
+                    <div class="skill-chip"><i class="fas fa-wave-square"></i> ECG/EMG Analog Front-End</div>
                     <div class="skill-chip"><i class="fas fa-robot"></i> ROS (Autonomous Robotics)</div>
-                    <div class="skill-chip"><i class="fas fa-wave-square"></i> ECG/EMG Signal Conditioning</div>
                     <div class="skill-chip"><i class="fas fa-charging-station"></i> Güç Elektroniği</div>
                     <div class="skill-chip"><i class="fas fa-industry"></i> PLC & Ladder (TIA Portal)</div>
                 </div>
@@ -1490,8 +1788,10 @@
     <!-- 02. SEKTÖREL DENEYİM -->
     <section id="deneyim" class="container reveal">
         <div class="section-header">
-            <span class="section-tag lang-el" data-tr="// 02. KARİYER YOLCULUĞU" data-en="// 02. CAREER JOURNEY">// 02. KARİYER YOLCULUĞU</span>
-            <h2 class="section-title lang-el" data-tr="Sektörel Deneyim" data-en="Professional Experience">Sektörel Deneyim</h2>
+            <div>
+                <span class="section-tag lang-el" data-tr="02. KARİYER YOLCULUĞU" data-en="02. CAREER JOURNEY">02. KARİYER YOLCULUĞU</span>
+                <h2 class="section-title lang-el" data-tr="Sektörel Deneyim" data-en="Professional Experience">Sektörel Deneyim</h2>
+            </div>
         </div>
 
         <div class="timeline-wrapper">
@@ -1551,16 +1851,18 @@
         </div>
     </section>
 
-    <!-- 03. SEÇKİN PROJELER (TIKLANABİLİR DETAY KARTLARI) -->
+    <!-- 03. SEÇKİN PROJELER -->
     <section id="projeler" class="container reveal">
         <div class="section-header">
-            <span class="section-tag lang-el" data-tr="// 03. MÜHENDİSLİK ÇIKTILARI (DETAYLAR İÇİN KARTA TIKLAYIN)" data-en="// 03. ENGINEERING DELIVERABLES (CLICK CARD FOR SPECS)">// 03. MÜHENDİSLİK ÇIKTILARI (DETAYLAR İÇİN KARTA TIKLAYIN)</span>
-            <h2 class="section-title lang-el" data-tr="Seçkin Projeler" data-en="Selected Projects">Seçkin Projeler</h2>
+            <div>
+                <span class="section-tag lang-el" data-tr="03. MÜHENDİSLİK ÇIKTILARI (DETAYLAR İÇİN KARTA TIKLAYIN)" data-en="03. ENGINEERING DELIVERABLES (CLICK CARD FOR SPECS)">03. MÜHENDİSLİK ÇIKTILARI (DETAYLAR İÇİN KARTA TIKLAYIN)</span>
+                <h2 class="section-title lang-el" data-tr="Seçkin Projeler" data-en="Selected Projects">Seçkin Projeler</h2>
+            </div>
         </div>
 
         <div class="projects-grid">
-            <!-- Proje 1: Wearable ECG/EMG -->
-            <div class="spotlight-card project-card reveal" data-project="ecg">
+            <!-- Proje 1 -->
+            <div class="spotlight-card project-card tilt-card reveal" data-project="ecg">
                 <div>
                     <div class="project-top">
                         <div class="project-folder-icon"><i class="fas fa-heartbeat"></i></div>
@@ -1585,8 +1887,8 @@
                 </div>
             </div>
 
-            <!-- Proje 2: Spectra-CH4 TR -->
-            <div class="spotlight-card project-card reveal" data-project="spectra">
+            <!-- Proje 2 -->
+            <div class="spotlight-card project-card tilt-card reveal" data-project="spectra">
                 <div>
                     <div class="project-top">
                         <div class="project-folder-icon"><i class="fas fa-satellite"></i></div>
@@ -1611,8 +1913,8 @@
                 </div>
             </div>
 
-            <!-- Proje 3: FastAPI Task Manager -->
-            <div class="spotlight-card project-card reveal" data-project="fastapi">
+            <!-- Proje 3 -->
+            <div class="spotlight-card project-card tilt-card reveal" data-project="fastapi">
                 <div>
                     <div class="project-top">
                         <div class="project-folder-icon"><i class="fas fa-server"></i></div>
@@ -1644,16 +1946,103 @@
         </div>
     </section>
 
+    <!-- 04. BAŞARILAR, LİDERLİK & EKOSİSTEM (YENİ BENTO BÖLÜMÜ) -->
+    <section id="basarilar" class="container reveal">
+        <div class="section-header">
+            <div>
+                <span class="section-tag lang-el" data-tr="04. LİDERLİK, AKADEMİ & EKOSİSTEM" data-en="04. LEADERSHIP, ACADEMY & ECOSYSTEM">04. LİDERLİK, AKADEMİ & EKOSİSTEM</span>
+                <h2 class="section-title lang-el" data-tr="Başarılar & Programlar" data-en="Honors & Fellowships">Başarılar & Programlar</h2>
+            </div>
+        </div>
+
+        <div class="achievements-grid">
+            <div class="spotlight-card ach-card span-2">
+                <div class="ach-top">
+                    <span class="ach-badge lang-el" data-tr="TAKIM KAPTANI & FİNALİST • 2026" data-en="TEAM CAPTAIN & FINALIST • 2026">TAKIM KAPTANI & FİNALİST • 2026</span>
+                    <i class="fas fa-trophy ach-icon"></i>
+                </div>
+                <div>
+                    <h3 class="ach-title">Sense-Tech Embedded Systems Ideathon</h3>
+                    <p class="ach-desc lang-el" 
+                       data-tr="Gömülü sistemler ve sensör füzyonu odaklı ulusal yarışmada takım kaptanı olarak mimari tasarımı yönetti ve finalist statüsü kazandı." 
+                       data-en="Led system architecture as Team Captain in the national embedded systems and sensor fusion ideathon, achieving Finalist status.">
+                        Gömülü sistemler ve sensör füzyonu odaklı ulusal yarışmada takım kaptanı olarak mimari tasarımı yönetti ve finalist statüsü kazandı.
+                    </p>
+                </div>
+            </div>
+
+            <div class="spotlight-card ach-card">
+                <div class="ach-top">
+                    <span class="ach-badge">KURUCU • LINKEDIN</span>
+                    <i class="fas fa-broadcast-tower ach-icon"></i>
+                </div>
+                <div>
+                    <h3 class="ach-title">Vexira Tech Community</h3>
+                    <p class="ach-desc lang-el" 
+                       data-tr="Yapay zeka, bilgisayarlı görü, otonom robotik ve gömülü sistemler üzerine teknik içerikler üreten eğitim girişimi." 
+                       data-en="Educational tech initiative publishing deep-dive content on AI, computer vision, robotics, and embedded systems.">
+                        Yapay zeka, bilgisayarlı görü, otonom robotik ve gömülü sistemler üzerine teknik içerikler üreten eğitim girişimi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="spotlight-card ach-card">
+                <div class="ach-top">
+                    <span class="ach-badge">GLOBAL PROGRAM • 2026</span>
+                    <i class="fas fa-compass ach-icon"></i>
+                </div>
+                <div>
+                    <h3 class="ach-title">McKinsey Step Forward</h3>
+                    <p class="ach-desc lang-el" 
+                       data-tr="Yapılandırılmış problem çözme, stratejik liderlik ve dijital dönüşüm odaklı uluslararası yetenek programı." 
+                       data-en="Selected participant in McKinsey's global leadership, structured problem-solving, and digital adaptability program.">
+                        Yapılandırılmış problem çözme, stratejik liderlik ve dijital dönüşüm odaklı uluslararası yetenek programı.
+                    </p>
+                </div>
+            </div>
+
+            <div class="spotlight-card ach-card">
+                <div class="ach-top">
+                    <span class="ach-badge">HAVACILIK • 2026</span>
+                    <i class="fas fa-jet-fighter-up ach-icon"></i>
+                </div>
+                <div>
+                    <h3 class="ach-title">TEI Havacılık Motorları Okulu</h3>
+                    <p class="ach-desc lang-el" 
+                       data-tr="TUSAŞ Motor Sanayii (TEI) tarafından düzenlenen gaz türbinli havacılık motorları ve kontrol sistemleri mühendislik programı." 
+                       data-en="Intensive aerospace engineering curriculum by TUSAŞ Engine Industries (TEI) covering gas turbine propulsion and control.">
+                        TUSAŞ Motor Sanayii (TEI) tarafından düzenlenen gaz türbinli havacılık motorları ve kontrol sistemleri mühendislik programı.
+                    </p>
+                </div>
+            </div>
+
+            <div class="spotlight-card ach-card">
+                <div class="ach-top">
+                    <span class="ach-badge">KUANTUM • 2026</span>
+                    <i class="fas fa-atom ach-icon"></i>
+                </div>
+                <div>
+                    <h3 class="ach-title">QTurkiye Q-Summer School</h3>
+                    <p class="ach-desc lang-el" 
+                       data-tr="Qiskit çerçevesi ile kuantum devre tasarımı, kuantum algoritmaları ve topolojik kuantum hesaplama eğitimi." 
+                       data-en="Advanced coursework in quantum circuit synthesis, quantum algorithms, and Qiskit programming.">
+                        Qiskit çerçevesi ile kuantum devre tasarımı, kuantum algoritmaları ve topolojik kuantum hesaplama eğitimi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
-            <p class="lang-el" data-tr="© 2026 Erdoğan Zenit • Donanım ve Yazılım Kesişiminde Tasarlandı." data-en="© 2026 Erdoğan Zenit • Engineered at the Intersection of Hardware & AI.">
-                © 2026 Erdoğan Zenit • Donanım ve Yazılım Kesişiminde Tasarlandı.
+            <p class="lang-el" data-tr="© 2026 Erdoğan Zenit • Donanım ve Yapay Zeka Kesişiminde Tasarlandı." data-en="© 2026 Erdoğan Zenit • Engineered at the Intersection of Hardware & AI.">
+                © 2026 Erdoğan Zenit • Donanım ve Yapay Zeka Kesişiminde Tasarlandı.
             </p>
         </div>
     </footer>
 
     <script>
-        // === 1. PROJE DETAY VERİTABANI (TR & EN + CANLI SİMÜLASYON) ===
+        // === 1. PROJE DETAY VERİTABANI ===
         const projectsData = {
             ecg: {
                 category: { tr: "BİTİRME PROJESİ • BIOMEDICAL EDGE-AI", en: "CAPSTONE DESIGN • BIOMEDICAL EDGE-AI" },
@@ -1784,8 +2173,8 @@
                         <span class="visual-status"><span class="pulse-dot"></span> LATENCY: 1.4ms</span>
                     </div>
                     <div class="swagger-mock">
-                        <div class="ep-row"><span class="http-badge http-post">POST</span> <span>/api/v1/tasks</span> <span style="margin-left:auto; color:#94a3b8;">201 Created (Pydantic Validated)</span></div>
-                        <div class="ep-row"><span class="http-badge http-get">GET</span> <span>/api/v1/tasks/{task_id}</span> <span style="margin-left:auto; color:#94a3b8;">200 OK (O(1) In-Memory Lookup)</span></div>
+                        <div class="ep-row"><span class="http-badge http-post">POST</span> <span>/api/v1/tasks</span> <span style="margin-left:auto; color:#94a3b8;">201 Created (Pydantic)</span></div>
+                        <div class="ep-row"><span class="http-badge http-get">GET</span> <span>/api/v1/tasks/{task_id}</span> <span style="margin-left:auto; color:#94a3b8;">200 OK (O(1) Lookup)</span></div>
                         <div class="ep-row"><span class="http-badge http-delete">DELETE</span> <span>/api/v1/tasks/{task_id}</span> <span style="margin-left:auto; color:#94a3b8;">204 No Content</span></div>
                     </div>
                 `,
@@ -1808,7 +2197,7 @@
                     tr: [
                         "Python FastAPI çatısı ve Uvicorn ASGI sunucusu üzerinde yüksek eşzamanlılık (concurrency) destekli asenkron uç noktalar.",
                         "Bellek içi (In-memory) veri yapılarıyla veritabanı darboğazı olmadan milisaniye altı okuma/yazma (CRUD) operasyonları.",
-                        "RESTful standartlarına tam uyumlu HTTP durum kodları (200, 201, 404, 422) ve özel hata yakalama (Exception Handling) katmanı."
+                        "RESTful standartlarına tam uyumlu HTTP durum kodları (200, 201, 404, 422) ve özel hata yakalama katmanı."
                     ],
                     en: [
                         "Built on FastAPI and Uvicorn ASGI server enabling high-concurrency asynchronous request handling.",
@@ -1834,57 +2223,30 @@
             }
         };
 
-        // === 2. DİNAMİK DAKTİLO (TYPEWRITER) EFEKTİ ===
-        const roles = {
-            tr: [
-                "Elektrik-Elektronik Mühendisliği",
-                "Edge-AI & TinyML Geliştiricisi",
-                "Backend AI Mühendisi",
-                "Gömülü Sistemler & Bilgisayarlı Görü"
-            ],
-            en: [
-                "Electrical & Electronics Engineering",
-                "Edge-AI & TinyML Developer",
-                "Backend AI Engineer",
-                "Embedded Systems & Computer Vision"
-            ]
-        };
-
         let currentLang = 'tr';
         let activeProjectKey = null;
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typewriterEl = document.getElementById('typewriter');
 
-        function typeEffect() {
-            const currentRoles = roles[currentLang];
-            const fullText = currentRoles[roleIndex];
+        // === 2. ÜST SCROLL PROGRESS BAR ===
+        const scrollProgress = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = `${scrolled}%`;
+        }, { passive: true });
 
-            if (isDeleting) {
-                charIndex--;
-            } else {
-                charIndex++;
-            }
+        // === 3. TERMINAL SEKME (TAB) GEÇİŞLERİ ===
+        document.querySelectorAll('.term-tab').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.term-tab').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.term-pane').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                const target = btn.getAttribute('data-tab');
+                document.getElementById(`tab-${target}`).classList.add('active');
+            });
+        });
 
-            typewriterEl.textContent = fullText.substring(0, charIndex);
-
-            let typingSpeed = isDeleting ? 40 : 80;
-
-            if (!isDeleting && charIndex === fullText.length) {
-                typingSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % currentRoles.length;
-                typingSpeed = 400;
-            }
-
-            setTimeout(typeEffect, typingSpeed);
-        }
-        typeEffect();
-
-        // === 3. PROJE DETAY MODALI FONKSİYONLARI ===
+        // === 4. PROJE DETAY MODALI FONKSİYONLARI ===
         const projectModal = document.getElementById('project-modal');
         const pmClose = document.getElementById('pm-close');
 
@@ -1897,7 +2259,6 @@
             document.getElementById('pm-title').textContent = data.title;
             document.getElementById('pm-visual').innerHTML = data.visual;
 
-            // Pipeline oluşturma
             const pipelineSteps = data.pipeline[currentLang];
             const pipelineHTML = pipelineSteps.map((step, idx) => `
                 <div class="arch-step">
@@ -1909,17 +2270,14 @@
             `).join('');
             document.getElementById('pm-pipeline').innerHTML = pipelineHTML;
 
-            // Spesifikasyon listeleri
             document.getElementById('pm-col1-title').innerHTML = `<i class="fas fa-microchip"></i> ${data.col1Title[currentLang]}`;
             document.getElementById('pm-col1-list').innerHTML = data.col1List[currentLang].map(item => `<li>${item}</li>`).join('');
 
             document.getElementById('pm-col2-title').innerHTML = `<i class="fas fa-code"></i> ${data.col2Title[currentLang]}`;
             document.getElementById('pm-col2-list').innerHTML = data.col2List[currentLang].map(item => `<li>${item}</li>`).join('');
 
-            // Etiketler
             document.getElementById('pm-tags').innerHTML = data.tags.map(t => `<span class="tech-pill">${t}</span>`).join('');
 
-            // GitHub Aksiyon Butonu
             const actionEl = document.getElementById('pm-action');
             if (data.github) {
                 const btnLabel = currentLang === 'tr' ? 'GitHub Deposuna Git' : 'View on GitHub';
@@ -1934,6 +2292,7 @@
             }
 
             projectModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         document.querySelectorAll('.project-card').forEach(card => {
@@ -1946,6 +2305,7 @@
         function closeProjectModal() {
             projectModal.classList.remove('active');
             activeProjectKey = null;
+            document.body.style.overflow = '';
         }
 
         pmClose.addEventListener('click', closeProjectModal);
@@ -1953,7 +2313,9 @@
             if (e.target === projectModal) closeProjectModal();
         });
 
-        // === 4. MOUSE TAKİP EDEN SPOTLIGHT EFEKTİ ===
+        // === 5. SPOTLIGHT & HAFİF 3D TILT EFEKTİ (SADECE MASAÜSTÜ) ===
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
         document.querySelectorAll('.spotlight-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -1961,10 +2323,24 @@
                 const y = e.clientY - rect.top;
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
+
+                if (!isTouchDevice && card.classList.contains('tilt-card')) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -2.5;
+                    const rotateY = ((x - centerX) / centerX) * 2.5;
+                    card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (!isTouchDevice && card.classList.contains('tilt-card')) {
+                    card.style.transform = '';
+                }
             });
         });
 
-        // === 5. İLETİŞİM MODAL KONTROLLERİ ===
+        // === 6. İLETİŞİM MODALI KONTROLLERİ ===
         const contactModal = document.getElementById('contact-modal');
         const contactTrigger = document.getElementById('contact-trigger');
         const heroContactBtn = document.getElementById('hero-contact-btn');
@@ -1973,11 +2349,13 @@
         function openContactModal(e) {
             if (e) e.preventDefault();
             contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeContactModal(e) {
             if (e) e.preventDefault();
             contactModal.classList.remove('active');
+            document.body.style.overflow = '';
         }
 
         contactTrigger.addEventListener('click', openContactModal);
@@ -1995,7 +2373,7 @@
             }
         });
 
-        // === 6. TEMA VE DİL DEĞİŞTİRİCİ ===
+        // === 7. TEMA VE DİL DEĞİŞTİRİCİ ===
         const htmlEl = document.documentElement;
         const themeBtn = document.getElementById('theme-btn');
         const langBtn = document.getElementById('lang-btn');
@@ -2019,12 +2397,9 @@
             if (activeProjectKey) {
                 renderProjectModal(activeProjectKey);
             }
-
-            charIndex = 0;
-            isDeleting = false;
         });
 
-        // === 7. MOBİL MENÜ KONTROLÜ ===
+        // === 8. MOBİL MENÜ KONTROLÜ ===
         const menuBtn = document.getElementById('menu-btn');
         const navRight = document.getElementById('nav-right');
         const menuIcon = menuBtn.querySelector('i');
@@ -2043,14 +2418,14 @@
             });
         });
 
-        // === 8. INTERSECTION OBSERVER (SCROLL REVEAL) ===
+        // === 9. INTERSECTION OBSERVER (SCROLL REVEAL) ===
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     </script>
