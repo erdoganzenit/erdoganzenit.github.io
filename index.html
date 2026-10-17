@@ -41,7 +41,6 @@
         ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-        /* Arka plan çok daha saydam (opacity: 0.25) ve yormuyor */
         #particle-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.25; pointer-events: none;}
 
         /* === NAVİGASYON === */
@@ -51,7 +50,7 @@
             background: var(--nav-bg); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color); transition: var(--transition);
         }
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: var(--text-main); text-decoration: none;}
+        .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; color: var(--text-main); text-decoration: none;}
         .logo span { color: var(--primary); }
         
         .nav-right { display: flex; align-items: center; gap: 30px; }
@@ -66,7 +65,6 @@
         }
         .nav-links a:hover::after { width: 100%; }
 
-        /* Tema ve Dil Butonları */
         .controls { display: flex; gap: 15px; border-left: 1px solid var(--border-color); padding-left: 20px; }
         .control-btn { background: none; border: none; color: var(--text-main); font-size: 1.2rem; cursor: pointer; transition: 0.3s; font-weight: bold;}
         .control-btn:hover { color: var(--primary); transform: scale(1.1); }
@@ -78,10 +76,19 @@
         .hero-content { max-width: 800px; z-index: 2; }
         .greeting { color: var(--primary); font-family: monospace; font-size: 1.1rem; margin-bottom: 20px; display: block;}
         .name { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 10px; color: var(--text-main); }
-        .typing-wrapper { font-size: 2.5rem; font-weight: 700; color: var(--text-muted); margin-bottom: 30px; min-height: 60px;}
-        .typing-text { color: var(--secondary); border-right: 3px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
+        .typing-wrapper { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: 30px; min-height: 60px;}
+        .typing-text { border-right: 3px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
         .hero-desc { max-width: 540px; font-size: 1.1rem; color: var(--text-muted); margin-bottom: 50px; }
+
+        .btn-glitch {
+            padding: 15px 40px; background: transparent;
+            color: var(--primary); border: 1px solid var(--primary);
+            font-size: 1rem; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; position: relative; transition: var(--transition);
+            text-decoration: none; display: inline-block; font-weight: 600;
+        }
+        .btn-glitch:hover { background: rgba(0, 229, 255, 0.1); box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); }
 
         /* === ORTAK BÖLÜM AYARLARI === */
         section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
@@ -159,14 +166,13 @@
     <canvas id="particle-canvas"></canvas>
 
     <nav>
-        <a href="#" class="logo">E.<span>ZENIT</span></a>
+        <a href="#" class="logo">Erdoğan <span>Zenit</span></a>
         <i class="fas fa-bars mobile-menu-btn" id="menu-btn"></i>
         <div class="nav-right" id="nav-right">
             <ul class="nav-links">
                 <li><a href="#hakkimda" class="nav-item lang-el" data-tr="01. Profil" data-en="01. Profile">01. Profil</a></li>
                 <li><a href="#deneyim" class="nav-item lang-el" data-tr="02. Deneyim" data-en="02. Experience">02. Deneyim</a></li>
                 <li><a href="#projeler" class="nav-item lang-el" data-tr="03. Projeler" data-en="03. Projects">03. Projeler</a></li>
-                <!-- DİKKAT: İletişim artık yeni sekmeye gidiyor -->
                 <li><a href="iletisim.html" target="_blank" class="nav-item lang-el" data-tr="04. İletişim" data-en="04. Contact">04. İletişim</a></li>
             </ul>
             <div class="controls">
@@ -181,11 +187,12 @@
             <span class="greeting lang-el" data-tr="Merhaba, benim adım" data-en="Hello, my name is">Merhaba, benim adım</span>
             <h1 class="name">Erdoğan Zenit</h1>
             <div class="typing-wrapper">
-                <span class="lang-el" data-tr="Ben bir" data-en="I am an">Ben bir</span> <span class="typing-text"></span>
+                <span class="typing-text"></span>
             </div>
             <p class="hero-desc lang-el" data-tr="Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği öğrencisiyim. Uçta yapay zeka (Edge-AI), bilgisayarlı görü ve gömülü sistemler üzerine donanım-yazılım entegrasyonu odaklı karmaşık mühendislik problemlerini çözüyorum." data-en="I am an Electrical and Electronics Engineering undergraduate student at Gaziantep University. I solve complex engineering problems focusing on hardware-software integration in Edge-AI, computer vision, and embedded systems.">
                 Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği öğrencisiyim. Uçta yapay zeka (Edge-AI), bilgisayarlı görü ve gömülü sistemler üzerine donanım-yazılım entegrasyonu odaklı karmaşık mühendislik problemlerini çözüyorum.
             </p>
+            <a href="iletisim.html" target="_blank" class="btn-glitch lang-el" data-tr="İletişime Geç" data-en="Contact Me">İletişime Geç</a>
         </div>
     </header>
 
@@ -280,7 +287,6 @@
         </div>
     </section>
 
-    <!-- === JAVASCRIPT MOTORU === -->
     <script>
         // Tema ve Dil Değişkenleri
         let currentLang = 'tr';
@@ -307,6 +313,9 @@
             document.querySelectorAll('.lang-el').forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLang}`);
             });
+            // Dili değiştirince daktiloyu yeniden başlat
+            textIndex = 0; charIndex = 0;
+            typingElement.textContent = "";
         });
 
         // Mobil Menü
@@ -325,9 +334,9 @@
             });
         });
 
-        // Daktilo Efekti
-        const textArrayTR = ["Edge-AI Geliştiricisi.", "Gömülü Sistem Mühendisi.", "Bilgisayarlı Görü Uzmanı."];
-        const textArrayEN = ["Edge-AI Developer.", "Embedded Systems Engineer.", "Computer Vision Expert."];
+        // Daktilo Efekti (Noktalar SİLİNDİ)
+        const textArrayTR = ["Edge-AI Geliştiricisi", "Gömülü Sistem Mühendisi", "Bilgisayarlı Görü Uzmanı"];
+        const textArrayEN = ["Edge-AI Developer", "Embedded Systems Engineer", "Computer Vision Expert"];
         let textIndex = 0; let charIndex = 0;
         const typingElement = document.querySelector(".typing-text");
 
@@ -359,7 +368,7 @@
             });
         });
 
-        // Daha Yavaş ve Usulca Çalışan Arka Plan (Particle Engine V2)
+        // Arka Plan (Particle Engine V2)
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -369,7 +378,6 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                // Çok daha yavaş hareket hızı
                 this.vx = (Math.random() - 0.5) * 0.3; 
                 this.vy = (Math.random() - 0.5) * 0.3;
                 this.size = Math.random() * 1.5 + 0.5;
@@ -389,7 +397,7 @@
 
         function initCanvas() {
             particlesArray = [];
-            let particleCount = window.innerWidth < 768 ? 30 : 60; // Parçacık sayısı azaltıldı, yormaz.
+            let particleCount = window.innerWidth < 768 ? 30 : 60; 
             for(let i = 0; i < particleCount; i++) particlesArray.push(new Particle());
         }
 
@@ -398,7 +406,6 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particlesArray.forEach(p => { p.update(); p.draw(); });
             
-            // Çizgileri çizme (Mesafe bağlantısı)
             for(let i=0; i<particlesArray.length; i++) {
                 for(let j=i; j<particlesArray.length; j++) {
                     let dx = particlesArray[i].x - particlesArray[j].x;
