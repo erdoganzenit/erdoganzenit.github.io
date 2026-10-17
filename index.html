@@ -3,305 +3,493 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erdoğan Zenit | Edge-AI & Gömülü Sistemler</title>
+    <title>Erdoğan Zenit | Kurumsal Portfolyo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* Modern Değişkenler ve Renk Paleti */
+        /* === KÜRESEL DEĞİŞKENLER & TEMA === */
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --neon-blue: #38bdf8;
-            --neon-purple: #818cf8;
+            --bg-dark: #050505;
+            --bg-card: rgba(15, 15, 20, 0.6);
+            --primary: #00e5ff;
+            --secondary: #7000ff;
+            --text-main: #f0f0f0;
+            --text-muted: #8892b0;
+            --glass-border: rgba(0, 229, 255, 0.2);
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         
-        html { scroll-behavior: smooth; }
-
-        /* Hareketli Arka Plan */
         body {
-            background: var(--bg-gradient);
+            background-color: var(--bg-dark);
             color: var(--text-main);
-            min-height: 100vh;
             overflow-x: hidden;
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            line-height: 1.6;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Özel Kaydırma Çubuğu */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* HTML5 Canvas Arka Planı */
+        #particle-canvas {
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1; opacity: 0.6;
         }
 
-        /* Arka Plandaki Parlayan Küreler (Glow Effects) */
-        .glow-orb { position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.5; animation: float 10s infinite alternate; }
-        .orb-1 { width: 300px; height: 300px; background: var(--neon-purple); top: -100px; left: -100px; }
-        .orb-2 { width: 400px; height: 400px; background: var(--neon-blue); bottom: -150px; right: -100px; animation-delay: -5s; }
-
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(50px) scale(1.1); }
-        }
-
-        /* Cam Efektli (Glassmorphism) Navbar */
+        /* === NAVİGASYON (GLASMORPHISM) === */
         nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
+            position: fixed; top: 0; width: 100%;
+            padding: 20px 50px; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
         }
-
-        nav h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; }
-        nav h1 span { color: var(--neon-blue); }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: var(--text-main); text-decoration: none;}
+        .logo span { color: var(--primary); }
         
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a {
-            color: var(--text-main); text-decoration: none; font-weight: 500;
-            transition: 0.3s; position: relative;
+            color: var(--text-main); text-decoration: none;
+            font-size: 0.9rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 1px; position: relative;
         }
-        .nav-links a:hover { color: var(--neon-blue); }
         .nav-links a::after {
             content: ''; position: absolute; width: 0; height: 2px;
-            bottom: -5px; left: 0; background: var(--neon-blue);
-            transition: 0.3s;
+            bottom: -5px; left: 0; background: var(--primary);
+            transition: var(--transition);
         }
         .nav-links a:hover::after { width: 100%; }
 
-        /* Ortalanmış Premium Hero Section */
-        header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            padding-top: 80px;
+        /* === HERO SECTION (GİRİŞ) === */
+        #hero {
+            height: 100vh; display: flex; align-items: center;
+            padding: 0 10%; position: relative;
         }
-
-        .profile-img-wrapper {
-            position: relative;
-            margin-bottom: 2rem;
-            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .profile-img {
-            width: 180px; height: 180px;
-            border-radius: 50%; object-fit: cover;
-            border: 4px solid rgba(255,255,255,0.1);
-            position: relative; z-index: 2;
-            transition: transform 0.5s;
-        }
+        .hero-content { max-width: 800px; z-index: 2; }
         
-        .profile-img-wrapper::before {
-            content: ''; position: absolute;
-            top: -10px; left: -10px; right: -10px; bottom: -10px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            border-radius: 50%; z-index: 1; filter: blur(15px);
-            opacity: 0.7; animation: pulse 2s infinite;
-        }
+        .greeting { color: var(--primary); font-family: monospace; font-size: 1.1rem; margin-bottom: 20px; display: block;}
+        .name { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 10px; color: #ccd6f6; }
+        
+        /* Daktilo Efekti İçin Alan */
+        .typing-wrapper { font-size: 3rem; font-weight: 700; color: var(--text-muted); margin-bottom: 30px; min-height: 60px;}
+        .typing-text { color: var(--secondary); border-right: 3px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
+        
+        @keyframes blink { 50% { border-color: transparent; } }
 
-        .profile-img:hover { transform: scale(1.05) rotate(5deg); }
+        .hero-desc { max-width: 540px; font-size: 1.1rem; color: var(--text-muted); margin-bottom: 50px; }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.05); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 0.5; }
+        .btn-glitch {
+            padding: 15px 40px; background: transparent;
+            color: var(--primary); border: 1px solid var(--primary);
+            font-size: 1rem; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; position: relative; transition: var(--transition);
+            text-decoration: none; display: inline-block;
         }
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        .btn-glitch:hover { background: rgba(0, 229, 255, 0.1); box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); }
 
-        header h1 { font-size: 4rem; font-weight: 700; margin-bottom: 10px; line-height: 1.2; animation: slideUp 1s ease 0.2s forwards; opacity: 0; transform: translateY(30px); }
-        header h2 {
-            font-size: 1.5rem; font-weight: 300;
-            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 20px; animation: slideUp 1s ease 0.4s forwards; opacity: 0; transform: translateY(30px);
+        /* === ORTAK BÖLÜM AYARLARI === */
+        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .section-title {
+            display: flex; align-items: center; font-size: 2rem; margin-bottom: 60px; color: #ccd6f6;
         }
-        header p { max-width: 700px; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; animation: slideUp 1s ease 0.6s forwards; opacity: 0; transform: translateY(30px); }
+        .section-title::after {
+            content: ''; height: 1px; width: 300px; background: rgba(255,255,255,0.1); margin-left: 20px;
+        }
+        .section-title span { color: var(--primary); font-family: monospace; margin-right: 10px; font-size: 1.5rem;}
 
-        /* Kaydırma Animasyonları İçin Sınıf */
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        /* === YETKİNLİKLER (SKILLS RADAR & BARS) === */
+        .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .skill-group h3 { color: var(--primary); margin-bottom: 20px; font-size: 1.2rem; }
+        
+        .skill-item { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
+        .skill-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+        .skill-progress { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary)); border-radius: 3px; transform: scaleX(0); transform-origin: left; transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+
+        /* === DENEYİM ZAMAN ÇİZELGESİ (TIMELINE) === */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::before {
+            content: ''; position: absolute; top: 0; left: 30px;
+            height: 100%; width: 2px; background: rgba(255,255,255,0.1);
+        }
+        .timeline-item { position: relative; margin-bottom: 50px; padding-left: 80px; }
+        .timeline-icon {
+            position: absolute; left: 15px; top: 0; width: 32px; height: 32px;
+            border-radius: 50%; background: var(--bg-dark); border: 2px solid var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); z-index: 2; font-size: 0.8rem;
+        }
+        .timeline-content {
+            background: var(--bg-card); padding: 30px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+        }
+        .timeline-content:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px -15px rgba(0,229,255,0.3); }
+        .timeline-date { color: var(--primary); font-family: monospace; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        .timeline-content h3 { color: #ccd6f6; font-size: 1.3rem; margin-bottom: 5px; }
+        .timeline-content h4 { color: var(--text-muted); font-size: 1rem; margin-bottom: 15px; font-weight: 500; }
+        
+        /* === PROJELER (GRID MİMARİSİ) === */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .project-card {
+            background: var(--bg-card); border-radius: 10px; padding: 30px;
+            border: 1px solid rgba(255,255,255,0.05); position: relative;
+            transition: var(--transition); overflow: hidden;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0); transform-origin: left; transition: var(--transition);
+        }
+        .project-card:hover::before { transform: scaleX(1); }
+        
+        .project-top { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;}
+        .project-top i { font-size: 2rem; color: var(--primary); }
+        .project-links a { color: var(--text-muted); font-size: 1.2rem; transition: var(--transition); margin-left: 10px;}
+        .project-links a:hover { color: var(--primary); }
+        
+        .project-title { font-size: 1.4rem; color: #ccd6f6; margin-bottom: 15px; }
+        .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .project-tech { display: flex; flex-wrap: wrap; gap: 10px; font-family: monospace; font-size: 0.8rem; color: var(--text-muted); }
+
+        /* === SCROLL REVEAL ANIMASYONU === */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Proje Kartları - Glassmorphism */
-        .container { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 4rem; }
-        
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: 0.4s;
-        }
-
-        .card:hover { transform: translateY(-10px); border-color: var(--neon-blue); box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1); }
-        
-        /* Kart İçi Glow Efekti */
-        .card::before {
-            content: ''; position: absolute; width: 100px; height: 100px;
-            background: var(--neon-blue); filter: blur(60px); top: -50px; left: -50px; opacity: 0; transition: 0.5s;
-        }
-        .card:hover::before { opacity: 0.5; }
-
-        .card i { font-size: 2rem; color: var(--neon-blue); margin-bottom: 1.5rem; display: inline-block; }
-        .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: #fff; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-        /* İletişim Butonları */
-        .contact-flex { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
-        
-        .btn-neon {
-            padding: 15px 35px; border-radius: 30px;
-            text-decoration: none; font-weight: 600; font-size: 1.1rem;
-            display: inline-flex; align-items: center; gap: 10px;
-            transition: 0.3s; position: relative; overflow: hidden;
-            z-index: 1; color: #fff;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .btn-neon::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-            z-index: -1; transition: 0.4s;
-        }
-
-        .btn-neon:hover::before { width: 100%; }
-        .btn-neon:hover { border-color: transparent; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); transform: translateY(-3px); }
-
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-
+        /* Responsive Tasarım */
         @media (max-width: 768px) {
-            header h1 { font-size: 2.8rem; }
-            .nav-links { display: none; /* Mobilde sade görünüm için */ }
+            .name { font-size: 3rem; }
+            .typing-wrapper { font-size: 1.8rem; }
+            section { padding: 80px 5%; }
+            .skills-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Arka plan küreleri -->
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
+    <!-- HTML5 Canvas Parçacık Arka Planı -->
+    <canvas id="particle-canvas"></canvas>
 
     <nav>
-        <h1>Erdoğan <span>Zenit</span></h1>
+        <a href="#" class="logo">E.<span>ZENIT</span></a>
         <ul class="nav-links">
-            <li><a href="#projeler">Projeler</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
+            <li><a href="#hakkimda">01. Profil</a></li>
+            <li><a href="#deneyim">02. Deneyim</a></li>
+            <li><a href="#projeler">03. Projeler</a></li>
+            <li><a href="#iletisim">04. İletişim</a></li>
         </ul>
     </nav>
 
-    <header id="hakkimda">
-        <div class="profile-img-wrapper">
-            <!-- FOTOĞRAF KISMI -->
-            <img src="profil.png" alt="Erdoğan Zenit" class="profile-img">
+    <header id="hero">
+        <div class="hero-content">
+            <span class="greeting">Merhaba, benim adım</span>
+            <h1 class="name">Erdoğan Zenit.</h1>
+            <div class="typing-wrapper">
+                Ben bir <span class="typing-text"></span>
+            </div>
+            <p class="hero-desc">
+                Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği öğrencisiyim. Uçta yapay zeka (Edge-AI), bilgisayarlı görü ve gömülü sistemler üzerine donanım-yazılım entegrasyonu odaklı karmaşık mühendislik problemlerini çözüyorum.
+            </p>
+            <a href="#iletisim" class="btn-glitch">İletişime Geç</a>
         </div>
-        <h1>Erdoğan Zenit</h1>
-        <h2>Elektrik-Elektronik Mühendisi</h2>
-        <p>Yapay zeka, bilgisayarlı görü, otonom robotik ve gömülü yazılımlar üzerine donanım-yazılım entegrasyonu odaklı projeler geliştiriyorum. Uçta yapay zeka (Edge-AI) mimarileri ve yüksek teknolojinin geleceğini inşa ediyorum.</p>
-        
-        <a href="#projeler" class="btn-neon" style="animation: slideUp 1s ease 0.8s forwards; opacity: 0; transform: translateY(30px);">
-            Projeleri İncele <i class="fas fa-arrow-down"></i>
-        </a>
     </header>
 
-    <div class="container" id="projeler">
-        <h2 class="section-title reveal">Öne Çıkan Çalışmalar</h2>
+    <section id="hakkimda" class="reveal">
+        <h2 class="section-title"><span>01.</span> Teknik Yetkinlikler</h2>
+        <div class="skills-container">
+            <div class="skill-group">
+                <h3>Yazılım & Yapay Zeka (Software & AI)</h3>
+                
+                <div class="skill-item">
+                    <div class="skill-info"><span>Python & FastAPI</span> <span>90%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-info"><span>OpenCV & Bilgisayarlı Görü</span> <span>85%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info"><span>Edge-AI & TinyML</span> <span>80%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-info"><span>Qiskit & Kuantum Programlama</span> <span>65%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="65%"></div></div>
+                </div>
+            </div>
+            
+            <div class="skill-group">
+                <h3>Donanım & Gömülü Sistemler (Hardware)</h3>
+                
+                <div class="skill-item">
+                    <div class="skill-info"><span>ESP32 & Mikrodenetleyiciler</span> <span>85%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-info"><span>ROS & Otonom Robotik</span> <span>75%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="75%"></div></div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info"><span>PLC & Güç Elektroniği</span> <span>70%</span></div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="deneyim" class="reveal">
+        <h2 class="section-title"><span>02.</span> Sektörel Deneyim</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Eylül 2026 - Devam Ediyor</span>
+                    <h3>Backend AI Engineer</h3>
+                    <h4>Flyrank AI</h4>
+                    <p>Yapay zeka tabanlı sistemlerin backend mimarilerinin tasarlanması ve bellek içi görev yönetimi (in-memory task management) için RESTful CRUD API sistemlerinin entegrasyonu.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-icon"><i class="fas fa-bolt"></i></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Temmuz 2026 - Ağustos 2026</span>
+                    <h3>SPARK Mühendislik Stajyeri</h3>
+                    <h4>Enerjisa Toroslar EDAŞ</h4>
+                    <p>Kırsal bölgelerdeki enerji nakil hatları için Python ve QGIS tabanlı güzergah optimizasyon algoritması "Kırsal Line" projesinin mimarisinin geliştirilmesi.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-icon"><i class="fas fa-microchip"></i></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Ocak 2024 - Haziran 2024</span>
+                    <h3>Görüntü İşleme Mühendisi</h3>
+                    <h4>Cebeciler Takımı - TEKNOFEST</h4>
+                    <p>Sabit kanatlı İHA sistemleri için OpenCV kütüphaneleri kullanılarak gerçek zamanlı nesne tespiti (object detection) ve hedef takip algoritmalarının geliştirilmesi.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="projeler" class="reveal">
+        <h2 class="section-title"><span>03.</span> Seçkin Projeler</h2>
         <div class="projects-grid">
             
-            <div class="card reveal">
-                <i class="fas fa-bolt"></i>
-                <h3>Enerjisa Toroslar EDAŞ</h3>
-                <p>SPARK staj programı kapsamında, güzergah optimizasyonu için Python ve QGIS kullanılarak geliştirilen "Kırsal Line" veri analizi projesi.</p>
-            </div>
-            
-            <div class="card reveal">
-                <i class="fas fa-heartbeat"></i>
-                <h3>Giyilebilir EKG/EMG & Edge-AI</h3>
-                <p>Gerçek zamanlı sinyal işleme ve Edge-AI sınıflandırma (TinyML) mimarisi üzerine kurulu bitirme projesi donanım tasarımı.</p>
-            </div>
-
-            <div class="card reveal">
-                <i class="fas fa-plane"></i>
-                <h3>TEKNOFEST İHA Sistemleri</h3>
-                <p>Cebeciler Takımı bünyesinde otonom sistemler için OpenCV tabanlı nesne tespiti (object detection) algoritmalarının geliştirilmesi.</p>
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <i class="fas fa-heartbeat"></i>
+                    <div class="project-links"><a href="#"><i class="fas fa-external-link-alt"></i></a></div>
+                </div>
+                <h3 class="project-title">Wearable ECG/EMG & Edge-AI</h3>
+                <p class="project-desc">Gerçek zamanlı biyometrik sinyal işleme ve bu sinyallerin doğrudan donanım üzerinde (TinyML) sınıflandırılmasını sağlayan giyilebilir bitirme projesi tasarımı.</p>
+                <div class="project-tech">
+                    <span>ESP32</span> <span>Edge-AI</span> <span>Signal Processing</span>
+                </div>
             </div>
 
-            <div class="card reveal">
-                <i class="fas fa-satellite"></i>
-                <h3>Spectra-CH4 TR</h3>
-                <p>Sentinel-2 uydu verileri ve Streamlit kullanılarak tasarlanan, yenilikçi uydu tabanlı metan emisyonu takip ve simülasyon aracı.</p>
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <i class="fas fa-satellite"></i>
+                    <div class="project-links"><a href="#"><i class="fas fa-external-link-alt"></i></a></div>
+                </div>
+                <h3 class="project-title">Spectra-CH4 TR</h3>
+                <p class="project-desc">Sentinel-2 uydu verilerini kullanarak metan gazı emisyonlarını takip eden ve verileri Streamlit arayüzü ile görselleştiren uydu tabanlı simülasyon aracı.</p>
+                <div class="project-tech">
+                    <span>Python</span> <span>Streamlit</span> <span>Sentinel-2 API</span>
+                </div>
             </div>
 
-            <div class="card reveal">
-                <i class="fas fa-server"></i>
-                <h3>Flyrank AI & FastAPI</h3>
-                <p>Backend AI mühendisi olarak yürütülen çalışmalar ve bellek içi görev yönetimi için GitHub üzerinde yayınlanan RESTful CRUD API mimarisi.</p>
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <i class="fas fa-server"></i>
+                    <div class="project-links"><a href="https://github.com/erdoganzenit/crud-api" target="_blank"><i class="fab fa-github"></i></a></div>
+                </div>
+                <h3 class="project-title">FastAPI Task Manager API</h3>
+                <p class="project-desc">Swagger dokümantasyonuna sahip, yüksek performanslı, asenkron yapıda çalışan bellek içi (in-memory) görev yönetimi CRUD API sistemi.</p>
+                <div class="project-tech">
+                    <span>Python</span> <span>FastAPI</span> <span>RESTful</span>
+                </div>
             </div>
 
-            <div class="card reveal">
-                <i class="fas fa-microchip"></i>
-                <h3>Sense-Tech Gömülü Sistemler</h3>
-                <p>Takım kaptanı olarak yürütülen ve finalist olmaya hak kazanılan inovatif gömülü sistemler ve donanım tasarımı projesi.</p>
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <i class="fas fa-robot"></i>
+                    <div class="project-links"><a href="#"><i class="fas fa-external-link-alt"></i></a></div>
+                </div>
+                <h3 class="project-title">Sense-Tech Gömülü Sistemler</h3>
+                <p class="project-desc">Takım kaptanı olarak görev alınan ve yenilikçi gömülü donanım tasarımıyla Sense-Tech Ideathon yarışmasında finalist olmaya hak kazanan proje mimarisi.</p>
+                <div class="project-tech">
+                    <span>Embedded Systems</span> <span>Hardware Design</span>
+                </div>
             </div>
 
         </div>
-    </div>
+    </section>
 
-    <div class="container" id="iletisim" style="padding-top: 0;">
-        <h2 class="section-title reveal">İletişim Kurun</h2>
-        <div class="contact-flex reveal">
-            <!-- VEXIRA KALDIRILDI, KİŞİSEL LINKEDIN EKLENDİ -->
-            <a href="https://linkedin.com/in/erdoganzenit" target="_blank" class="btn-neon">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/erdoganzenit" target="_blank" class="btn-neon">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="mailto:ornek@email.com" class="btn-neon">
-                <i class="fas fa-envelope"></i> E-Posta Gönder
-            </a>
-        </div>
-    </div>
-
-    <!-- Scroll Animasyonlarını Tetikleyen JavaScript -->
+    <!-- === JAVASCRIPT MOTORU === -->
     <script>
-        function reveal() {
+        // 1. Daktilo (Typing) Efekti
+        const textArray = ["Edge-AI Geliştiricisiyim.", "Gömülü Sistem Mühendisiyim.", "Bilgisayarlı Görü Uzmanıyım."];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingElement = document.querySelector(".typing-text");
+
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+                typingElement.textContent += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+        function erase() {
+            if (charIndex > 0) {
+                typingElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                textIndex = (textIndex + 1) % textArray.length;
+                setTimeout(type, 500);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() { setTimeout(type, 1000); });
+
+        // 2. Scroll Reveal & Yetkinlik Barları Animasyonu
+        function revealElements() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
+                    
+                    // Eğer yetkinlik barı görünürse animasyonu tetikle
+                    if(reveals[i].id === 'hakkimda') {
+                        document.querySelectorAll('.skill-progress').forEach(bar => {
+                            bar.style.transform = `scaleX(${parseInt(bar.getAttribute('data-width')) / 100})`;
+                        });
+                    }
                 }
             }
         }
-        window.addEventListener("scroll", reveal);
-        reveal(); // Sayfa yüklendiğinde de kontrol et
+        window.addEventListener("scroll", revealElements);
+        revealElements();
+
+        // 3. HTML5 Canvas Parçacık Ağı (Particle Network)
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+        
+        // Fare pozisyonu
+        let mouse = { x: null, y: null, radius: 150 }
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x; this.y = y;
+                this.directionX = directionX; this.directionY = directionY;
+                this.size = size; this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = '#00e5ff';
+                ctx.fill();
+            }
+            update() {
+                if(this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                if(this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+
+                // Mouse etkileşimi
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                if(distance < mouse.radius + this.size) {
+                    if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 10;
+                    if(mouse.x > this.x && this.x > this.size * 10) this.x -= 10;
+                    if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 10;
+                    if(mouse.y > this.y && this.y > this.size * 10) this.y -= 10;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for(let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 2) - 1.5;
+                let directionY = (Math.random() * 2) - 1.5;
+                let color = '#00e5ff';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for(let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); }
+            connect();
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for(let a = 0; a < particlesArray.length; a++) {
+                for(let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
+                                   ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if(distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = 'rgba(0, 229, 255,' + opacityValue + ')';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('resize', function(){
+            canvas.width = innerWidth; canvas.height = innerHeight;
+            mouse.radius = ((canvas.height/8) * (canvas.height/8));
+            init();
+        });
+
+        window.addEventListener('mouseout', function(){ mouse.x = undefined; mouse.y = undefined; });
+
+        init();
+        animate();
     </script>
 </body>
 </html>
