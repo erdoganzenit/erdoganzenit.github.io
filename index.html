@@ -16,16 +16,17 @@
         :root {
             --bg-base: #060913;
             --bg-surface: rgba(15, 23, 42, 0.65);
+            --bg-surface-solid: #0f172a;
             --bg-surface-hover: rgba(30, 41, 59, 0.8);
-            --bg-glass: rgba(10, 15, 29, 0.75);
+            --bg-glass: rgba(10, 15, 29, 0.78);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
-            --accent-primary: #10b981; /* Emerald - Donanım & Gömülü Sistem vurgusu */
-            --accent-secondary: #6366f1; /* Indigo - AI & Algoritma vurgusu */
+            --accent-primary: #10b981; /* Emerald - Donanım & Gömülü Sistem */
+            --accent-secondary: #6366f1; /* Indigo - AI & Algoritma */
             --accent-cyan: #06b6d4;
             --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(16, 185, 129, 0.4);
-            --shadow-glow: 0 20px 50px -15px rgba(16, 185, 129, 0.15);
+            --border-highlight: rgba(16, 185, 129, 0.45);
+            --shadow-glow: 0 20px 50px -15px rgba(16, 185, 129, 0.18);
             --grid-color: rgba(255, 255, 255, 0.025);
             --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -33,15 +34,16 @@
         [data-theme="light"] {
             --bg-base: #f8fafc;
             --bg-surface: rgba(255, 255, 255, 0.85);
+            --bg-surface-solid: #ffffff;
             --bg-surface-hover: rgba(241, 245, 249, 0.95);
-            --bg-glass: rgba(255, 255, 255, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.88);
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --accent-primary: #059669;
             --accent-secondary: #4f46e5;
             --accent-cyan: #0284c7;
-            --border-subtle: rgba(15, 23, 42, 0.08);
-            --border-highlight: rgba(5, 150, 105, 0.4);
+            --border-subtle: rgba(15, 23, 42, 0.09);
+            --border-highlight: rgba(5, 150, 105, 0.45);
             --shadow-glow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
             --grid-color: rgba(15, 23, 42, 0.035);
         }
@@ -66,7 +68,7 @@
             position: relative;
         }
 
-        /* Mühendislik Izgarası (Grid) Arka Planı */
+        /* Mühendislik Izgarası Arka Planı */
         body::before {
             content: "";
             position: fixed;
@@ -81,7 +83,7 @@
             pointer-events: none;
         }
 
-        /* Ambient Orbs (Yumuşak Arka Plan Işıkları) */
+        /* Ambient Orbs */
         .ambient-light {
             position: fixed;
             border-radius: 50%;
@@ -108,7 +110,6 @@
             100% { transform: translate(60px, 40px) scale(1.15); }
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-base); }
         ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
@@ -262,7 +263,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* === HERO SECTION (2 SÜTUNLU & TERMINAL) === */
+        /* === HERO SECTION === */
         #hero {
             min-height: 100vh;
             display: flex;
@@ -457,7 +458,7 @@
         .code-num { color: #fca5a5; }
         .code-comment { color: #64748b; font-style: italic; }
 
-        /* === SPOTLIGHT EFEKTLİ BENTO KARTLAR (YETKİNLİKLER) === */
+        /* === SPOTLIGHT EFEKTLİ BENTO KARTLAR === */
         .bento-skills {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -475,14 +476,13 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Mouse Takip Eden Spotlight Işığı */
         .spotlight-card::before {
             content: "";
             position: absolute;
             inset: 0;
             background: radial-gradient(
                 600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(16, 185, 129, 0.12),
+                rgba(16, 185, 129, 0.13),
                 transparent 40%
             );
             opacity: 0;
@@ -508,4 +508,1551 @@
         }
 
         .skill-icon-box {
-            width:
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .skill-group-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            color: var(--text-primary);
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-chip {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        [data-theme="light"] .skill-chip {
+            background: rgba(15, 23, 42, 0.03);
+        }
+
+        .skill-chip i {
+            color: var(--accent-primary);
+            font-size: 1.05rem;
+        }
+
+        .skill-chip:hover {
+            border-color: var(--accent-primary);
+            background: rgba(16, 185, 129, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* === TIMELINE === */
+        .timeline-wrapper {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto;
+            padding-left: 36px;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            bottom: 0;
+            left: 7px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -36px;
+            top: 28px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 3px solid var(--accent-primary);
+            box-shadow: 0 0 12px var(--accent-primary);
+            z-index: 2;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .timeline-role {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-company {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: rgba(99, 102, 241, 0.12);
+            color: var(--accent-secondary);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.96rem;
+        }
+
+        /* === SEÇKİN PROJELER GRID === */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .project-folder-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(99, 102, 241, 0.15));
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--accent-primary);
+        }
+
+        .project-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-links a {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            transition: var(--transition-smooth);
+            padding: 8px;
+            border-radius: 50%;
+            display: inline-flex;
+            position: relative;
+            z-index: 3;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-primary);
+            background: var(--border-subtle);
+            transform: translateY(-2px);
+        }
+
+        .project-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--accent-primary);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .project-footer {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--accent-primary);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .inspect-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-secondary);
+            font-weight: 600;
+            padding-top: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover .inspect-trigger {
+            color: var(--accent-primary);
+        }
+
+        .inspect-trigger i {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .inspect-trigger i {
+            transform: translateX(5px);
+        }
+
+        /* === PROJE DETAY MODALI (TEKNİK MİMARİ & SİMÜLASYON) === */
+        .project-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 6, 14, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            padding: 20px;
+        }
+
+        .project-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .project-modal-box {
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-highlight);
+            border-radius: 24px;
+            max-width: 880px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.75);
+            transform: scale(0.94) translateY(24px);
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 36px;
+        }
+
+        .project-modal-overlay.active .project-modal-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .pm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .pm-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 4px 12px;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .pm-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.85rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .pm-close-btn {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .pm-close-btn:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        /* Canlı Görsel / Simülasyon Sahnesi */
+        .pm-visual-stage {
+            background: #050811;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pm-visual-stage::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+
+        .visual-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            z-index: 2;
+            margin-bottom: 14px;
+        }
+
+        .visual-status {
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* EKG Animasyonu */
+        .ecg-svg {
+            width: 100%;
+            height: 95px;
+            overflow: visible;
+            z-index: 2;
+        }
+
+        .ecg-line {
+            fill: none;
+            stroke: #10b981;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.6));
+            stroke-dasharray: 700;
+            stroke-dashoffset: 700;
+            animation: drawEcg 3.5s linear infinite;
+        }
+
+        @keyframes drawEcg {
+            0% { stroke-dashoffset: 700; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -700; }
+        }
+
+        /* Uydu Metan Isı Haritası Simülasyonu */
+        .sat-heatmap {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 6px;
+            z-index: 2;
+            margin: 10px 0;
+        }
+
+        .heat-cell {
+            height: 28px;
+            border-radius: 4px;
+            background: rgba(16, 185, 129, 0.15);
+            animation: pulseHeat 3s infinite alternate ease-in-out;
+        }
+
+        .heat-cell.mid { background: rgba(245, 158, 11, 0.45); }
+        .heat-cell.high { background: rgba(239, 68, 68, 0.75); box-shadow: 0 0 12px rgba(239, 68, 68, 0.5); }
+
+        @keyframes pulseHeat {
+            0% { opacity: 0.65; transform: scale(0.96); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* FastAPI Swagger Görseli */
+        .swagger-mock {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+        }
+
+        .ep-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #e2e8f0;
+        }
+
+        .http-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            min-width: 58px;
+            text-align: center;
+        }
+        .http-post { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .http-get { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+        .http-delete { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+
+        /* Mimari Akış Şeması (Pipeline) */
+        .pm-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .arch-pipeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .arch-step {
+            flex: 1;
+            min-width: 130px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px 12px;
+            text-align: center;
+        }
+
+        .arch-step i {
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .arch-step span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: block;
+        }
+
+        .arch-step small {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .arch-arrow {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Donanım / Yazılım Spesifikasyon İkili Grid */
+        .pm-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .pm-spec-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .pm-spec-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pm-spec-card h4 i {
+            color: var(--accent-secondary);
+        }
+
+        .pm-spec-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pm-spec-list li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .pm-spec-list li::before {
+            content: "▹";
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .pm-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* === İLETİŞİM MODAL === */
+        .contact-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 6, 14, 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            padding: 20px;
+        }
+
+        .contact-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .contact-card {
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-highlight);
+            padding: 44px 36px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 430px;
+            width: 100%;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+            transform: scale(0.92) translateY(20px);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .contact-modal.active .contact-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .avatar-wrapper {
+            width: 115px;
+            height: 115px;
+            margin: 0 auto 20px;
+            position: relative;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--bg-base);
+            display: block;
+        }
+
+        .contact-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.7rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            margin-bottom: 12px;
+        }
+
+        .social-btn:hover {
+            border-color: var(--accent-primary);
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .social-btn.linkedin:hover {
+            border-color: #0a66c2;
+            background: rgba(10, 102, 194, 0.15);
+            color: #38bdf8;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+            transform: translateX(-4px);
+        }
+
+        /* === FOOTER === */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 36px 0;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        /* === SCROLL REVEAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 960px) {
+            .hero-grid, .bento-skills, .pm-specs-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-name {
+                font-size: 3.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-wrapper { top: 12px; padding: 0 12px; }
+            nav { padding: 12px 20px; border-radius: 20px; }
+            .mobile-menu-btn { display: block; }
+            .nav-right {
+                position: fixed;
+                top: 76px; left: 12px; right: 12px;
+                background: var(--bg-glass);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--border-subtle);
+                border-radius: 20px;
+                padding: 24px;
+                flex-direction: column;
+                gap: 20px;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: var(--transition-smooth);
+            }
+            .nav-right.active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+            .nav-links { flex-direction: column; align-items: center; width: 100%; gap: 12px; }
+            .controls { border-left: none; border-top: 1px solid var(--border-subtle); padding-left: 0; padding-top: 16px; width: 100%; justify-content: center; }
+            .hero-name { font-size: 2.5rem; }
+            .section-title { font-size: 1.85rem; }
+            .spotlight-card, .project-modal-box { padding: 24px; }
+            .arch-arrow { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka Plan Ambient Işıklar -->
+    <div class="ambient-light orb-1"></div>
+    <div class="ambient-light orb-2"></div>
+
+    <!-- Floating Pill Navigasyon -->
+    <div class="nav-wrapper">
+        <nav>
+            <a href="#" class="logo">
+                <span class="logo-dot"></span> Erdoğan Zenit
+            </a>
+            <button class="mobile-menu-btn" id="menu-btn" aria-label="Menü">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-right" id="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#hakkimda" class="nav-item lang-el" data-tr="Yetkinlikler" data-en="Skills">Yetkinlikler</a></li>
+                    <li><a href="#deneyim" class="nav-item lang-el" data-tr="Deneyim" data-en="Experience">Deneyim</a></li>
+                    <li><a href="#projeler" class="nav-item lang-el" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+                    <li><a id="contact-trigger" class="nav-item lang-el" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+                </ul>
+                <div class="controls">
+                    <button id="theme-btn" class="control-btn" title="Tema Değiştir">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button id="lang-btn" class="control-btn" title="Dil Değiştir">EN</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- İletişim Modalı -->
+    <div class="contact-modal" id="contact-modal">
+        <div class="contact-card">
+            <div class="avatar-wrapper">
+                <img src="profil.png" alt="Erdoğan Zenit" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Erdogan+Zenit&background=060913&color=10b981&size=200&bold=true'">
+            </div>
+            <h2>Erdoğan Zenit</h2>
+            <p class="lang-el" data-tr="Elektrik-Elektronik Mühendisliği & Edge-AI" data-en="Electrical-Electronics Eng. & Edge-AI">Elektrik-Elektronik Mühendisliği & Edge-AI</p>
+            
+            <a href="https://linkedin.com/in/erdoganzenit" target="_blank" rel="noopener" class="social-btn linkedin">
+                <i class="fab fa-linkedin" style="font-size: 1.25rem;"></i>
+                <span class="lang-el" data-tr="LinkedIn Profilime Git" data-en="Visit LinkedIn Profile">LinkedIn Profilime Git</span>
+            </a>
+
+            <a href="https://github.com/erdoganzenit" target="_blank" rel="noopener" class="social-btn">
+                <i class="fab fa-github" style="font-size: 1.25rem;"></i>
+                <span class="lang-el" data-tr="GitHub Projelerim" data-en="GitHub Repositories">GitHub Projelerim</span>
+            </a>
+
+            <a href="mailto:ornek@email.com" class="social-btn">
+                <i class="fas fa-envelope" style="font-size: 1.2rem;"></i>
+                <span class="lang-el" data-tr="E-posta Gönder" data-en="Send an Email">E-posta Gönder</span>
+            </a>
+
+            <button id="close-modal" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span class="lang-el" data-tr="Ana Sayfaya Dön" data-en="Back to Portfolio">Ana Sayfaya Dön</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- PROJE DETAY MODALI (TEKNİK MİMARİ & SİMÜLASYON) -->
+    <div class="project-modal-overlay" id="project-modal">
+        <div class="project-modal-box">
+            <div class="pm-header">
+                <div>
+                    <span class="pm-badge" id="pm-category">EDGE-AI CAPSTONE</span>
+                    <h2 class="pm-title" id="pm-title">Proje Başlığı</h2>
+                </div>
+                <button class="pm-close-btn" id="pm-close" aria-label="Kapat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Canlı Teknik Simülasyon / Görsel Alanı -->
+            <div class="pm-visual-stage" id="pm-visual"></div>
+
+            <!-- Sistem Mimarisi Akış Şeması -->
+            <span class="pm-section-label lang-el" data-tr="// SİSTEM MİMARİSİ VE VERİ AKIŞ HATTI" data-en="// SYSTEM ARCHITECTURE & DATA PIPELINE">// SİSTEM MİMARİSİ VE VERİ AKIŞ HATTI</span>
+            <div class="arch-pipeline" id="pm-pipeline"></div>
+
+            <!-- Donanım / Yazılım Detayları -->
+            <div class="pm-specs-grid">
+                <div class="pm-spec-card">
+                    <h4 id="pm-col1-title"><i class="fas fa-microchip"></i> Donanım & Sinyal Mimarisi</h4>
+                    <ul class="pm-spec-list" id="pm-col1-list"></ul>
+                </div>
+                <div class="pm-spec-card">
+                    <h4 id="pm-col2-title"><i class="fas fa-code"></i> Yazılım & Algoritma Katmanı</h4>
+                    <ul class="pm-spec-list" id="pm-col2-list"></ul>
+                </div>
+            </div>
+
+            <div class="pm-footer">
+                <div class="project-tech" id="pm-tags"></div>
+                <div id="pm-action"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header id="hero" class="container">
+        <div class="hero-grid">
+            <div class="hero-left">
+                <div class="status-pill">
+                    <span class="pulse-dot"></span>
+                    <span class="lang-el" data-tr="Flyrank AI • Backend AI Engineer" data-en="Flyrank AI • Backend AI Engineer">Flyrank AI • Backend AI Engineer</span>
+                </div>
+                <h1 class="hero-name">Erdoğan Zenit</h1>
+                <div class="hero-role">
+                    <span class="typewriter-text" id="typewriter">Edge-AI & TinyML</span>
+                </div>
+                <p class="hero-desc lang-el" 
+                   data-tr="Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği bölümünde öğrenim görüyor; uçta yapay zeka (Edge-AI), bilgisayarlı görü, gömülü sistemler ve yüksek performanslı API mimarileri üzerine donanım-yazılım entegrasyonu odaklı mühendislik çözümleri geliştiriyorum." 
+                   data-en="Studying Electrical & Electronics Engineering at Gaziantep University; developing hardware-software co-design solutions in Edge-AI, computer vision, embedded systems, and high-performance API architectures.">
+                    Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği bölümünde öğrenim görüyor; uçta yapay zeka (Edge-AI), bilgisayarlı görü, gömülü sistemler ve yüksek performanslı API mimarileri üzerine donanım-yazılım entegrasyonu odaklı mühendislik çözümleri geliştiriyorum.
+                </p>
+                <div class="hero-actions">
+                    <button id="hero-contact-btn" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span class="lang-el" data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</span>
+                    </button>
+                    <a href="#projeler" class="btn-secondary">
+                        <i class="fas fa-code-branch"></i>
+                        <span class="lang-el" data-tr="Projeleri İncele" data-en="Explore Projects">Projeleri İncele</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sağ Taraf: İnteraktif Mühendislik Terminali -->
+            <div class="terminal-window reveal active">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="terminal-title">zenit@edge-node: ~/system-profile</span>
+                    <i class="fas fa-microchip" style="color: #64748b; font-size: 0.85rem;"></i>
+                </div>
+                <div class="terminal-body">
+                    <div><span class="cmd-prompt">$</span>cat engineer_spec.json</div>
+                    <div style="margin-top: 8px;">{</div>
+                    <div style="padding-left: 20px;">
+                        <span class="code-key">"engineer"</span>: <span class="code-str">"Erdoğan Zenit"</span>,<br>
+                        <span class="code-key">"department"</span>: <span class="code-str">"Electrical & Electronics Eng."</span>,<br>
+                        <span class="code-key">"focus_areas"</span>: [<br>
+                        &nbsp;&nbsp;<span class="code-str">"Edge-AI & Biometric Signal Processing"</span>,<br>
+                        &nbsp;&nbsp;<span class="code-str">"Computer Vision (OpenCV)"</span>,<br>
+                        &nbsp;&nbsp;<span class="code-str">"FastAPI & Backend Architecture"</span><br>
+                        ],<br>
+                        <span class="code-key">"hardware"</span>: [<span class="code-str">"ESP32"</span>, <span class="code-str">"ROS"</span>, <span class="code-str">"PLC / TIA Portal"</span>],<br>
+                        <span class="code-key">"quantum_interest"</span>: <span class="code-str">"Qiskit & Cirq"</span>,<br>
+                        <span class="code-key">"status"</span>: <span class="code-num">200</span> <span class="code-comment">// Ready for innovation</span>
+                    </div>
+                    <div>}</div>
+                    <div style="margin-top: 10px;"><span class="cmd-prompt">$</span><span class="lang-el" data-tr="sistem_durumu: aktif ve optimize" data-en="system_status: active & optimized">sistem_durumu: aktif ve optimize</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 01. TEKNİK YETKİNLİKLER -->
+    <section id="hakkimda" class="container reveal">
+        <div class="section-header">
+            <span class="section-tag lang-el" data-tr="// 01. DONANIM & YAZILIM CEPHANELİĞİ" data-en="// 01. TECH STACK & ARSENAL">// 01. DONANIM & YAZILIM CEPHANELİĞİ</span>
+            <h2 class="section-title lang-el" data-tr="Teknik Yetkinlikler" data-en="Technical Skills">Teknik Yetkinlikler</h2>
+        </div>
+
+        <div class="bento-skills">
+            <div class="spotlight-card">
+                <div class="skill-group-header">
+                    <div class="skill-icon-box"><i class="fas fa-brain"></i></div>
+                    <h3 class="lang-el" data-tr="Yazılım & Yapay Zeka" data-en="Software & Artificial Intelligence">Yazılım & Yapay Zeka</h3>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-chip"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill-chip"><i class="fas fa-bolt"></i> FastAPI & RESTful API</div>
+                    <div class="skill-chip"><i class="fas fa-eye"></i> OpenCV (Computer Vision)</div>
+                    <div class="skill-chip"><i class="fas fa-network-wired"></i> Edge-AI & TinyML</div>
+                    <div class="skill-chip"><i class="fas fa-atom"></i> Qiskit (Quantum)</div>
+                    <div class="skill-chip"><i class="fas fa-map-marked-alt"></i> QGIS & Spatial Analysis</div>
+                </div>
+            </div>
+
+            <div class="spotlight-card">
+                <div class="skill-group-header">
+                    <div class="skill-icon-box"><i class="fas fa-microchip"></i></div>
+                    <h3 class="lang-el" data-tr="Donanım & Gömülü Sistemler" data-en="Hardware & Embedded Systems">Donanım & Gömülü Sistemler</h3>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-chip"><i class="fas fa-microchip"></i> ESP32 & Microcontrollers</div>
+                    <div class="skill-chip"><i class="fas fa-robot"></i> ROS (Autonomous Robotics)</div>
+                    <div class="skill-chip"><i class="fas fa-wave-square"></i> ECG/EMG Signal Conditioning</div>
+                    <div class="skill-chip"><i class="fas fa-charging-station"></i> Güç Elektroniği</div>
+                    <div class="skill-chip"><i class="fas fa-industry"></i> PLC & Ladder (TIA Portal)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02. SEKTÖREL DENEYİM -->
+    <section id="deneyim" class="container reveal">
+        <div class="section-header">
+            <span class="section-tag lang-el" data-tr="// 02. KARİYER YOLCULUĞU" data-en="// 02. CAREER JOURNEY">// 02. KARİYER YOLCULUĞU</span>
+            <h2 class="section-title lang-el" data-tr="Sektörel Deneyim" data-en="Professional Experience">Sektörel Deneyim</h2>
+        </div>
+
+        <div class="timeline-wrapper">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="spotlight-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">Backend AI Engineer</h3>
+                            <span class="timeline-company"><i class="fas fa-building"></i> Flyrank AI</span>
+                        </div>
+                        <span class="timeline-date lang-el" data-tr="Eylül 2026 - Devam Ediyor" data-en="Sep 2026 - Present">Eylül 2026 - Devam Ediyor</span>
+                    </div>
+                    <p class="timeline-desc lang-el" 
+                       data-tr="Yapay zeka tabanlı sistemlerin ölçeklenebilir backend mimarilerinin tasarlanması, asenkron veri işleme hatlarının kurgulanması ve bellek içi görev yönetimi için yüksek performanslı RESTful CRUD API servislerinin entegrasyonu." 
+                       data-en="Designing scalable backend architectures for AI-driven systems, structuring asynchronous data pipelines, and integrating high-performance RESTful CRUD APIs for in-memory task management.">
+                        Yapay zeka tabanlı sistemlerin ölçeklenebilir backend mimarilerinin tasarlanması, asenkron veri işleme hatlarının kurgulanması ve bellek içi görev yönetimi için yüksek performanslı RESTful CRUD API servislerinin entegrasyonu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="spotlight-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role lang-el" data-tr="SPARK Mühendislik Stajyeri" data-en="SPARK Engineering Intern">SPARK Mühendislik Stajyeri</h3>
+                            <span class="timeline-company"><i class="fas fa-bolt"></i> Enerjisa Toroslar EDAŞ</span>
+                        </div>
+                        <span class="timeline-date lang-el" data-tr="Temmuz 2026 - Ağustos 2026" data-en="Jul 2026 - Aug 2026">Temmuz 2026 - Ağustos 2026</span>
+                    </div>
+                    <p class="timeline-desc lang-el" 
+                       data-tr="Kırsal bölgelerdeki enerji nakil ve dağıtım hatları için Python ve QGIS tabanlı coğrafi güzergah optimizasyon algoritması 'Kırsal Line' projesinin mimari tasarımı ve geliştirilmesi." 
+                       data-en="Architected and developed the 'Kırsal Line' spatial route optimization algorithm using Python and QGIS for rural power distribution lines.">
+                        Kırsal bölgelerdeki enerji nakil ve dağıtım hatları için Python ve QGIS tabanlı coğrafi güzergah optimizasyon algoritması 'Kırsal Line' projesinin mimari tasarımı ve geliştirilmesi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="spotlight-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role lang-el" data-tr="Görüntü İşleme Mühendisi" data-en="Image Processing Engineer">Görüntü İşleme Mühendisi</h3>
+                            <span class="timeline-company"><i class="fas fa-fighter-jet"></i> Cebeciler Takımı - TEKNOFEST</span>
+                        </div>
+                        <span class="timeline-date lang-el" data-tr="Ocak 2024 - Haziran 2024" data-en="Jan 2024 - Jun 2024">Ocak 2024 - Haziran 2024</span>
+                    </div>
+                    <p class="timeline-desc lang-el" 
+                       data-tr="Sabit kanatlı insansız hava aracı (İHA) sistemleri için OpenCV kullanılarak gerçek zamanlı nesne tespiti, otonom kilitlenme ve hedef takip algoritmalarının geliştirilmesi." 
+                       data-en="Developed real-time object detection, autonomous lock-on, and target tracking algorithms using OpenCV for fixed-wing UAV systems.">
+                        Sabit kanatlı insansız hava aracı (İHA) sistemleri için OpenCV kullanılarak gerçek zamanlı nesne tespiti, otonom kilitlenme ve hedef takip algoritmalarının geliştirilmesi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. SEÇKİN PROJELER (TIKLANABİLİR DETAY KARTLARI) -->
+    <section id="projeler" class="container reveal">
+        <div class="section-header">
+            <span class="section-tag lang-el" data-tr="// 03. MÜHENDİSLİK ÇIKTILARI (DETAYLAR İÇİN KARTA TIKLAYIN)" data-en="// 03. ENGINEERING DELIVERABLES (CLICK CARD FOR SPECS)">// 03. MÜHENDİSLİK ÇIKTILARI (DETAYLAR İÇİN KARTA TIKLAYIN)</span>
+            <h2 class="section-title lang-el" data-tr="Seçkin Projeler" data-en="Selected Projects">Seçkin Projeler</h2>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Proje 1: Wearable ECG/EMG -->
+            <div class="spotlight-card project-card reveal" data-project="ecg">
+                <div>
+                    <div class="project-top">
+                        <div class="project-folder-icon"><i class="fas fa-heartbeat"></i></div>
+                    </div>
+                    <h3 class="project-title">Wearable ECG/EMG & Edge-AI</h3>
+                    <p class="project-desc lang-el" 
+                       data-tr="Analog sinyal koşullandırma, gerçek zamanlı biyometrik veri işleme ve doğrudan mikrodenetleyici üzerinde (TinyML) sınıflandırma sağlayan giyilebilir bitirme projesi." 
+                       data-en="Wearable capstone design featuring analog signal conditioning, real-time biometric processing, and on-device TinyML classification.">
+                        Analog sinyal koşullandırma, gerçek zamanlı biyometrik veri işleme ve doğrudan mikrodenetleyici üzerinde (TinyML) sınıflandırma sağlayan giyilebilir bitirme projesi.
+                    </p>
+                </div>
+                <div class="project-footer">
+                    <div class="project-tech">
+                        <span class="tech-pill">ESP32</span>
+                        <span class="tech-pill">Edge-AI</span>
+                        <span class="tech-pill">Signal Conditioning</span>
+                    </div>
+                    <div class="inspect-trigger">
+                        <span class="lang-el" data-tr="Teknik Mimariyi İncele" data-en="Inspect Architecture">Teknik Mimariyi İncele</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proje 2: Spectra-CH4 TR -->
+            <div class="spotlight-card project-card reveal" data-project="spectra">
+                <div>
+                    <div class="project-top">
+                        <div class="project-folder-icon"><i class="fas fa-satellite"></i></div>
+                    </div>
+                    <h3 class="project-title">Spectra-CH4 TR</h3>
+                    <p class="project-desc lang-el" 
+                       data-tr="Sentinel-2 uydu verilerini işleyerek Türkiye genelindeki metan gazı emisyonlarını izleyen, analiz eden ve simüle eden uydu tabanlı veri görselleştirme platformu." 
+                       data-en="Satellite-based monitoring and simulation platform tracking methane emissions across Turkey using Sentinel-2 imagery and Streamlit.">
+                        Sentinel-2 uydu verilerini işleyerek Türkiye genelindeki metan gazı emisyonlarını izleyen, analiz eden ve simüle eden uydu tabanlı veri görselleştirme platformu.
+                    </p>
+                </div>
+                <div class="project-footer">
+                    <div class="project-tech">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Streamlit</span>
+                        <span class="tech-pill">Sentinel-2 API</span>
+                    </div>
+                    <div class="inspect-trigger">
+                        <span class="lang-el" data-tr="Teknik Mimariyi İncele" data-en="Inspect Architecture">Teknik Mimariyi İncele</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proje 3: FastAPI Task Manager -->
+            <div class="spotlight-card project-card reveal" data-project="fastapi">
+                <div>
+                    <div class="project-top">
+                        <div class="project-folder-icon"><i class="fas fa-server"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/erdoganzenit/crud-api" target="_blank" rel="noopener" title="GitHub Repository" onclick="event.stopPropagation();">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">FastAPI Task Manager</h3>
+                    <p class="project-desc lang-el" 
+                       data-tr="Swagger/OpenAPI dokümantasyonuna sahip, yüksek performanslı ve asenkron bellek içi (in-memory) görev yönetimi sağlayan RESTful CRUD API mimarisi." 
+                       data-en="High-performance, asynchronous in-memory task management RESTful CRUD API system complete with interactive Swagger/OpenAPI documentation.">
+                        Swagger/OpenAPI dokümantasyonuna sahip, yüksek performanslı ve asenkron bellek içi (in-memory) görev yönetimi sağlayan RESTful CRUD API mimarisi.
+                    </p>
+                </div>
+                <div class="project-footer">
+                    <div class="project-tech">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">RESTful</span>
+                    </div>
+                    <div class="inspect-trigger">
+                        <span class="lang-el" data-tr="Teknik Mimariyi İncele" data-en="Inspect Architecture">Teknik Mimariyi İncele</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="lang-el" data-tr="© 2026 Erdoğan Zenit • Donanım ve Yazılım Kesişiminde Tasarlandı." data-en="© 2026 Erdoğan Zenit • Engineered at the Intersection of Hardware & AI.">
+                © 2026 Erdoğan Zenit • Donanım ve Yazılım Kesişiminde Tasarlandı.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // === 1. PROJE DETAY VERİTABANI (TR & EN + CANLI SİMÜLASYON) ===
+        const projectsData = {
+            ecg: {
+                category: { tr: "BİTİRME PROJESİ • BIOMEDICAL EDGE-AI", en: "CAPSTONE DESIGN • BIOMEDICAL EDGE-AI" },
+                title: "Wearable ECG/EMG & Edge-AI System",
+                visual: `
+                    <div class="visual-topbar">
+                        <span>OSC_CH1: BIOMETRIC_ADC_STREAM (500Hz)</span>
+                        <span class="visual-status"><span class="pulse-dot"></span> TINYML INFERENCE: 98.4%</span>
+                    </div>
+                    <svg class="ecg-svg" viewBox="0 0 600 100">
+                        <path class="ecg-line" d="M 0,50 L 70,50 L 85,35 L 100,50 L 125,50 L 135,75 L 150,10 L 165,90 L 180,50 L 210,50 L 230,30 L 250,50 L 330,50 L 345,35 L 360,50 L 385,50 L 395,75 L 410,10 L 425,90 L 440,50 L 470,50 L 490,30 L 510,50 L 600,50" />
+                    </svg>
+                    <div class="visual-topbar" style="margin-bottom:0; margin-top:8px;">
+                        <span>SNR: +24.6 dB | 50Hz Notch: ACTIVE</span>
+                        <span>MCU: ESP32 Dual-Core @ 240MHz</span>
+                    </div>
+                `,
+                pipeline: {
+                    tr: [
+                        { icon: "fa-wave-square", name: "Ag/AgCl Elektrot", sub: "Ham Biyopotansiyel" },
+                        { icon: "fa-filter", name: "Analog AFE", sub: "Enstrümantasyon & Filtre" },
+                        { icon: "fa-microchip", name: "ESP32 ADC & DSP", sub: "Dijital Örnekleme" },
+                        { icon: "fa-brain", name: "TinyML Model", sub: "Uçta Sınıflandırma" }
+                    ],
+                    en: [
+                        { icon: "fa-wave-square", name: "Ag/AgCl Electrodes", sub: "Raw Biopotential" },
+                        { icon: "fa-filter", name: "Analog Front-End", sub: "INA & Bandpass Filter" },
+                        { icon: "fa-microchip", name: "ESP32 ADC & DSP", sub: "Digital Acquisition" },
+                        { icon: "fa-brain", name: "TinyML Inference", sub: "On-Device Classification" }
+                    ]
+                },
+                col1Title: { tr: "Donanım & Sinyal Koşullandırma", en: "Hardware & Signal Conditioning" },
+                col1List: {
+                    tr: [
+                        "Yüksek CMRR oranına sahip enstrümantasyon yükselteci ile mikrovolt seviyesindeki EKG/EMG sinyallerinin kuvvetlendirilmesi.",
+                        "Şebeke gürültüsünü bastıran 50Hz Notch filtre ve bant geçiren (Band-pass) aktif analog filtre topolojisi.",
+                        "ESP32 çift çekirdekli mimarisi üzerinde kesintisiz gerçek zamanlı ADC örneklemesi ve düşük güç tüketimi."
+                    ],
+                    en: [
+                        "High-CMRR instrumentation amplifier stage for microvolt-level ECG/EMG biopotential amplification.",
+                        "Active analog filtering stage featuring a 50Hz twin-T notch filter and anti-aliasing bandpass topology.",
+                        "Dual-core ESP32 hardware scheduling for deterministic real-time ADC sampling and low-power telemetry."
+                    ]
+                },
+                col2Title: { tr: "Gömülü Yazılım & Edge-AI", en: "Embedded Firmware & Edge-AI" },
+                col2List: {
+                    tr: [
+                        "Zaman ve frekans domeni öznitelik çıkarımı (R-Peak tespiti, RMS ve spektral güç yoğunluğu analizi).",
+                        "Kuantize edilmiş (Int8) hafifletilmiş sinir ağı modelinin doğrudan mikrodenetleyici belleğinde koşturulması.",
+                        "Bulut bağlantısına ihtiyaç duymadan milisaniyeler içinde gerçek zamanlı anomali ve kas aktivitesi tespiti."
+                    ],
+                    en: [
+                        "Time and frequency domain feature extraction (R-Peak detection, RMS envelope, and PSD analysis).",
+                        "Deployment of Int8 quantized neural network models directly onto ESP32 SRAM for zero-cloud dependency.",
+                        "Sub-millisecond real-time arrhythmia and muscle fatigue classification at the extreme edge."
+                    ]
+                },
+                tags: ["ESP32", "TinyML", "Analog Front-End", "Biomedical DSP", "C/C++"],
+                github: null
+            },
+            spectra: {
+                category: { tr: "UYDU VERİ ANALİTİĞİ • REMOTE SENSING", en: "SATELLITE ANALYTICS • REMOTE SENSING" },
+                title: "Spectra-CH4 TR | Methane Emission Tracker",
+                visual: `
+                    <div class="visual-topbar">
+                        <span>SENTINEL-2 L2A | SWIR BANDS (B11 / B12)</span>
+                        <span class="visual-status"><span class="pulse-dot"></span> PLUME DETECTED: ANATOLIA_GRID</span>
+                    </div>
+                    <div class="sat-heatmap">
+                        <div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell mid"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell mid"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div>
+                        <div class="heat-cell"></div><div class="heat-cell mid"></div><div class="heat-cell high"></div><div class="heat-cell high"></div><div class="heat-cell mid"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell mid"></div><div class="heat-cell high"></div><div class="heat-cell mid"></div><div class="heat-cell"></div>
+                        <div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell mid"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell"></div><div class="heat-cell mid"></div><div class="heat-cell"></div><div class="heat-cell"></div>
+                    </div>
+                    <div class="visual-topbar" style="margin-bottom:0; margin-top:8px;">
+                        <span>CH4 Column Enhancement: ΔXCH4 (ppb)</span>
+                        <span>Engine: Python + Streamlit GIS</span>
+                    </div>
+                `,
+                pipeline: {
+                    tr: [
+                        { icon: "fa-satellite", name: "Sentinel-2 API", sub: "SWIR Spektral Bantlar" },
+                        { icon: "fa-layer-group", name: "Radyometrik İşleme", sub: "Bulut Maskeleme & Oran" },
+                        { icon: "fa-wind", name: "Emisyon Modeli", sub: "Metan Anomali Hesabı" },
+                        { icon: "fa-chart-area", name: "Streamlit Arayüzü", sub: "CBS & Simülasyon" }
+                    ],
+                    en: [
+                        { icon: "fa-satellite", name: "Sentinel-2 API", sub: "SWIR Spectral Bands" },
+                        { icon: "fa-layer-group", name: "Radiometric Prep", sub: "Cloud Masking & Ratio" },
+                        { icon: "fa-wind", name: "Plume Modeling", sub: "CH4 Enhancement Calc" },
+                        { icon: "fa-chart-area", name: "Streamlit Dashboard", sub: "GIS & Simulation" }
+                    ]
+                },
+                col1Title: { tr: "Uzaktan Algılama & Veri Hattı", en: "Remote Sensing & Data Pipeline" },
+                col1List: {
+                    tr: [
+                        "Sentinel-2 çok bantlı (Multi-spectral) uydu görüntülerinde metan soğurma özelliğine duyarlı SWIR (Bant 11 ve Bant 12) verilerinin çekilmesi.",
+                        "Atmosferik düzeltme, bulut maskeleme ve referans bant oranlama algoritmalarıyla arka plan gürültüsünün temizlenmesi.",
+                        "Türkiye'deki endüstriyel tesisler, enerji hatları ve katı atık sahaları için koordinat bazlı otomatik tarama."
+                    ],
+                    en: [
+                        "Automated ingestion of Sentinel-2 multispectral SWIR bands (Band 11 & Band 12) sensitive to methane absorption.",
+                        "Radiometric calibration, cloud-masking, and multi-band ratioing to isolate CH4 column enhancements.",
+                        "Geospatial targeting across industrial zones, energy corridors, and landfills in Turkey."
+                    ]
+                },
+                col2Title: { tr: "Simülasyon & Görselleştirme", en: "Simulation & Visualization" },
+                col2List: {
+                    tr: [
+                        "Rüzgar vektörleri ve emisyon debisi parametreleriyle metan gazı dağılımını (Plume Dispersion) simüle eden matematiksel model.",
+                        "Streamlit üzerinde geliştirilen interaktif harita katmanları, zaman serisi grafikleri ve anomali uyarı panelleri.",
+                        "Çevresel izleme ve sürdürülebilirlik raporlaması için dışa aktarılabilir coğrafi veri çıktıları."
+                    ],
+                    en: [
+                        "Gaussian plume dispersion simulation modeling methane propagation under varying wind vectors.",
+                        "Interactive Streamlit dashboard with custom GIS heatmap overlays and temporal emission trend analysis.",
+                        "Exportable geospatial intelligence reports for environmental compliance and sustainability auditing."
+                    ]
+                },
+                tags: ["Python", "Sentinel-2 API", "Streamlit", "Remote Sensing", "GIS"],
+                github: null
+            },
+            fastapi: {
+                category: { tr: "BACKEND MİMARİSİ • RESTFUL API", en: "BACKEND ARCHITECTURE • RESTFUL API" },
+                title: "FastAPI Asynchronous Task Manager",
+                visual: `
+                    <div class="visual-topbar">
+                        <span>OPENAPI 3.1.0 | UVICORN ASGI SERVER</span>
+                        <span class="visual-status"><span class="pulse-dot"></span> LATENCY: 1.4ms</span>
+                    </div>
+                    <div class="swagger-mock">
+                        <div class="ep-row"><span class="http-badge http-post">POST</span> <span>/api/v1/tasks</span> <span style="margin-left:auto; color:#94a3b8;">201 Created (Pydantic Validated)</span></div>
+                        <div class="ep-row"><span class="http-badge http-get">GET</span> <span>/api/v1/tasks/{task_id}</span> <span style="margin-left:auto; color:#94a3b8;">200 OK (O(1) In-Memory Lookup)</span></div>
+                        <div class="ep-row"><span class="http-badge http-delete">DELETE</span> <span>/api/v1/tasks/{task_id}</span> <span style="margin-left:auto; color:#94a3b8;">204 No Content</span></div>
+                    </div>
+                `,
+                pipeline: {
+                    tr: [
+                        { icon: "fa-globe", name: "HTTP İsteği", sub: "JSON Payload" },
+                        { icon: "fa-bolt", name: "Uvicorn ASGI", sub: "Asenkron Yönlendirme" },
+                        { icon: "fa-shield-alt", name: "Pydantic Şema", sub: "Tip & Veri Doğrulama" },
+                        { icon: "fa-memory", name: "In-Memory Store", sub: "Hızlı CRUD İşlemi" }
+                    ],
+                    en: [
+                        { icon: "fa-globe", name: "HTTP Request", sub: "JSON Payload" },
+                        { icon: "fa-bolt", name: "Uvicorn ASGI", sub: "Async Routing" },
+                        { icon: "fa-shield-alt", name: "Pydantic Schema", sub: "Strict Type Validation" },
+                        { icon: "fa-memory", name: "In-Memory Store", sub: "Low-Latency CRUD" }
+                    ]
+                },
+                col1Title: { tr: "API Mimarisi & Performans", en: "API Architecture & Performance" },
+                col1List: {
+                    tr: [
+                        "Python FastAPI çatısı ve Uvicorn ASGI sunucusu üzerinde yüksek eşzamanlılık (concurrency) destekli asenkron uç noktalar.",
+                        "Bellek içi (In-memory) veri yapılarıyla veritabanı darboğazı olmadan milisaniye altı okuma/yazma (CRUD) operasyonları.",
+                        "RESTful standartlarına tam uyumlu HTTP durum kodları (200, 201, 404, 422) ve özel hata yakalama (Exception Handling) katmanı."
+                    ],
+                    en: [
+                        "Built on FastAPI and Uvicorn ASGI server enabling high-concurrency asynchronous request handling.",
+                        "Sub-millisecond CRUD operations powered by optimized in-memory data structures.",
+                        "Strict adherence to RESTful semantics, status codes (200, 201, 404, 422), and custom exception handlers."
+                    ]
+                },
+                col2Title: { tr: "Veri Doğrulama & Dokümantasyon", en: "Data Validation & Documentation" },
+                col2List: {
+                    tr: [
+                        "Pydantic modelleri ile gelen ve giden JSON verilerinin çalışma zamanında katı tip kontrolü ve serileştirilmesi.",
+                        "Otomatik oluşturulan interaktif Swagger UI (`/docs`) ve ReDoc arayüzleri ile anında uç nokta testi.",
+                        "Temiz kod (Clean Code) prensipleriyle modülerleştirilmiş, mikroservis mimarilerine doğrudan entegre edilebilir yapı."
+                    ],
+                    en: [
+                        "Runtime payload validation and serialization enforced via strict Pydantic data schemas.",
+                        "Auto-generated interactive OpenAPI documentation via Swagger UI (`/docs`) and ReDoc.",
+                        "Modular repository structure ready for containerization and AI backend microservice integration."
+                    ]
+                },
+                tags: ["Python", "FastAPI", "Pydantic", "Uvicorn ASGI", "Swagger / OpenAPI"],
+                github: "https://github.com/erdoganzenit/crud-api"
+            }
+        };
+
+        // === 2. DİNAMİK DAKTİLO (TYPEWRITER) EFEKTİ ===
+        const roles = {
+            tr: [
+                "Elektrik-Elektronik Mühendisliği",
+                "Edge-AI & TinyML Geliştiricisi",
+                "Backend AI Mühendisi",
+                "Gömülü Sistemler & Bilgisayarlı Görü"
+            ],
+            en: [
+                "Electrical & Electronics Engineering",
+                "Edge-AI & TinyML Developer",
+                "Backend AI Engineer",
+                "Embedded Systems & Computer Vision"
+            ]
+        };
+
+        let currentLang = 'tr';
+        let activeProjectKey = null;
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterEl = document.getElementById('typewriter');
+
+        function typeEffect() {
+            const currentRoles = roles[currentLang];
+            const fullText = currentRoles[roleIndex];
+
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+
+            typewriterEl.textContent = fullText.substring(0, charIndex);
+
+            let typingSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === fullText.length) {
+                typingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % currentRoles.length;
+                typingSpeed = 400;
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+        typeEffect();
+
+        // === 3. PROJE DETAY MODALI FONKSİYONLARI ===
+        const projectModal = document.getElementById('project-modal');
+        const pmClose = document.getElementById('pm-close');
+
+        function renderProjectModal(key) {
+            const data = projectsData[key];
+            if (!data) return;
+            activeProjectKey = key;
+
+            document.getElementById('pm-category').textContent = data.category[currentLang];
+            document.getElementById('pm-title').textContent = data.title;
+            document.getElementById('pm-visual').innerHTML = data.visual;
+
+            // Pipeline oluşturma
+            const pipelineSteps = data.pipeline[currentLang];
+            const pipelineHTML = pipelineSteps.map((step, idx) => `
+                <div class="arch-step">
+                    <i class="fas ${step.icon}"></i>
+                    <span>${step.name}</span>
+                    <small>${step.sub}</small>
+                </div>
+                ${idx < pipelineSteps.length - 1 ? '<i class="fas fa-chevron-right arch-arrow"></i>' : ''}
+            `).join('');
+            document.getElementById('pm-pipeline').innerHTML = pipelineHTML;
+
+            // Spesifikasyon listeleri
+            document.getElementById('pm-col1-title').innerHTML = `<i class="fas fa-microchip"></i> ${data.col1Title[currentLang]}`;
+            document.getElementById('pm-col1-list').innerHTML = data.col1List[currentLang].map(item => `<li>${item}</li>`).join('');
+
+            document.getElementById('pm-col2-title').innerHTML = `<i class="fas fa-code"></i> ${data.col2Title[currentLang]}`;
+            document.getElementById('pm-col2-list').innerHTML = data.col2List[currentLang].map(item => `<li>${item}</li>`).join('');
+
+            // Etiketler
+            document.getElementById('pm-tags').innerHTML = data.tags.map(t => `<span class="tech-pill">${t}</span>`).join('');
+
+            // GitHub Aksiyon Butonu
+            const actionEl = document.getElementById('pm-action');
+            if (data.github) {
+                const btnLabel = currentLang === 'tr' ? 'GitHub Deposuna Git' : 'View on GitHub';
+                actionEl.innerHTML = `
+                    <a href="${data.github}" target="_blank" rel="noopener" class="btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
+                        <i class="fab fa-github"></i> ${btnLabel}
+                    </a>
+                `;
+            } else {
+                const badgeText = currentLang === 'tr' ? 'Akademik / Ar-Ge Projesi' : 'Academic / R&D Project';
+                actionEl.innerHTML = `<span style="font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--text-secondary);"><i class="fas fa-lock"></i> ${badgeText}</span>`;
+            }
+
+            projectModal.classList.add('active');
+        }
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const key = card.getAttribute('data-project');
+                renderProjectModal(key);
+            });
+        });
+
+        function closeProjectModal() {
+            projectModal.classList.remove('active');
+            activeProjectKey = null;
+        }
+
+        pmClose.addEventListener('click', closeProjectModal);
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) closeProjectModal();
+        });
+
+        // === 4. MOUSE TAKİP EDEN SPOTLIGHT EFEKTİ ===
+        document.querySelectorAll('.spotlight-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // === 5. İLETİŞİM MODAL KONTROLLERİ ===
+        const contactModal = document.getElementById('contact-modal');
+        const contactTrigger = document.getElementById('contact-trigger');
+        const heroContactBtn = document.getElementById('hero-contact-btn');
+        const closeModal = document.getElementById('close-modal');
+
+        function openContactModal(e) {
+            if (e) e.preventDefault();
+            contactModal.classList.add('active');
+        }
+
+        function closeContactModal(e) {
+            if (e) e.preventDefault();
+            contactModal.classList.remove('active');
+        }
+
+        contactTrigger.addEventListener('click', openContactModal);
+        heroContactBtn.addEventListener('click', openContactModal);
+        closeModal.addEventListener('click', closeContactModal);
+
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) closeContactModal();
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (contactModal.classList.contains('active')) closeContactModal();
+                if (projectModal.classList.contains('active')) closeProjectModal();
+            }
+        });
+
+        // === 6. TEMA VE DİL DEĞİŞTİRİCİ ===
+        const htmlEl = document.documentElement;
+        const themeBtn = document.getElementById('theme-btn');
+        const langBtn = document.getElementById('lang-btn');
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme');
+            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', nextTheme);
+            themeBtn.innerHTML = nextTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            langBtn.textContent = currentLang === 'tr' ? 'EN' : 'TR';
+            htmlEl.setAttribute('lang', currentLang);
+            
+            document.querySelectorAll('.lang-el').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+
+            if (activeProjectKey) {
+                renderProjectModal(activeProjectKey);
+            }
+
+            charIndex = 0;
+            isDeleting = false;
+        });
+
+        // === 7. MOBİL MENÜ KONTROLÜ ===
+        const menuBtn = document.getElementById('menu-btn');
+        const navRight = document.getElementById('nav-right');
+        const menuIcon = menuBtn.querySelector('i');
+
+        menuBtn.addEventListener('click', () => {
+            navRight.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                navRight.classList.remove('active');
+                menuIcon.classList.add('fa-bars');
+                menuIcon.classList.remove('fa-times');
+            });
+        });
+
+        // === 8. INTERSECTION OBSERVER (SCROLL REVEAL) ===
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
