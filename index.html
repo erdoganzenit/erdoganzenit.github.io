@@ -27,13 +27,11 @@
             line-height: 1.6;
         }
 
-        /* Özel Kaydırma Çubuğu */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-        /* HTML5 Canvas Arka Planı */
         #particle-canvas {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh;
@@ -43,14 +41,14 @@
         /* === NAVİGASYON (GLASMORPHISM) === */
         nav {
             position: fixed; top: 0; width: 100%;
-            padding: 20px 50px; z-index: 100;
+            padding: 20px 50px; z-index: 1000;
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(5, 5, 5, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
             transition: var(--transition);
         }
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: var(--text-main); text-decoration: none;}
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: var(--text-main); text-decoration: none; position: relative; z-index: 1001;}
         .logo span { color: var(--primary); }
         
         .nav-links { display: flex; gap: 30px; list-style: none; }
@@ -66,6 +64,14 @@
         }
         .nav-links a:hover::after { width: 100%; }
 
+        .mobile-menu-btn {
+            display: none;
+            color: var(--primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         /* === HERO SECTION (GİRİŞ) === */
         #hero {
             height: 100vh; display: flex; align-items: center;
@@ -76,7 +82,6 @@
         .greeting { color: var(--primary); font-family: monospace; font-size: 1.1rem; margin-bottom: 20px; display: block;}
         .name { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 10px; color: #ccd6f6; }
         
-        /* Daktilo Efekti İçin Alan */
         .typing-wrapper { font-size: 3rem; font-weight: 700; color: var(--text-muted); margin-bottom: 30px; min-height: 60px;}
         .typing-text { color: var(--secondary); border-right: 3px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
         
@@ -99,18 +104,39 @@
             display: flex; align-items: center; font-size: 2rem; margin-bottom: 60px; color: #ccd6f6;
         }
         .section-title::after {
-            content: ''; height: 1px; width: 300px; background: rgba(255,255,255,0.1); margin-left: 20px;
+            content: ''; height: 1px; flex-grow: 0.1; min-width: 50px; max-width: 300px; background: rgba(255,255,255,0.1); margin-left: 20px;
         }
         .section-title span { color: var(--primary); font-family: monospace; margin-right: 10px; font-size: 1.5rem;}
 
-        /* === YETKİNLİKLER (SKILLS RADAR & BARS) === */
-        .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .skill-group h3 { color: var(--primary); margin-bottom: 20px; font-size: 1.2rem; }
+        /* === YETKİNLİKLER (MODERN ROZETLER) === */
+        .skills-category { margin-bottom: 40px; }
+        .skills-category h3 { color: var(--primary); margin-bottom: 20px; font-size: 1.2rem; font-family: monospace; }
         
-        .skill-item { margin-bottom: 20px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
-        .skill-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
-        .skill-progress { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary)); border-radius: 3px; transform: scaleX(0); transform-origin: left; transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+        .skills-grid {
+            display: flex; flex-wrap: wrap; gap: 15px;
+        }
+        
+        .skill-badge {
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--text-main);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            display: flex; align-items: center; gap: 12px;
+            transition: var(--transition);
+            cursor: default;
+        }
+        
+        .skill-badge i { color: var(--primary); font-size: 1.3rem; }
+        
+        .skill-badge:hover {
+            background: rgba(0, 229, 255, 0.15);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 229, 255, 0.2);
+            color: #fff;
+        }
 
         /* === DENEYİM ZAMAN ÇİZELGESİ (TIMELINE) === */
         .timeline { position: relative; max-width: 800px; margin: 0 auto; }
@@ -135,7 +161,7 @@
         .timeline-content h4 { color: var(--text-muted); font-size: 1rem; margin-bottom: 15px; font-weight: 500; }
         
         /* === PROJELER (GRID MİMARİSİ) === */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .project-card {
             background: var(--bg-card); border-radius: 10px; padding: 30px;
             border: 1px solid rgba(255,255,255,0.05); position: relative;
@@ -164,13 +190,52 @@
         .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Responsive Tasarım */
+        /* === MOBİL UYUMLULUK (RESPONSIVE) === */
+        @media (max-width: 900px) {
+            nav { padding: 20px 5%; }
+        }
+
         @media (max-width: 768px) {
-            .name { font-size: 3rem; }
-            .typing-wrapper { font-size: 1.8rem; }
+            /* Menü ve Navigasyon Daraltması */
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links {
+                position: fixed; top: 0; right: -100%;
+                width: 75%; height: 100vh;
+                background: rgba(5, 5, 5, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column; justify-content: center; align-items: center;
+                transition: var(--transition); z-index: 1000;
+                border-left: 1px solid rgba(255,255,255,0.05);
+            }
+            
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; margin-bottom: 10px; }
+
+            /* Tipografi Daraltması */
+            .name { font-size: 2.8rem; }
+            .typing-wrapper { font-size: 1.6rem; min-height: 80px; }
+            .hero-desc { font-size: 0.95rem; }
+            
+            /* Boşluk Daraltması */
             section { padding: 80px 5%; }
-            .skills-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+            #hero { padding: 0 5%; }
+            .section-title { font-size: 1.5rem; flex-wrap: wrap; }
+            .section-title::after { width: 50px; }
+
+            /* Rozetlerin Mobilde Tam Ekrana Yayılması */
+            .skills-grid { flex-direction: column; }
+            .skill-badge { justify-content: center; text-align: center; }
+
+            /* Timeline Daraltması */
+            .timeline::before { left: 15px; }
+            .timeline-item { padding-left: 45px; }
+            .timeline-icon { left: 0; width: 30px; height: 30px; font-size: 0.7rem; }
+            .timeline-content { padding: 20px; }
+            .timeline-content h3 { font-size: 1.1rem; }
+            .timeline-content h4 { font-size: 0.9rem; }
+            
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -181,18 +246,20 @@
 
     <nav>
         <a href="#" class="logo">E.<span>ZENIT</span></a>
-        <ul class="nav-links">
-            <li><a href="#hakkimda">01. Profil</a></li>
-            <li><a href="#deneyim">02. Deneyim</a></li>
-            <li><a href="#projeler">03. Projeler</a></li>
-            <li><a href="#iletisim">04. İletişim</a></li>
+        <!-- Mobil Hamburger Menü İkonu -->
+        <i class="fas fa-bars mobile-menu-btn" id="menu-btn"></i>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hakkimda" class="nav-item">01. Profil</a></li>
+            <li><a href="#deneyim" class="nav-item">02. Deneyim</a></li>
+            <li><a href="#projeler" class="nav-item">03. Projeler</a></li>
+            <li><a href="#iletisim" class="nav-item">04. İletişim</a></li>
         </ul>
     </nav>
 
     <header id="hero">
         <div class="hero-content">
             <span class="greeting">Merhaba, benim adım</span>
-            <h1 class="name">Erdoğan Zenit.</h1>
+            <h1 class="name">Erdoğan Zenit</h1>
             <div class="typing-wrapper">
                 Ben bir <span class="typing-text"></span>
             </div>
@@ -205,48 +272,26 @@
 
     <section id="hakkimda" class="reveal">
         <h2 class="section-title"><span>01.</span> Teknik Yetkinlikler</h2>
-        <div class="skills-container">
-            <div class="skill-group">
-                <h3>Yazılım & Yapay Zeka (Software & AI)</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-info"><span>Python & FastAPI</span> <span>90%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-                </div>
-                
-                <div class="skill-item">
-                    <div class="skill-info"><span>OpenCV & Bilgisayarlı Görü</span> <span>85%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-info"><span>Edge-AI & TinyML</span> <span>80%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
-                </div>
-                
-                <div class="skill-item">
-                    <div class="skill-info"><span>Qiskit & Kuantum Programlama</span> <span>65%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="65%"></div></div>
-                </div>
+        
+        <div class="skills-category">
+            <h3>>_ Yazılım & Yapay Zeka (Software & AI)</h3>
+            <div class="skills-grid">
+                <div class="skill-badge"><i class="fab fa-python"></i> Python</div>
+                <div class="skill-badge"><i class="fas fa-server"></i> FastAPI & RESTful API</div>
+                <div class="skill-badge"><i class="fas fa-eye"></i> OpenCV & Bilgisayarlı Görü</div>
+                <div class="skill-badge"><i class="fas fa-brain"></i> Edge-AI & TinyML</div>
+                <div class="skill-badge"><i class="fas fa-atom"></i> Qiskit & Kuantum Programlama</div>
+                <div class="skill-badge"><i class="fab fa-git-alt"></i> Git & Versiyon Kontrolü</div>
             </div>
-            
-            <div class="skill-group">
-                <h3>Donanım & Gömülü Sistemler (Hardware)</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-info"><span>ESP32 & Mikrodenetleyiciler</span> <span>85%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
-                </div>
-                
-                <div class="skill-item">
-                    <div class="skill-info"><span>ROS & Otonom Robotik</span> <span>75%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="75%"></div></div>
-                </div>
+        </div>
 
-                <div class="skill-item">
-                    <div class="skill-info"><span>PLC & Güç Elektroniği</span> <span>70%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-                </div>
+        <div class="skills-category">
+            <h3>>_ Donanım & Gömülü Sistemler (Hardware)</h3>
+            <div class="skills-grid">
+                <div class="skill-badge"><i class="fas fa-microchip"></i> ESP32 & Mikrodenetleyiciler</div>
+                <div class="skill-badge"><i class="fas fa-robot"></i> ROS (Robot Operating System)</div>
+                <div class="skill-badge"><i class="fas fa-bolt"></i> Güç Elektroniği</div>
+                <div class="skill-badge"><i class="fas fa-industry"></i> PLC & Ladder Logic (TIA Portal)</div>
             </div>
         </div>
     </section>
@@ -345,6 +390,30 @@
 
     <!-- === JAVASCRIPT MOTORU === -->
     <script>
+        // 0. Mobil Menü (Hamburger) İşlemleri
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')) {
+                menuBtn.classList.remove('fa-bars');
+                menuBtn.classList.add('fa-times');
+            } else {
+                menuBtn.classList.remove('fa-times');
+                menuBtn.classList.add('fa-bars');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('fa-times');
+                menuBtn.classList.add('fa-bars');
+            });
+        });
+
         // 1. Daktilo (Typing) Efekti
         const textArray = ["Edge-AI Geliştiricisiyim.", "Gömülü Sistem Mühendisiyim.", "Bilgisayarlı Görü Uzmanıyım."];
         let textIndex = 0;
@@ -372,7 +441,7 @@
         }
         document.addEventListener("DOMContentLoaded", function() { setTimeout(type, 1000); });
 
-        // 2. Scroll Reveal & Yetkinlik Barları Animasyonu
+        // 2. Scroll Reveal Animasyonu
         function revealElements() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -380,13 +449,6 @@
                 var elementTop = reveals[i].getBoundingClientRect().top;
                 if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
-                    
-                    // Eğer yetkinlik barı görünürse animasyonu tetikle
-                    if(reveals[i].id === 'hakkimda') {
-                        document.querySelectorAll('.skill-progress').forEach(bar => {
-                            bar.style.transform = `scaleX(${parseInt(bar.getAttribute('data-width')) / 100})`;
-                        });
-                    }
                 }
             }
         }
@@ -401,11 +463,16 @@
 
         let particlesArray = [];
         
-        // Fare pozisyonu
         let mouse = { x: null, y: null, radius: 150 }
         window.addEventListener('mousemove', function(event) {
             mouse.x = event.x;
             mouse.y = event.y;
+        });
+
+        // Mobilde dokunma etkileşimi için
+        window.addEventListener('touchmove', function(event) {
+            mouse.x = event.touches[0].clientX;
+            mouse.y = event.touches[0].clientY;
         });
 
         class Particle {
@@ -424,15 +491,14 @@
                 if(this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
                 if(this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
 
-                // Mouse etkileşimi
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx*dx + dy*dy);
                 if(distance < mouse.radius + this.size) {
-                    if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 10;
-                    if(mouse.x > this.x && this.x > this.size * 10) this.x -= 10;
-                    if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 10;
-                    if(mouse.y > this.y && this.y > this.size * 10) this.y -= 10;
+                    if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 5;
+                    if(mouse.x > this.x && this.x > this.size * 10) this.x -= 5;
+                    if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 5;
+                    if(mouse.y > this.y && this.y > this.size * 10) this.y -= 5;
                 }
                 this.x += this.directionX;
                 this.y += this.directionY;
@@ -443,12 +509,15 @@
         function init() {
             particlesArray = [];
             let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            // Mobilde çok fazla parçacık telefonu kastırmasın diye sınır koyuyoruz
+            if (window.innerWidth < 768) numberOfParticles = (canvas.height * canvas.width) / 15000; 
+            
             for(let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
                 let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
                 let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 2) - 1.5;
-                let directionY = (Math.random() * 2) - 1.5;
+                let directionX = (Math.random() * 1.5) - 0.75;
+                let directionY = (Math.random() * 1.5) - 0.75;
                 let color = '#00e5ff';
                 particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
             }
@@ -487,6 +556,7 @@
         });
 
         window.addEventListener('mouseout', function(){ mouse.x = undefined; mouse.y = undefined; });
+        window.addEventListener('touchend', function(){ mouse.x = undefined; mouse.y = undefined; });
 
         init();
         animate();
