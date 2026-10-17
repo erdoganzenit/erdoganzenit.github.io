@@ -9,59 +9,77 @@
         body {
             margin: 0; padding: 0; height: 100vh;
             display: flex; justify-content: center; align-items: center;
-            background: #030305; /* Çok derin bir siyah/lacivert */
+            background: #020204; /* Tamamen zifiri karanlığa yakın bir siyah */
             color: #f0f0f0;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            overflow: hidden; /* Işıkların dışarı taşmasını engeller */
+            overflow: hidden; 
             position: relative;
         }
         
-        /* === PROFESYONEL ORTAM IŞIĞI (AMBIENT GLOW) === */
+        /* === DAHA BELİRGİN VE CANLI ORTAM IŞIĞI (AMBIENT GLOW V2) === */
         .ambient-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; overflow: hidden; pointer-events: none;
         }
         .orb {
             position: absolute; border-radius: 50%;
-            filter: blur(90px); /* Işığı yumuşatır, buzlu cam etkisi verir */
-            opacity: 0.4;
-            animation: floatOrb 15s infinite alternate ease-in-out;
+            filter: blur(80px); /* Blur azaltıldı, renkler daha net */
+            opacity: 0.7; /* Görünürlük artırıldı */
+            animation: floatOrb 12s infinite alternate ease-in-out, pulseOrb 8s infinite alternate ease-in-out;
+            mix-blend-mode: screen; /* Işıkların birbiriyle daha iyi karışmasını sağlar */
         }
+        
         .orb-1 {
-            width: 450px; height: 450px;
-            background: #005a7a; /* Muted Camgöbeği */
-            top: -150px; left: -100px;
+            width: 500px; height: 500px;
+            background: #007bb5; /* Daha parlak bir Mavi */
+            top: -100px; left: -100px;
         }
+        
         .orb-2 {
-            width: 550px; height: 550px;
-            background: #1e1b4b; /* Derin İndigo/Lacivert */
-            bottom: -200px; right: -150px;
-            animation-delay: -5s;
+            width: 600px; height: 600px;
+            background: #4f46e5; /* Canlı İndigo / Morumsu Mavi */
+            bottom: -150px; right: -150px;
+            animation-delay: -3s;
         }
+        
         .orb-3 {
-            width: 350px; height: 350px;
-            background: #0284c7; /* Gökyüzü Mavisi */
-            top: 40%; left: 50%;
+            width: 400px; height: 400px;
+            background: #0ea5e9; /* Parlak Gökyüzü Mavisi */
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            opacity: 0.15;
-            animation-duration: 20s;
+            opacity: 0.4;
+            animation-duration: 15s;
         }
 
+        /* Işıkların Hareket Animasyonu */
         @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(40px, 30px) scale(1.05); }
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 40px); }
+        }
+
+        /* Işıkların Parlayıp Sönme (Nabız) Animasyonu */
+        @keyframes pulseOrb {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.15); opacity: 0.85; }
+        }
+
+        /* Merkezdeki Orb-3 için özel pulse */
+        .orb-3 { animation: pulseCenter 6s infinite alternate ease-in-out; }
+        @keyframes pulseCenter {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
         }
 
         /* === CAM KART TASARIMI (GLASSMORPHISM) === */
         .contact-card {
-            position: relative; z-index: 1; /* Kartı ışıkların üstünde tutar */
-            background: rgba(15, 15, 20, 0.4);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 229, 255, 0.15);
+            position: relative; z-index: 1;
+            background: rgba(15, 15, 20, 0.45); /* Arka planı hafif daha mat yaptık ki ışıklar patlamasın */
+            backdrop-filter: blur(20px); /* Bulanıklık artırıldı */
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 229, 255, 0.25);
             padding: 45px 40px; border-radius: 24px;
             text-align: center; max-width: 420px; width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.08);
             animation: fadeIn 0.8s ease-out;
         }
 
@@ -72,9 +90,9 @@
 
         .profile-img {
             width: 140px; height: 140px; border-radius: 50%;
-            object-fit: cover; border: 3px solid rgba(0, 229, 255, 0.8);
-            margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0, 229, 255, 0.15);
-            padding: 3px; background: rgba(0,0,0,0.5);
+            object-fit: cover; border: 3px solid rgba(0, 229, 255, 0.9);
+            margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+            padding: 3px; background: rgba(0,0,0,0.6);
         }
 
         h1 { margin: 0 0 5px 0; font-size: 1.9rem; color: #fff; letter-spacing: -0.5px;}
@@ -83,30 +101,30 @@
         /* Butonlar */
         .social-btn {
             display: flex; align-items: center; justify-content: center; gap: 12px;
-            background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.3);
+            background: rgba(0, 229, 255, 0.08); border: 1px solid rgba(0, 229, 255, 0.4);
             color: #00e5ff; text-decoration: none;
             padding: 14px 20px; border-radius: 12px; font-weight: 500; letter-spacing: 0.5px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); margin-bottom: 15px;
         }
 
         .social-btn:hover { 
-            background: rgba(0, 229, 255, 0.15); 
+            background: rgba(0, 229, 255, 0.2); 
             border-color: #00e5ff; 
             color: #fff;
-            box-shadow: 0 10px 20px rgba(0, 229, 255, 0.15); 
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.25); 
             transform: translateY(-3px); 
         }
 
-        .social-btn.linkedin { border-color: rgba(10, 102, 194, 0.4); color: #4facfe; background: rgba(10, 102, 194, 0.05);}
+        .social-btn.linkedin { border-color: rgba(10, 102, 194, 0.5); color: #4facfe; background: rgba(10, 102, 194, 0.08);}
         .social-btn.linkedin:hover { 
-            background: rgba(10, 102, 194, 0.2); 
+            background: rgba(10, 102, 194, 0.25); 
             border-color: #0a66c2; color: #fff;
-            box-shadow: 0 10px 20px rgba(10, 102, 194, 0.2); 
+            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.3); 
         }
 
         .back-link { 
             display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; 
-            color: #64748b; text-decoration: none; font-size: 0.9rem; transition: 0.3s;
+            color: #94a3b8; text-decoration: none; font-size: 0.95rem; transition: 0.3s;
         }
         .back-link:hover { color: #fff; transform: translateX(-5px); }
     </style>
@@ -126,7 +144,7 @@
         <h1>Erdoğan Zenit</h1>
         <p>Elektrik-Elektronik Mühendisi | Edge-AI</p>
         
-        <a href="https://linkedin.com/in/erdoganzenit" target="_blank" class="social-btn linkedin">
+        <a href="https://linkedin.com/in/vexira" target="_blank" class="social-btn linkedin">
             <i class="fab fa-linkedin" style="font-size: 1.3rem;"></i> LinkedIn Profilime Git
         </a>
 
