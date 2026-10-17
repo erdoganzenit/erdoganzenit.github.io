@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | Erdoğan Zenit</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 0; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            background: #050505; color: #f0f0f0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+        
+        .contact-card {
+            background: rgba(15, 15, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            padding: 40px; border-radius: 20px;
+            text-align: center; max-width: 400px; width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .profile-img {
+            width: 150px; height: 150px; border-radius: 50%;
+            object-fit: cover; border: 3px solid #00e5ff;
+            margin-bottom: 20px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        h1 { margin: 0 0 5px 0; font-size: 1.8rem; color: #fff; }
+        p { margin: 0 0 30px 0; color: #8892b0; font-size: 0.95rem; }
+
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: transparent; border: 1px solid #00e5ff;
+            color: #00e5ff; text-decoration: none;
+            padding: 12px 20px; border-radius: 8px; font-weight: 600;
+            transition: all 0.3s; margin-bottom: 15px;
+        }
+
+        .social-btn:hover { background: rgba(0, 229, 255, 0.1); box-shadow: 0 0 15px rgba(0, 229, 255, 0.4); transform: translateY(-2px); }
+        .social-btn.linkedin { border-color: #0a66c2; color: #0a66c2; }
+        .social-btn.linkedin:hover { background: rgba(10, 102, 194, 0.1); box-shadow: 0 0 15px rgba(10, 102, 194, 0.4); }
+
+        .back-link { display: inline-block; margin-top: 15px; color: #8892b0; text-decoration: none; font-size: 0.9rem; transition: 0.3s;}
+        .back-link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="contact-card">
+        <img src="profil.png" alt="Erdoğan Zenit" class="profile-img">
+        <h1>Erdoğan Zenit</h1>
+        <p>Elektrik-Elektronik Mühendisi | Edge-AI</p>
+        
+        <a href="https://linkedin.com/in/erdoganzenit" target="_blank" class="social-btn linkedin">
+            <i class="fab fa-linkedin" style="font-size: 1.2rem;"></i> LinkedIn Profilime Git
+        </a>
+
+        <a href="mailto:ornek@email.com" class="social-btn">
+            <i class="fas fa-envelope" style="font-size: 1.2rem;"></i> E-posta Gönder
+        </a>
+
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
+    </div>
+
+</body>
+</html>
