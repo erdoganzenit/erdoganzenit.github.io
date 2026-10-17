@@ -54,24 +54,32 @@
         .btn:hover { opacity: 0.8; }
         
         /* İçerik Kutuları */
-        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
-        .section-title { border-left: 4px solid var(--accent-color); padding-left: 10px; margin-bottom: 2rem; }
-        
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-        .card {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { margin-top: 0; color: var(--accent-color); font-size: 1.2rem; }
-        .card p { font-size: 0.95rem; opacity: 0.8; margin-bottom: 0; }
+        <div class="projects">
+        <div class="card">
+            <h3>Enerjisa Toroslar EDAŞ - Kırsal Line</h3>
+            <p>SPARK staj programı kapsamında, güzergah optimizasyonu için Python ve QGIS kullanılarak geliştirilen proje.</p>
+        </div>
+        <div class="card">
+            <h3>Giyilebilir EKG/EMG & Edge-AI</h3>
+            <p>Gerçek zamanlı sinyal işleme ve Edge-AI sınıflandırma (TinyML) mimarisi üzerine kurulu bitirme projesi tasarımı.</p>
+        </div>
+        <div class="card">
+            <h3>TEKNOFEST İHA - Bilgisayarlı Görü</h3>
+            <p>Cebeciler Takımı bünyesinde otonom sistemler için OpenCV tabanlı nesne tespiti (object detection) algoritmalarının geliştirilmesi.</p>
+        </div>
+        <div class="card">
+            <h3>Spectra-CH4 TR</h3>
+            <p>Sentinel-2 uydu verileri ve Streamlit kullanılarak tasarlanan, uydu tabanlı metan emisyonu takip ve simülasyon aracı.</p>
+        </div>
+        <div class="card">
+            <h3>Flyrank AI & FastAPI Sistemleri</h3>
+            <p>Backend AI mühendisi olarak yürütülen çalışmalar ve bellek içi görev yönetimi için GitHub üzerinde yayınlanan RESTful CRUD API mimarisi.</p>
+        </div>
+        <div class="card">
+            <h3>Sense-Tech Gömülü Sistemler</h3>
+            <p>Takım kaptanı olarak yürütülen ve finalist olmaya hak kazanılan gömülü sistemler ve donanım tasarımı projesi.</p>
+        </div>
+    </div>
         
         /* İletişim & Footer */
         ul { list-style-type: none; padding: 0; }
