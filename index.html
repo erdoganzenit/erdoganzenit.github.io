@@ -54,7 +54,45 @@
         .btn:hover { opacity: 0.8; }
         
         /* İçerik Kutuları */
-        <div class="projects">
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .section-title { border-left: 4px solid var(--accent-color); padding-left: 10px; margin-bottom: 2rem; }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { margin-top: 0; color: var(--accent-color); font-size: 1.2rem; }
+        .card p { font-size: 0.95rem; opacity: 0.8; margin-bottom: 0; }
+        
+        /* İletişim & Footer */
+        ul { list-style-type: none; padding: 0; }
+        ul li { margin-bottom: 10px; }
+        ul li a { color: var(--accent-color); text-decoration: none; font-weight: 500; }
+        footer { text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem; margin-top: 2rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="profil.png" alt="Erdoğan Zenit" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 3px solid var(--accent-color);">
+    <h1>Erdoğan Zenit</h1>
+    <h2>Elektrik-Elektronik Mühendisi | Edge-AI & Gömülü Sistemler</h2>
+    <p class="bio">Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği öğrencisiyim. Yapay zeka, bilgisayarlı görü, otonom robotik ve gömülü yazılımlar üzerine donanım-yazılım entegrasyonu odaklı projeler geliştiriyorum.</p>
+    <a href="#iletisim" class="btn">Bana Ulaşın</a>
+</header>
+
+<div class="container">
+    <h2 class="section-title">Öne Çıkan Projeler & Deneyimler</h2>
+    <div class="projects">
         <div class="card">
             <h3>Enerjisa Toroslar EDAŞ - Kırsal Line</h3>
             <p>SPARK staj programı kapsamında, güzergah optimizasyonu için Python ve QGIS kullanılarak geliştirilen proje.</p>
@@ -80,51 +118,13 @@
             <p>Takım kaptanı olarak yürütülen ve finalist olmaya hak kazanılan gömülü sistemler ve donanım tasarımı projesi.</p>
         </div>
     </div>
-        
-        /* İletişim & Footer */
-        ul { list-style-type: none; padding: 0; }
-        ul li { margin-bottom: 10px; }
-        ul li a { color: var(--accent-color); text-decoration: none; font-weight: 500; }
-        footer { text-align: center; padding: 2rem; opacity: 0.6; font-size: 0.9rem; margin-top: 2rem; border-top: 1px solid var(--border-color); }
-    </style>
-</head>
-<body>
-
-<header>
-    <img src="profil.png" alt="Erdoğan Zenit" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 3px solid var(--accent-color);">
-    <h1>Erdoğan Zenit</h1>
-    <h2>Elektrik-Elektronik Mühendisi | Edge-AI & Gömülü Sistemler</h2>
-    <p class="bio">Gaziantep Üniversitesi Elektrik-Elektronik Mühendisliği öğrencisiyim. Yapay zeka, bilgisayarlı görü, otonom robotik ve gömülü yazılımlar üzerine donanım-yazılım entegrasyonu odaklı projeler geliştiriyorum.</p>
-    <a href="#iletisim" class="btn">Bana Ulaşın</a>
-</header>
-
-<div class="container">
-    <h2 class="section-title">Öne Çıkan Projeler & Deneyimler</h2>
-    <div class="projects">
-        <div class="card">
-            <h3>Enerjisa Toroslar EDAŞ - Kırsal Line</h3>
-            <p>SPARK staj programı kapsamında, güzergah optimizasyonu için Python ve QGIS tabanlı geliştirilen proje.</p>
-        </div>
-        <div class="card">
-            <h3>Wearable ECG/EMG & Edge-AI</h3>
-            <p>Gerçek zamanlı sinyal işleme ve Edge-AI sınıflandırması (TinyML) odaklı bitirme projesi tasarımı.</p>
-        </div>
-        <div class="card">
-            <h3>Spectra-CH4 TR</h3>
-            <p>Sentinel-2 uydu verileri ve Streamlit kullanılarak tasarlanan metan emisyonu takip sistemi.</p>
-        </div>
-        <div class="card">
-            <h3>TEKNOFEST İHA - Bilgisayarlı Görü</h3>
-            <p>Cebeciler Takımı bünyesinde otonom sistemler için OpenCV tabanlı nesne tespiti (object detection) algoritmalarının geliştirilmesi.</p>
-        </div>
-    </div>
 
     <h2 class="section-title" id="iletisim" style="margin-top: 4rem;">İletişim</h2>
     <p>Projelerimi detaylı incelemek veya benimle iletişime geçmek için:</p>
     <ul>
-        <li><strong>LinkedIn:</strong> <a href="#">Vexira Profilim</a> (Link eklenecek)</li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/erdoganzenit">github.com/erdoganzenit</a></li>
-        <li><strong>E-posta:</strong> <a href="mailto:ornek@email.com">ornek@email.com</a> (Güncellenecek)</li>
+        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/vexira" target="_blank">Vexira Profilim</a></li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/erdoganzenit" target="_blank">github.com/erdoganzenit</a></li>
+        <li><strong>E-posta:</strong> <a href="mailto:ornek@email.com">ornek@email.com</a></li>
     </ul>
 </div>
 
