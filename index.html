@@ -57,7 +57,7 @@
         .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a {
             color: var(--text-main); text-decoration: none; font-size: 0.9rem;
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; position: relative;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; position: relative; cursor: pointer;
         }
         .nav-links a::after {
             content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
@@ -75,13 +75,8 @@
         #hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; position: relative; }
         .hero-content { max-width: 800px; z-index: 2; }
         .greeting { color: var(--primary); font-family: monospace; font-size: 1.1rem; margin-bottom: 15px; display: block;}
-        
-        /* İSİM BOYUTU KÜÇÜLTÜLDÜ VE ZARİFLEŞTİRİLDİ */
         .name { font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-main); letter-spacing: -1px;}
-        
-        /* DAKTİLO YERİNE SABİT, CİDDİ ALT BAŞLIK GELDİ */
         .hero-subtitle { font-size: 1.8rem; font-weight: 600; color: var(--secondary); margin-bottom: 25px; line-height: 1.3;}
-        
         .hero-desc { max-width: 600px; font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; }
 
         .btn-glitch {
@@ -144,6 +139,46 @@
         .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
         .project-tech { display: flex; flex-wrap: wrap; gap: 10px; font-family: monospace; font-size: 0.8rem; color: var(--text-muted); }
 
+        /* === İLETİŞİM MODAL (AÇILIR ÖZEL PENCERE) === */
+        .contact-modal {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(2, 2, 4, 0.85); backdrop-filter: blur(12px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        .contact-modal.active { opacity: 1; pointer-events: auto; }
+
+        .contact-card {
+            background: var(--bg-card); border: 1px solid var(--primary);
+            padding: 45px 40px; border-radius: 24px; text-align: center;
+            max-width: 420px; width: 90%; box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .contact-modal.active .contact-card { transform: translateY(0); }
+
+        .profile-img {
+            width: 130px; height: 130px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--primary); margin-bottom: 20px; box-shadow: 0 0 20px rgba(0,229,255,0.3);
+        }
+        .contact-card h1 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 5px; }
+        .contact-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; }
+
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: var(--glass-badge); border: 1px solid var(--border-color);
+            color: var(--text-main); text-decoration: none; padding: 14px 20px;
+            border-radius: 12px; font-weight: 500; transition: 0.3s; margin-bottom: 15px;
+        }
+        .social-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+        .social-btn.linkedin { border-color: rgba(10, 102, 194, 0.5); color: #4facfe; }
+        .social-btn.linkedin:hover { background: rgba(10, 102, 194, 0.2); color: #fff; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+            color: var(--text-muted); text-decoration: none; font-size: 0.95rem; cursor: pointer; transition: 0.3s;
+        }
+        .back-link:hover { color: var(--text-main); transform: translateX(-5px); }
+
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -176,7 +211,8 @@
                 <li><a href="#hakkimda" class="nav-item lang-el" data-tr="01. Profil" data-en="01. Profile">01. Profil</a></li>
                 <li><a href="#deneyim" class="nav-item lang-el" data-tr="02. Deneyim" data-en="02. Experience">02. Deneyim</a></li>
                 <li><a href="#projeler" class="nav-item lang-el" data-tr="03. Projeler" data-en="03. Projects">03. Projeler</a></li>
-                <li><a href="iletisim.html" target="_blank" class="nav-item lang-el" data-tr="04. İletişim" data-en="04. Contact">04. İletişim</a></li>
+                <!-- TIKLANDIĞINDA YENİ SEKME DEĞİL, MODAL AÇACAK -->
+                <li><a id="contact-trigger" class="nav-item lang-el" data-tr="04. İletişim" data-en="04. Contact" style="cursor: pointer;">04. İletişim</a></li>
             </ul>
             <div class="controls">
                 <button id="theme-btn" class="control-btn" title="Light/Dark Mode"><i class="fas fa-moon"></i></button>
@@ -185,26 +221,41 @@
         </div>
     </nav>
 
+    <!-- AYNI SAYFA İÇİNDE AÇILAN ÖZEL İLETİŞİM PENCERESİ (MODAL) -->
+    <div class="contact-modal" id="contact-modal">
+        <div class="contact-card">
+            <img src="profil.png" alt="Erdoğan Zenit" class="profile-img">
+            <h1>Erdoğan Zenit</h1>
+            <p>Elektrik-Elektronik Mühendisi | Edge-AI</p>
+            
+            <a href="https://linkedin.com/in/erdoganzenit" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin" style="font-size: 1.3rem;"></i> LinkedIn Profilime Git
+            </a>
+
+            <a href="mailto:ornek@email.com" class="social-btn">
+                <i class="fas fa-envelope" style="font-size: 1.3rem;"></i> E-posta Gönder
+            </a>
+
+            <a id="close-modal" class="back-link"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
+        </div>
+    </div>
+
     <header id="hero">
         <div class="hero-content">
             <span class="greeting lang-el" data-tr="Merhaba, benim adım" data-en="Hello, my name is">Merhaba, benim adım</span>
             <h1 class="name">Erdoğan Zenit</h1>
-            
-            <!-- SABİT VE PROFESYONEL ALT BAŞLIK -->
             <h2 class="hero-subtitle lang-el" data-tr="Elektrik-Elektronik Mühendisliği Öğrencisi & Edge-AI Geliştiricisi" data-en="Electrical & Electronics Engineering Student & Edge-AI Developer">
                 Elektrik-Elektronik Mühendisliği Öğrencisi & Edge-AI Geliştiricisi
             </h2>
-            
             <p class="hero-desc lang-el" data-tr="Gaziantep Üniversitesi'nde öğrenim görüyor, uçta yapay zeka (Edge-AI), bilgisayarlı görü ve gömülü sistemler üzerine donanım-yazılım entegrasyonu odaklı mühendislik problemleri çözüyorum." data-en="Studying at Gaziantep University, I solve engineering problems focusing on hardware-software integration in Edge-AI, computer vision, and embedded systems.">
                 Gaziantep Üniversitesi'nde öğrenim görüyor, uçta yapay zeka (Edge-AI), bilgisayarlı görü ve gömülü sistemler üzerine donanım-yazılım entegrasyonu odaklı mühendislik problemleri çözüyorum.
             </p>
-            <a href="iletisim.html" target="_blank" class="btn-glitch lang-el" data-tr="İletişime Geç" data-en="Contact Me">İletişime Geç</a>
+            <a id="hero-contact-btn" class="btn-glitch lang-el" data-tr="İletişime Geç" data-en="Contact Me" style="cursor: pointer;">İletişime Geç</a>
         </div>
     </header>
 
     <section id="hakkimda" class="reveal">
         <h2 class="section-title"><span class="lang-el" data-tr="01." data-en="01.">01.</span> <span class="lang-el" data-tr="Teknik Yetkinlikler" data-en="Technical Skills">Teknik Yetkinlikler</span></h2>
-        
         <div class="skills-category">
             <h3 class="lang-el" data-tr=">_ Yazılım & Yapay Zeka" data-en=">_ Software & AI">>_ Yazılım & Yapay Zeka</h3>
             <div class="skills-grid">
@@ -215,7 +266,6 @@
                 <div class="skill-badge"><i class="fas fa-atom"></i> Qiskit (Quantum Computing)</div>
             </div>
         </div>
-
         <div class="skills-category">
             <h3 class="lang-el" data-tr=">_ Donanım & Gömülü Sistemler" data-en=">_ Hardware & Embedded Systems">>_ Donanım & Gömülü Sistemler</h3>
             <div class="skills-grid">
@@ -239,7 +289,6 @@
                     <p class="lang-el" data-tr="Yapay zeka tabanlı sistemlerin backend mimarilerinin tasarlanması ve bellek içi görev yönetimi için RESTful CRUD API sistemlerinin entegrasyonu." data-en="Designing backend architectures for AI-based systems and integrating RESTful CRUD APIs for in-memory task management.">Yapay zeka tabanlı sistemlerin backend mimarilerinin tasarlanması ve bellek içi görev yönetimi için RESTful CRUD API sistemlerinin entegrasyonu.</p>
                 </div>
             </div>
-
             <div class="timeline-item reveal">
                 <div class="timeline-icon"><i class="fas fa-bolt"></i></div>
                 <div class="timeline-content">
@@ -249,7 +298,6 @@
                     <p class="lang-el" data-tr="Kırsal bölgelerdeki enerji nakil hatları için Python ve QGIS tabanlı güzergah optimizasyon algoritması 'Kırsal Line' projesinin geliştirilmesi." data-en="Developed the 'Kırsal Line' route optimization algorithm using Python and QGIS for power transmission lines in rural areas.">Kırsal bölgelerdeki enerji nakil hatları için Python ve QGIS tabanlı güzergah optimizasyon algoritması 'Kırsal Line' projesinin geliştirilmesi.</p>
                 </div>
             </div>
-
             <div class="timeline-item reveal">
                 <div class="timeline-icon"><i class="fas fa-microchip"></i></div>
                 <div class="timeline-content">
@@ -265,21 +313,18 @@
     <section id="projeler" class="reveal">
         <h2 class="section-title"><span class="lang-el" data-tr="03." data-en="03.">03.</span> <span class="lang-el" data-tr="Seçkin Projeler" data-en="Selected Projects">Seçkin Projeler</span></h2>
         <div class="projects-grid">
-            
             <div class="project-card reveal">
                 <div class="project-top"><i class="fas fa-heartbeat"></i></div>
                 <h3 class="project-title">Wearable ECG/EMG & Edge-AI</h3>
                 <p class="project-desc lang-el" data-tr="Gerçek zamanlı biyometrik sinyal işleme ve doğrudan donanım üzerinde (TinyML) sınıflandırma sağlayan giyilebilir bitirme projesi." data-en="Wearable capstone project design enabling real-time biometric signal processing and on-device (TinyML) classification.">Gerçek zamanlı biyometrik sinyal işleme ve doğrudan donanım üzerinde (TinyML) sınıflandırma sağlayan giyilebilir bitirme projesi.</p>
                 <div class="project-tech"><span>ESP32</span> <span>Edge-AI</span> <span>Signal Processing</span></div>
             </div>
-
             <div class="project-card reveal">
                 <div class="project-top"><i class="fas fa-satellite"></i></div>
                 <h3 class="project-title">Spectra-CH4 TR</h3>
                 <p class="project-desc lang-el" data-tr="Sentinel-2 uydu verilerini kullanarak metan emisyonlarını takip eden uydu tabanlı veri görselleştirme aracı." data-en="Satellite-based simulation tool for tracking methane gas emissions and visualizing data using Sentinel-2 data and Streamlit.">Sentinel-2 uydu verilerini kullanarak metan emisyonlarını takip eden uydu tabanlı veri görselleştirme aracı.</p>
                 <div class="project-tech"><span>Python</span> <span>Streamlit</span> <span>Sentinel-2 API</span></div>
             </div>
-
             <div class="project-card reveal">
                 <div class="project-top">
                     <i class="fas fa-server"></i>
@@ -289,18 +334,31 @@
                 <p class="project-desc lang-el" data-tr="Swagger dokümantasyonuna sahip, yüksek performanslı ve asenkron in-memory görev yönetimi CRUD API sistemi." data-en="High-performance, asynchronous in-memory task management CRUD API system with Swagger documentation.">Swagger dokümantasyonuna sahip, yüksek performanslı ve asenkron in-memory görev yönetimi CRUD API sistemi.</p>
                 <div class="project-tech"><span>Python</span> <span>FastAPI</span> <span>RESTful</span></div>
             </div>
-            
         </div>
     </section>
 
     <script>
+        // İletişim Modal Kontrolleri
+        const contactModal = document.getElementById('contact-modal');
+        const contactTrigger = document.getElementById('contact-trigger');
+        const heroContactBtn = document.getElementById('hero-contact-btn');
+        const closeModal = document.getElementById('close-modal');
+
+        contactTrigger.addEventListener('click', (e) => { e.preventDefault(); contactModal.classList.add('active'); });
+        heroContactBtn.addEventListener('click', (e) => { e.preventDefault(); contactModal.classList.add('active'); });
+        closeModal.addEventListener('click', (e) => { e.preventDefault(); contactModal.classList.remove('active'); });
+        
+        // Modal dışına tıklandığında da kapanması için
+        contactModal.addEventListener('click', (e) => {
+            if(e.target === contactModal) contactModal.classList.remove('active');
+        });
+
         // Tema ve Dil Değişkenleri
         let currentLang = 'tr';
         const body = document.body;
         const themeBtn = document.getElementById('theme-btn');
         const langBtn = document.getElementById('lang-btn');
 
-        // Dark/Light Mode Toggle
         themeBtn.addEventListener('click', () => {
             if (body.getAttribute('data-theme') === 'dark') {
                 body.setAttribute('data-theme', 'light');
@@ -311,11 +369,9 @@
             }
         });
 
-        // Language Toggle (TR/EN)
         langBtn.addEventListener('click', () => {
             currentLang = currentLang === 'tr' ? 'en' : 'tr';
             langBtn.textContent = currentLang === 'tr' ? 'EN' : 'TR';
-            
             document.querySelectorAll('.lang-el').forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLang}`);
             });
@@ -344,7 +400,7 @@
             });
         });
 
-        // Arka Plan (Particle Engine V2)
+        // Arka Plan (Particle Engine)
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
