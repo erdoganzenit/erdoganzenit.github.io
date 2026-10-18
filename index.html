@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="tr" data-theme="dark">
 <head>
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SENIN_KODUN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-SENIN_KODUN'); // analytics.google.com'dan ücretsiz alacağın ID
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Erdoğan Zenit | Elektrik-Elektronik Mühendisliği Portfolyosu</title>
-    <!-- Google Fonts -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        /* === 1. RENK PALETİ & DEĞİŞKENLER === */
         :root {
             --bg-base: #040711;
             --bg-surface: rgba(15, 23, 42, 0.55);
@@ -29,9 +27,9 @@
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            --accent-primary: #10b981; /* Zümrüt - Donanım */
-            --accent-secondary: #6366f1; /* İndigo - Yazılım & AI */
-            --accent-cyan: #06b6d4; /* Camgöbeği - Sinyal */
+            --accent-primary: #10b981;
+            --accent-secondary: #6366f1;
+            --accent-cyan: #06b6d4;
             --border-subtle: rgba(255, 255, 255, 0.07);
             --border-highlight: rgba(16, 185, 129, 0.4);
             --shadow-glow: 0 24px 48px -12px rgba(16, 185, 129, 0.14);
@@ -79,7 +77,6 @@
             position: relative;
         }
 
-        /* Üst Kaydırma İlerleme Çubuğu */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -92,7 +89,6 @@
             transition: width 0.1s linear;
         }
 
-        /* İnce Mühendislik Izgarası */
         body::before {
             content: "";
             position: fixed;
@@ -107,7 +103,6 @@
             pointer-events: none;
         }
 
-        /* === SMOOTH AURORA BACKLIGHT ANİMASYONU === */
         .aurora-container {
             position: fixed;
             inset: 0;
@@ -178,7 +173,6 @@
         ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
 
-        /* === 2. SADE VE ŞIK FLOATING NAVBAR === */
         .nav-wrapper {
             position: fixed;
             top: 20px;
@@ -299,7 +293,6 @@
             justify-content: center;
         }
 
-        /* === 3. ORTAK CONTAINER & BAŞLIKLAR === */
         .container {
             max-width: 1120px;
             margin: 0 auto;
@@ -343,7 +336,6 @@
             line-height: 1.2;
         }
 
-        /* === 4. HERO SECTION (GERÇEKÇİ UNVAN & SAĞDA GÖRSEL ODAK HUB'I) === */
         #hero {
             min-height: 92vh;
             display: flex;
@@ -466,7 +458,6 @@
             transform: translateY(-3px);
         }
 
-        /* Samimi ve Gerçekçi Özet Barı */
         .hero-highlights {
             display: flex;
             flex-wrap: wrap;
@@ -500,7 +491,6 @@
             color: var(--text-secondary);
         }
 
-        /* === SAĞ TARAF: KOD BLOĞU YERİNE GELEN GÖRSEL MÜHENDİSLİK ODAK HUB'I === */
         .focus-showcase {
             position: relative;
             display: grid;
@@ -509,7 +499,6 @@
             padding: 10px;
         }
 
-        /* Merkezdeki Dairesel Çekirdek Rozeti */
         .core-hub-badge {
             position: absolute;
             top: 50%;
@@ -591,7 +580,6 @@
             padding-top: 6px;
         }
 
-        /* === 5. SONSUZ KAYAN TEKNOLOJİ BANDI === */
         .marquee-section {
             padding: 22px 0;
             border-top: 1px solid var(--border-subtle);
@@ -638,7 +626,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* === 6. SPOTLIGHT KARTLAR & YETKİNLİKLER === */
         .bento-skills {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -732,7 +719,6 @@
             transform: translateY(-2px);
         }
 
-        /* === 7. TIMELINE (DENEYİM) === */
         .timeline-wrapper {
             position: relative;
             max-width: 860px;
@@ -809,7 +795,6 @@
             font-size: 0.94rem;
         }
 
-        /* === 8. SEÇKİN PROJELER GRID === */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -910,7 +895,6 @@
         .inspect-trigger i { transition: transform 0.3s ease; }
         .project-card:hover .inspect-trigger i { transform: translateX(5px); }
 
-        /* === 9. YENİLENEN FERAH BAŞARILAR & EĞİTİM PROGRAMLARI LİSTESİ === */
         .credentials-list {
             display: flex;
             flex-direction: column;
@@ -1000,7 +984,6 @@
             color: var(--text-muted);
         }
 
-        /* === 10. PROJE DETAY MODALI === */
         .project-modal-overlay {
             position: fixed;
             inset: 0;
@@ -1234,7 +1217,6 @@
             border-top: 1px solid var(--border-subtle);
         }
 
-        /* === 11. İLETİŞİM MODALI === */
         .contact-modal {
             position: fixed;
             inset: 0;
@@ -1312,7 +1294,6 @@
         }
         .back-link:hover { color: var(--text-primary); transform: translateX(-4px); }
 
-        /* === 12. FOOTER === */
         footer {
             border-top: 1px solid var(--border-subtle);
             padding: 36px 0;
@@ -1322,7 +1303,133 @@
             color: var(--text-secondary);
         }
 
-        /* === 13. SCROLL REVEAL === */
+        .visitor-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--accent-primary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .auth-prompt-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 6, 14, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10006;
+            padding: 20px;
+        }
+        .auth-prompt-overlay.show { display: flex; }
+
+        .auth-box {
+            background: #0b1120;
+            border: 1px solid var(--accent-primary);
+            border-radius: 18px;
+            padding: 26px 22px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+        }
+        .auth-box h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--accent-primary);
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+        .auth-input {
+            width: 100%;
+            padding: 11px 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            text-align: center;
+            outline: none;
+            margin-bottom: 12px;
+        }
+        .auth-input:focus { border-color: var(--accent-primary); }
+        .auth-btn {
+            width: 100%;
+            padding: 11px;
+            background: var(--accent-primary);
+            color: #040711;
+            border: none;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .auth-btn:hover { opacity: 0.9; }
+        .auth-error {
+            color: #ef4444;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .telemetry-admin-modal {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 350px;
+            max-width: calc(100vw - 32px);
+            background: rgba(11, 17, 32, 0.96);
+            border: 1px solid var(--accent-primary);
+            border-radius: 18px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #f8fafc;
+            z-index: 10005;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            backdrop-filter: blur(16px);
+            display: none;
+        }
+        .telemetry-admin-modal.show { display: block; }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+        .admin-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            gap: 10px;
+        }
+        .admin-row strong {
+            color: #e2e8f0;
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(24px);
@@ -1330,7 +1437,6 @@
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* === 14. MOBİL UYUMLULUK === */
         @media (max-width: 960px) {
             .hero-grid, .bento-skills, .pm-specs-grid {
                 grid-template-columns: 1fr;
@@ -1453,17 +1559,14 @@
 </head>
 <body>
 
-    <!-- Üst Scroll Progress Bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
 
-    <!-- Yavaş ve Akıcı Hareket Eden Aurora Backlight -->
     <div class="aurora-container">
         <div class="aurora-orb orb-emerald"></div>
         <div class="aurora-orb orb-indigo"></div>
         <div class="aurora-orb orb-cyan"></div>
     </div>
 
-    <!-- Sadeleştirilmiş Navigasyon (Gereksiz EZ ve İsim Tekrarı Kaldırıldı) -->
     <div class="nav-wrapper">
         <nav>
             <a href="#hero" class="brand-link">
@@ -1491,7 +1594,6 @@
         </nav>
     </div>
 
-    <!-- İletişim Modalı -->
     <div class="contact-modal" id="contact-modal">
         <div class="contact-card">
             <div class="avatar-wrapper">
@@ -1522,7 +1624,6 @@
         </div>
     </div>
 
-    <!-- PROJE DETAY MODALI -->
     <div class="project-modal-overlay" id="project-modal">
         <div class="project-modal-box">
             <div class="pm-header">
@@ -1558,10 +1659,8 @@
         </div>
     </div>
 
-    <!-- HERO SECTION -->
     <header id="hero" class="container">
         <div class="hero-grid">
-            <!-- Sol Sütun: Gerçekçi ve Net Tanıtım -->
             <div class="hero-left">
                 <div class="status-pill">
                     <span class="pulse-dot"></span>
@@ -1611,7 +1710,6 @@
                 </div>
             </div>
 
-            <!-- Sağ Sütun: Kod Bloğu Yerine Görsel Odak Alanları Kartları -->
             <div class="focus-showcase reveal active">
                 <div class="core-hub-badge" title="Donanım & Yazılım Sentezi">
                     <i class="fas fa-bolt"></i>
@@ -1648,7 +1746,6 @@
         </div>
     </header>
 
-    <!-- SONSUZ KAYAN TEKNOLOJİ BANDI -->
     <div class="marquee-section">
         <div class="marquee-track">
             <div class="marquee-item"><i class="fab fa-python"></i> Python</div>
@@ -1661,7 +1758,6 @@
             <div class="marquee-item"><i class="fas fa-atom"></i> Qiskit & Cirq</div>
             <div class="marquee-item"><i class="fas fa-industry"></i> TIA Portal (PLC)</div>
             <div class="marquee-item"><i class="fas fa-satellite"></i> Sentinel-2 & QGIS</div>
-            <!-- Tekrar -->
             <div class="marquee-item"><i class="fab fa-python"></i> Python</div>
             <div class="marquee-item"><i class="fas fa-bolt"></i> FastAPI & RESTful</div>
             <div class="marquee-item"><i class="fas fa-microchip"></i> ESP32 & C/C++</div>
@@ -1675,7 +1771,6 @@
         </div>
     </div>
 
-    <!-- 01. TEKNİK YETKİNLİKLER -->
     <section id="hakkimda" class="container reveal">
         <div class="section-header">
             <span class="section-tag lang-el" data-tr="01. TEKNİK ALTYAPI" data-en="01. TECHNICAL STACK">01. TEKNİK ALTYAPI</span>
@@ -1714,7 +1809,6 @@
         </div>
     </section>
 
-    <!-- 02. DENEYİM & TAKIM ÇALIŞMALARI -->
     <section id="deneyim" class="container reveal">
         <div class="section-header">
             <span class="section-tag lang-el" data-tr="02. STAJ & PROJE DENEYİMİ" data-en="02. INTERNSHIP & TEAM EXPERIENCE">02. STAJ & PROJE DENEYİMİ</span>
@@ -1778,7 +1872,6 @@
         </div>
     </section>
 
-    <!-- 03. SEÇKİN PROJELER -->
     <section id="projeler" class="container reveal">
         <div class="section-header">
             <span class="section-tag lang-el" data-tr="03. PROJE VİTRİNİ (DETAYLAR İÇİN KARTA TIKLAYIN)" data-en="03. PROJECT SHOWCASE (CLICK CARD FOR DETAILS)">03. PROJE VİTRİNİ (DETAYLAR İÇİN KARTA TIKLAYIN)</span>
@@ -1786,7 +1879,6 @@
         </div>
 
         <div class="projects-grid">
-            <!-- Proje 1 -->
             <div class="spotlight-card project-card reveal" data-project="ecg">
                 <div>
                     <div class="project-top">
@@ -1812,7 +1904,6 @@
                 </div>
             </div>
 
-            <!-- Proje 2 -->
             <div class="spotlight-card project-card reveal" data-project="spectra">
                 <div>
                     <div class="project-top">
@@ -1838,7 +1929,6 @@
                 </div>
             </div>
 
-            <!-- Proje 3 -->
             <div class="spotlight-card project-card reveal" data-project="fastapi">
                 <div>
                     <div class="project-top">
@@ -1871,7 +1961,6 @@
         </div>
     </section>
 
-    <!-- 04. YENİLENEN FERAH BAŞARILAR, YARIŞMALAR & EĞİTİM PROGRAMLARI -->
     <section id="basarilar" class="container reveal">
         <div class="section-header">
             <span class="section-tag lang-el" data-tr="04. YARIŞMALAR, EĞİTİMLER & TOPLULUK" data-en="04. COMPETITIONS, TRAINING & COMMUNITY">04. YARIŞMALAR, EĞİTİMLER & TOPLULUK</span>
@@ -1879,7 +1968,6 @@
         </div>
 
         <div class="credentials-list">
-            <!-- Satır 1 -->
             <div class="credential-row reveal">
                 <div class="cred-icon-wrap"><i class="fas fa-trophy"></i></div>
                 <div class="cred-main">
@@ -1896,7 +1984,6 @@
                 </div>
             </div>
 
-            <!-- Satır 2 -->
             <div class="credential-row cred-row-indigo reveal">
                 <div class="cred-icon-wrap"><i class="fas fa-compass"></i></div>
                 <div class="cred-main">
@@ -1913,7 +2000,6 @@
                 </div>
             </div>
 
-            <!-- Satır 3 -->
             <div class="credential-row cred-row-cyan reveal">
                 <div class="cred-icon-wrap"><i class="fas fa-jet-fighter-up"></i></div>
                 <div class="cred-main">
@@ -1930,7 +2016,6 @@
                 </div>
             </div>
 
-            <!-- Satır 4 -->
             <div class="credential-row reveal">
                 <div class="cred-icon-wrap"><i class="fas fa-atom"></i></div>
                 <div class="cred-main">
@@ -1947,7 +2032,6 @@
                 </div>
             </div>
 
-            <!-- Satır 5 -->
             <div class="credential-row cred-row-indigo reveal">
                 <div class="cred-icon-wrap"><i class="fas fa-share-nodes"></i></div>
                 <div class="cred-main">
@@ -1971,11 +2055,25 @@
             <p class="lang-el" data-tr="© 2026 • Elektrik-Elektronik Mühendisliği & Yazılım Portfolyosu" data-en="© 2026 • Electrical-Electronics Engineering & Software Portfolio">
                 © 2026 • Elektrik-Elektronik Mühendisliği & Yazılım Portfolyosu
             </p>
+            <div class="visitor-badge" id="visitor-badge-btn" title="System Status">
+                <span class="pulse-dot"></span>
+                <span id="live-counter">System Online</span>
+            </div>
         </div>
     </footer>
 
+    <div class="auth-prompt-overlay" id="auth-overlay">
+        <div class="auth-box">
+            <h4><i class="fas fa-lock"></i> ACCESS KEY REQUIRED</h4>
+            <input type="password" id="auth-pin" class="auth-input" placeholder="•••••••" autocomplete="off">
+            <button id="auth-submit" class="auth-btn">UNLOCK TELEMETRY</button>
+            <div id="auth-err" class="auth-error">Geçersiz Erişim Anahtarı!</div>
+        </div>
+    </div>
+
+    <div id="secure-admin-root"></div>
+
     <script>
-        // === 1. PROJE DETAY VERİTABANI ===
         const projectsData = {
             ecg: {
                 category: { tr: "BİTİRME PROJESİ • BIOMEDICAL & EDGE-AI", en: "SENIOR DESIGN • BIOMEDICAL & EDGE-AI" },
@@ -2158,8 +2256,8 @@
 
         let currentLang = 'tr';
         let activeProjectKey = null;
+        let clickedProjects = [];
 
-        // === 2. ÜST SCROLL PROGRESS BAR ===
         const scrollProgress = document.getElementById('scroll-progress');
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
@@ -2168,7 +2266,6 @@
             scrollProgress.style.width = `${scrolled}%`;
         }, { passive: true });
 
-        // === 3. PROJE DETAY MODALI FONKSİYONLARI ===
         const projectModal = document.getElementById('project-modal');
         const pmClose = document.getElementById('pm-close');
 
@@ -2221,6 +2318,13 @@
             card.addEventListener('click', () => {
                 const key = card.getAttribute('data-project');
                 renderProjectModal(key);
+                const pName = key.toUpperCase();
+                if (!clickedProjects.includes(pName)) clickedProjects.push(pName);
+                const admClicksEl = document.getElementById('adm-clicks');
+                if (admClicksEl) admClicksEl.textContent = clickedProjects.join(', ');
+                if (typeof gtag === 'function') {
+                    gtag('event', 'project_view', { project_name: pName });
+                }
             });
         });
 
@@ -2235,7 +2339,6 @@
             if (e.target === projectModal) closeProjectModal();
         });
 
-        // === 4. MOUSE TAKİP EDEN SPOTLIGHT EFEKTİ ===
         document.querySelectorAll('.spotlight-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -2246,7 +2349,6 @@
             });
         });
 
-        // === 5. İLETİŞİM MODALI KONTROLLERİ ===
         const contactModal = document.getElementById('contact-modal');
         const contactTrigger = document.getElementById('contact-trigger');
         const heroContactBtn = document.getElementById('hero-contact-btn');
@@ -2272,14 +2374,115 @@
             if (e.target === contactModal) closeContactModal();
         });
 
+        fetch('https://api.counterapi.dev/v1/erdoganzenit-portfolio-2026/visits/up')
+            .catch(() => {});
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        const ADMIN_HASH = "e2a7925884f1f8b9207405d2c8056d573d5983590c2f05719627e91f17508b36";
+
+        const authOverlay = document.getElementById('auth-overlay');
+        const authPin = document.getElementById('auth-pin');
+        const authSubmit = document.getElementById('auth-submit');
+        const authErr = document.getElementById('auth-err');
+        let isUnlocked = false;
+
+        function triggerAuthPrompt() {
+            const existingPanel = document.getElementById('admin-telemetry');
+            if (existingPanel) {
+                existingPanel.classList.toggle('show');
+                return;
+            }
+            authOverlay.classList.add('show');
+            authPin.value = '';
+            authErr.style.display = 'none';
+            setTimeout(() => authPin.focus(), 100);
+        }
+
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (contactModal.classList.contains('active')) closeContactModal();
                 if (projectModal.classList.contains('active')) closeProjectModal();
+                authOverlay.classList.remove('show');
+            }
+            if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+                e.preventDefault();
+                triggerAuthPrompt();
             }
         });
 
-        // === 6. TEMA VE DİL DEĞİŞTİRİCİ ===
+        let badgeTapCount = 0;
+        document.getElementById('visitor-badge-btn').addEventListener('click', () => {
+            badgeTapCount++;
+            if (badgeTapCount >= 3) {
+                triggerAuthPrompt();
+                badgeTapCount = 0;
+            }
+            setTimeout(() => { badgeTapCount = 0; }, 1200);
+        });
+
+        authOverlay.addEventListener('click', (e) => {
+            if (e.target === authOverlay) authOverlay.classList.remove('show');
+        });
+
+        async function verifyAndMount() {
+            const inputHash = await sha256(authPin.value.trim());
+            if (inputHash === ADMIN_HASH) {
+                authOverlay.classList.remove('show');
+                mountTelemetryPanel();
+            } else {
+                authErr.style.display = 'block';
+                authPin.value = '';
+            }
+        }
+
+        authSubmit.addEventListener('click', verifyAndMount);
+        authPin.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') verifyAndMount();
+        });
+
+        function mountTelemetryPanel() {
+            if (isUnlocked) return;
+            isUnlocked = true;
+
+            const root = document.getElementById('secure-admin-root');
+            root.innerHTML = `
+                <div class="telemetry-admin-modal show" id="admin-telemetry">
+                    <div class="admin-header">
+                        <span><i class="fas fa-shield-halved"></i> SECURE TELEMETRY</span>
+                        <span style="cursor:pointer; color:#ef4444;" onclick="document.getElementById('admin-telemetry').classList.remove('show')">[X]</span>
+                    </div>
+                    <div class="admin-row"><span>Toplam Ziyaret:</span> <strong id="adm-views">...</strong></div>
+                    <div class="admin-row"><span>Konum:</span> <strong id="adm-loc">...</strong></div>
+                    <div class="admin-row"><span>IP & İSS:</span> <strong id="adm-ip">...</strong></div>
+                    <div class="admin-row"><span>Kaynak:</span> <strong id="adm-ref">...</strong></div>
+                    <div class="admin-row"><span>Cihaz / Ekran:</span> <strong id="adm-os">...</strong></div>
+                    <div class="admin-row"><span>İncelenen Proje:</span> <strong id="adm-clicks">${clickedProjects.length ? clickedProjects.join(', ') : '-'}</strong></div>
+                </div>
+            `;
+
+            document.getElementById('adm-ref').textContent = document.referrer ? new URL(document.referrer).hostname : 'Doğrudan Giriş';
+            document.getElementById('adm-os').textContent = `${navigator.platform} (${window.innerWidth}x${window.innerHeight})`;
+
+            fetch('https://api.counterapi.dev/v1/erdoganzenit-portfolio-2026/visits/')
+                .then(r => r.json())
+                .then(d => { document.getElementById('adm-views').textContent = d.count || '1'; })
+                .catch(() => { document.getElementById('adm-views').textContent = 'Aktif'; });
+
+            fetch('https://ipapi.co/json/')
+                .then(r => r.json())
+                .then(g => {
+                    document.getElementById('adm-loc').textContent = `${g.city || '-'}, ${g.country_name || '-'}`;
+                    document.getElementById('adm-ip').textContent = `${g.ip || '-'} (${g.org || '-'})`;
+                })
+                .catch(() => { document.getElementById('adm-loc').textContent = 'AdBlock / Gizli'; });
+        }
+
         const htmlEl = document.documentElement;
         const themeBtn = document.getElementById('theme-btn');
         const langBtn = document.getElementById('lang-btn');
@@ -2305,7 +2508,6 @@
             }
         });
 
-        // === 7. MOBİL MENÜ KONTROLÜ ===
         const menuBtn = document.getElementById('menu-btn');
         const navRight = document.getElementById('nav-right');
         const menuIcon = menuBtn.querySelector('i');
@@ -2324,7 +2526,6 @@
             });
         });
 
-        // === 8. INTERSECTION OBSERVER (SCROLL REVEAL) ===
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
